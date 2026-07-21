@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpengine-smart-search/chatkit",
+  "version": "0.1.0",
+  "title": "ChatKit",
+  "category": "wpengine-smart-search",
+  "icon": "format-chat",
+  "description": "WP Engine AI ChatKit - Add an AI-powered chat interface to your page",
+  "example": {},
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "anchor": true,
+    "className": true,
+    "multiple": true,
+    "interactivity": true
+  },
+  "attributes": {
+    "displayMode": {
+      "type": "string",
+      "default": "inline",
+      "enum": ["inline", "fab"]
+    },
+    "fabPosition": {
+      "type": "string",
+      "default": "bottom-right",
+      "enum": ["bottom-right", "bottom-left"]
+    },
+    "customHeight": {
+      "type": "string",
+      "default": "600px"
+    },
+    "colorScheme": {
+      "type": "string",
+      "default": "light",
+      "enum": ["light", "dark"]
+    },
+    "borderRadius": {
+      "type": "string",
+      "default": "medium",
+      "enum": ["sharp", "medium", "round"]
+    },
+    "density": {
+      "type": "string",
+      "default": "normal",
+      "enum": ["compact", "normal", "spacious"]
+    },
+    "greeting": {
+      "type": "string",
+      "default": "Hello! How can I help you today?"
+    },
+    "placeholder": {
+      "type": "string",
+      "default": "Type your message..."
+    },
+    "attachmentsEnabled": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "keywords": [
+    "wpengine",
+    "WP Engine",
+    "chatkit",
+    "chat",
+    "ai",
+    "openai",
+    "assistant"
+  ],
+  "textdomain": "wpengine-smart-search",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewStyle": "file:./style-index.css",
+  "viewScriptModule": "file:./view.js",
+  "render": "file:./render.php"
+}

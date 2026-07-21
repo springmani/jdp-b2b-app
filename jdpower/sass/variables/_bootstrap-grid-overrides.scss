@@ -1,0 +1,38 @@
+// Bootstrap grid overrides — loaded before bootstrap-grid so these values override !default.
+// Breakpoints must be ascending; first key must be 0.
+// Tailwind-style: 5 breakpoints (xs = default), round numbers.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  nav: 1440px,
+  2xl: 1536px) !default;
+
+// .container is width:100% with gutters until the first max-width kicks in (no stepped 600→720→960…).
+// The map key is the breakpoint where max-width applies; value is the cap (largest content width).
+// - xl (1280px): fluid below that, then 1600px — container max-width cap.
+// - nav (1440px): desktop horizontal nav / mega menu / fixed header (_navigation.scss, _site.scss).
+// - sm only: cap from 640px up (less fluid on tablet).
+// - 2xl only: cap from 1536px up (widest fluid layouts on laptops; can exceed 1600 between xl–2xl).
+//
+// `sass/acf/_carousel-scroll.scss` uses this map at sm/md/lg/2xl too: missing keys are handled there
+// (so we do not add dummy entries here and break Bootstrap’s strictly-ascending map check).
+$container-max-widths: (
+  xl: 1600px,
+  ) !default;
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 1.5rem !default;
+$grid-row-columns: 6 !default;
+
+// `.container` horizontal padding via inherited `--bs-gutter-x` (see `base/elements/_html.scss`).
+// Mobile-first: 20px below md, 40px from md up.
+$container-padding-x-below-md: 1.25rem; // 20px — xs/sm (< md / 768px)
+$container-padding-x-below-xl: 2.5rem; // 40px — md (768px)+
+$container-padding-x-xl-up: $container-padding-x-below-xl; // alias — same 40px at xl+
+
+// Bootstrap `$container-padding-x` fallback in `var(--bs-gutter-x, …)` when the variable is unset.
+$container-padding-x: $container-padding-x-below-md;

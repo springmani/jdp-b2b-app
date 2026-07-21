@@ -1,0 +1,47 @@
+$font__path: 'fonts';
+
+@font-face {
+	font-family: Manrope;
+	font-style: normal;
+	font-weight: 200 800;
+	font-display: swap;
+	src: url('#{$font__path}/Manrope-VariableFont_wght.ttf') format('truetype');
+}
+
+// Basenames only; woff2 preferred, otf fallback. Weights without a matching file reuse the nearest file.
+$neulis-sans-weights: (
+	100: 'NeulisSans-Thin',
+	300: 'NeulisSans-Light',
+	400: 'NeulisSans-Regular',
+	500: 'NeulisSans-Medium',
+	600: 'NeulisSans-Medium',
+	700: 'NeulisSans-Bold',
+	800: 'NeulisSans-Black',
+	900: 'NeulisSans-Black',
+);
+
+@each $weight, $basename in $neulis-sans-weights {
+	@font-face {
+		font-family: 'Neulis Sans';
+		font-style: normal;
+		font-weight: $weight;
+		font-display: swap;
+		// Tighten vertical metrics vs local OTF/WOFF2 (reduces gap under uppercase labels in nav/buttons).
+		ascent-override: 92%;
+		descent-override: 22%;
+		line-gap-override: 0%;
+		src:
+			url('#{$font__path}/#{$basename}.woff2') format('woff2'),
+			url('#{$font__path}/#{$basename}.otf') format('opentype');
+	}
+}
+
+$font__header: 'Neulis Sans', sans-serif;
+
+$font__main: 'Manrope', sans-serif;
+$font__main_size: 18px;
+$font__line-height-body: 150%;
+
+$font__code: monaco, consolas, 'Andale Mono', 'DejaVu Sans Mono', monospace;
+$font__pre: 'Courier 10 Pitch', courier, monospace;
+$font__line-height-pre: 1.6;

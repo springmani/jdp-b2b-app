@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpengine-smart-search/range-facet",
+  "version": "0.1.0",
+  "title": "Range Facet",
+  "category": "wpengine-smart-search",
+  "icon": "money-alt",
+  "description": "WP Engine Smart Search block for filtering a range of values",
+  "example": {},
+  "supports": {
+    "html": false,
+    "interactivity": true,
+    "align": ["wide", "full"],
+    "anchor": true,
+    "className": true
+  },
+  "attributes": {
+    "hasLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "label": {
+      "type": "string",
+      "default": "Range Label"
+    },
+    "selectedDataSource": {
+      "type": "string",
+      "default": "price"
+    },
+    "range": {
+      "type": "object",
+      "default": {
+        "min": 0,
+        "max": 1000,
+        "from": 0,
+        "to": 1000
+      }
+    },
+    "autoReload": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "keywords": [
+    "wpengine",
+    "WP Engine",
+    "smart search",
+    "smartsearch",
+    "Smart Search",
+    "range",
+    "categories"
+  ],
+  "textdomain": "wpengine-smart-search",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewStyle": "file:./style-index.css",
+  "viewScriptModule": "file:./view.js",
+  "render": "file:./render.php"
+}

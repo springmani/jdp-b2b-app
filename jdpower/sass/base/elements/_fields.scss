@@ -1,0 +1,73 @@
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea,
+select {
+	color: $color__text-input;
+	border: 1px solid $color__input-border;
+	border-radius: 3px;
+	padding: 3px;
+
+	&:focus {
+		color: $color__text-input-focus;
+		outline: 2px solid currentColor !important;
+		outline-offset: 2px;
+	}
+
+	&:focus-visible {
+		outline: 2px solid currentColor !important;
+		outline-offset: 2px;
+	}
+
+	&:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+	}
+}
+
+textarea {
+	width: 100%;
+}
+
+.container {
+	div.wpforms-container-full .wpforms-form .wpforms-field-label {
+		font-size: 1.3rem;
+		font-weight: 400;
+
+		@include media-breakpoint-down(sm) {
+			font-size: 1rem;
+		}
+	}
+
+	div.wpforms-container-full .wpforms-form input[type=date],
+	div.wpforms-container-full .wpforms-form input[type=datetime],
+	div.wpforms-container-full .wpforms-form input[type=datetime-local],
+	div.wpforms-container-full .wpforms-form input[type=email],
+	div.wpforms-container-full .wpforms-form input[type=month],
+	div.wpforms-container-full .wpforms-form input[type=number],
+	div.wpforms-container-full .wpforms-form input[type=password],
+	div.wpforms-container-full .wpforms-form input[type=range],
+	div.wpforms-container-full .wpforms-form input[type=search],
+	div.wpforms-container-full .wpforms-form input[type=tel],
+	div.wpforms-container-full .wpforms-form input[type=text],
+	div.wpforms-container-full .wpforms-form input[type=time],
+	div.wpforms-container-full .wpforms-form input[type=url],
+	div.wpforms-container-full .wpforms-form input[type=week],
+	div.wpforms-container-full .wpforms-form select,
+	div.wpforms-container-full .wpforms-form textarea {
+		border-color: $color__input-border;
+		border-radius: 0px;
+	}
+}

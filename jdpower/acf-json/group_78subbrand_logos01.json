@@ -1,0 +1,182 @@
+{
+    "key": "group_78subbrand_logos01",
+    "title": "[Block] - Sub Brand Logos",
+    "fields": [
+        {
+            "key": "field_78subbrand_tab_setup",
+            "label": "Setup",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_78subbrand_padding_top",
+            "label": "Padding Top",
+            "name": "sub_brand_logos_padding_top",
+            "type": "select",
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78subbrand_padding_bottom",
+            "label": "Padding Bottom",
+            "name": "sub_brand_logos_padding_bottom",
+            "type": "select",
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78subbrand_tab_background",
+            "label": "Background",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_78subbrand_background_tone",
+            "label": "Background",
+            "name": "sub_brand_logos_background_tone",
+            "type": "select",
+            "choices": {
+                "light": "Light",
+                "medium": "Medium",
+                "dark": "Dark"
+            },
+            "default_value": "medium",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78subbrand_tab_content",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_78subbrand_pre_heading",
+            "label": "Pre-Heading",
+            "name": "sub_brand_logos_pre_heading",
+            "type": "text",
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_78subbrand_heading",
+            "label": "Heading",
+            "name": "sub_brand_logos_heading",
+            "type": "text",
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_78subbrand_copy",
+            "label": "Copy",
+            "name": "sub_brand_logos_copy",
+            "type": "wysiwyg",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_78subbrand_style",
+            "label": "Style",
+            "name": "sub_brand_logos_style",
+            "type": "select",
+            "instructions": "Boxed adds inner padding within the container. Fluid spans the full section width with no inner box padding.",
+            "choices": {
+                "boxed": "Boxed",
+                "fluid": "Fluid"
+            },
+            "default_value": "boxed",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78subbrand_columns",
+            "label": "Columns",
+            "name": "sub_brand_logos_columns",
+            "type": "select",
+            "instructions": "Number of columns in the logo grid.",
+            "choices": {
+                "1": "1",
+                "2": "2",
+                "3": "3"
+            },
+            "default_value": "2",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78subbrand_logos",
+            "label": "Logos",
+            "name": "sub_brand_logos_logos",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add Logo",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_78subbrand_logo_image",
+                    "label": "Logo",
+                    "name": "sub_brand_logos_logo",
+                    "type": "image",
+                    "return_format": "array",
+                    "library": "all",
+                    "preview_size": "medium"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-sub-brand-logos"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1749139200
+}

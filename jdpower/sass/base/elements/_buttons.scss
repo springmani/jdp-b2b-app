@@ -1,0 +1,60 @@
+button,
+.btn,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+a.button,
+div.wpforms-container-full .wpforms-form input[type=submit],
+div.wpforms-container-full .wpforms-form button[type=submit],
+div.wpforms-container-full .wpforms-form .wpforms-page-button {
+	border: 2px solid $color__button_border;
+	border-radius: 40px;
+	background: $color__button_background;
+	color: $color__button_text;
+	font-family: $font__header;
+	line-height: 1;
+	padding: 10px 20px;
+	font-size: 24px;
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: -0.48px;
+	text-transform: uppercase;
+	display: inline-block;
+	text-decoration: none;
+	transition: all .3s;
+	text-align: center;
+	cursor: pointer;
+
+	&:visited {
+		color: $color__button_text;
+	}
+
+	&:hover {
+		background: $color__button_hover_background;
+		color: $color__button_hover_text;
+		border-width: 2px;
+		border-color: $color__button_hover_border;
+	}
+
+	&:focus {
+		background: $color__button_focus_background;
+		color: $color__button_focus_text;
+		border-width: 2px;
+		border-color: $color__button_focus_border;
+	}
+}
+
+@include media-breakpoint-down(md) {
+	button,
+	.btn,
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"],
+	a.button,
+	div.wpforms-container-full .wpforms-form input[type=submit],
+	div.wpforms-container-full .wpforms-form button[type=submit],
+	div.wpforms-container-full .wpforms-form .wpforms-page-button {
+		font-size: 20px;
+		letter-spacing: -0.4px;
+	}
+}

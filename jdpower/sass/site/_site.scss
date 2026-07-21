@@ -1,0 +1,272 @@
+// Same duration + linear easing for every property so padding and `--header-mega-pad-bridge` track together
+// (different easing curves were leaving a visible seam above the mega while the header “grew”).
+$site-header-layout-timing: 0.2s linear;
+// Match mega menu panel shadow (_navigation.scss `.mega-menu-dropdown-fluid`).
+$site-header-box-shadow: 0 10px 32px -12px rgba(0, 0, 0, 0.16);
+
+.site-branding {
+	a {
+		text-transform: initial;
+
+		svg {
+			display: block;
+			margin: 0;
+			padding: 0;
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	@include media-breakpoint-down(nav) {
+		.logo {
+
+			svg,
+			img {
+				display: block;
+				width: auto;
+				height: 30px;
+				max-height: 30px;
+				max-width: 100%;
+				object-fit: contain;
+				object-position: left center;
+			}
+		}
+	}
+}
+
+.site-header {
+	padding-top: 27px;
+	padding-bottom: 27px;
+	position: relative;
+
+	@include media-breakpoint-down(nav) {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		position: sticky;
+		top: 0;
+		z-index: 1000;
+	}
+
+	// Same breakpoint as desktop horizontal nav / mega menu (_navigation.scss uses nav / 1440px).
+	@include media-breakpoint-up(nav) {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		width: 100%;
+		box-sizing: border-box;
+		// Keeps mega menu `top` in sync with masthead bottom padding (see _navigation.scss).
+		--header-mega-pad-bridge: 27px;
+		// Keep duration/easing in sync with `body.has-transparent-nav .site-header` in _hero.scss (that rule
+		// must list the same properties or it overrides this and drops `--header-mega-pad-bridge`).
+		box-shadow: none;
+		transition:
+			padding-top $site-header-layout-timing,
+			padding-bottom $site-header-layout-timing,
+			--header-mega-pad-bridge $site-header-layout-timing,
+			box-shadow $site-header-layout-timing;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+
+		&.site-header--scrolled {
+			padding-top: 16px;
+			padding-bottom: 16px;
+			--header-mega-pad-bridge: 16px;
+			box-shadow: $site-header-box-shadow;
+		}
+	}
+}
+
+// Logged-in: header offset below the WP admin bar.
+body.admin-bar .site-header {
+	@include media-breakpoint-up(nav) {
+		top: 32px;
+	}
+
+	@include media-breakpoint-down(nav) {
+		top: 32px;
+	}
+}
+
+@media screen and (max-width: 782px) {
+	body.admin-bar .site-header {
+		top: 46px;
+	}
+}
+
+// Offset fixed header on desktop; removed when first Hero uses Transparent Nav (see inc/acf-config.php).
+#page {
+	@include media-breakpoint-up(nav) {
+		padding-top: 120px;
+	}
+}
+
+body.has-transparent-nav #page {
+	@include media-breakpoint-up(nav) {
+		padding-top: 0;
+	}
+}
+
+section {
+	padding: 60px 0;
+	position: relative;
+	overflow: hidden;
+
+	@include media-breakpoint-down(sm) {
+		padding: 30px 0;
+	}
+}
+
+header.entry-header {
+	position: relative;
+	overflow: hidden;
+}
+
+body,
+main article {
+	margin-bottom: 0px !important;
+}
+
+.site-footer {
+	padding: 50px 0;
+	background: $background_dark;
+
+	p {
+		color: $color__text-footer;
+
+		&.copyright {
+			margin-top: 0;
+			text-align: left;
+			font-size: 0.75rem;
+			line-height: 1.4;
+		}
+
+		&.footer-phone {
+			font-weight: 600;
+			margin-bottom: 3px;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		color: $color__text-footer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.footer-logo svg {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.footer-wrapper {
+		align-items: flex-start;
+	}
+
+	.footer-columns {
+		@include media-breakpoint-down(md) {
+			row-gap: 1.5rem;
+		}
+	}
+
+	.footer-logo-col {
+		@include media-breakpoint-down(md) {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	.footer-social {
+		margin-top: 1.25rem;
+
+		&__list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.75rem;
+			align-items: center;
+		}
+
+		&__link {
+			display: block;
+			line-height: 0;
+
+			&:hover {
+				opacity: 0.85;
+			}
+		}
+
+		&__icon {
+			display: block;
+			width: 24px;
+			height: 24px;
+			max-width: 24px;
+
+			svg {
+				display: block;
+				width: 100%;
+				height: 100%;
+
+				path {
+					fill: $white;
+				}
+			}
+		}
+
+		img.footer-social__icon {
+			width: 24px;
+			height: auto;
+			max-height: 24px;
+			object-fit: contain;
+		}
+	}
+
+	.footer-nav__title {
+		font-family: $font__header;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 80%;
+		letter-spacing: -0.36px;
+		text-transform: uppercase;
+		color: $white;
+		margin: 0 0 1rem;
+	}
+
+	.footer-nav__menu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		a {
+			font-family: $font__main;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 125%;
+			text-transform: none;
+		}
+
+		li+li {
+			margin-top: 0.35rem;
+		}
+	}
+
+	.footer-copyright-row {
+		margin-top: 45px;
+	}
+
+	@include media-breakpoint-down(md) {
+		padding: 50px 0;
+	}
+}
+
+* {
+	outline: 0 !important;
+}

@@ -1,0 +1,116 @@
+/*--------------------------------------------------------------
+# Stats block — Non-numeric values (when `.stats-block--animate-stats` is set)
+(Numbers use JS count-up; see template + script.js)
+--------------------------------------------------------------*/
+
+@keyframes jdp-stats-value-enter {
+	from {
+		opacity: 0;
+		transform: translateY(0.12em);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+section.stats-block.stats-block--animate-stats {
+
+	// Only animate the value if it's NOT a numeric count-up.
+	.stats-block__value:not(.stats-block__value--count-up) {
+		@supports (animation-timeline: view()) {
+			animation: jdp-stats-value-enter linear both;
+			animation-timeline: view();
+			animation-range: entry 0% cover 40%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+
+		.stats-block__value:not(.stats-block__value--count-up) {
+			animation: none !important;
+		}
+	}
+}
+
+/*--------------------------------------------------------------
+# Reusable scroll reveal (opt in via class)
+
+`.jdp-animate-view-fade-in-up` starts hidden. JS adds `.is-inview` when the
+element intersects the viewport (IntersectionObserver). The whole node fades in
+and moves up slightly (~1.05s, opacity + translateY).
+
+Sibling stagger: JS sets `--jdp-reveal-delay` per element when it enters the viewport —
+column index within the current row (not global card index), so each row uses the same
+0 / 110 / 220ms offsets. Matches block card grids and Bootstrap `.row` layouts.
+
+Without JS: `@media (scripting: none)` shows content visible.
+
+In the block editor, content is not scrolled like the front end and `.is-inview` is not applied — see “Block editor” rules below.
+
+Keyboard: `:focus-visible` or `:focus-within` (wrapper + inner link) reveals content so tab order is never invisible.
+
+Optional: override global `section { overflow: hidden }` only if a reveal is visibly clipped. Avoid doing this on horizontal carousels (e.g. Featured Insights, Related Products) — section `overflow: visible` can introduce horizontal scroll. The stats block keeps `overflow: visible` for `view()` scroll timelines.
+--------------------------------------------------------------*/
+
+$jdp-reveal-duration-ms: 1050;
+$jdp-reveal-stagger-ms: 110;
+$jdp-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+.jdp-animate-view-fade-in-up {
+	opacity: 0;
+	transform: translateY(1.25rem);
+	transition: opacity #{$jdp-reveal-duration-ms * 1ms} $jdp-reveal-ease,
+		transform #{$jdp-reveal-duration-ms * 1ms} $jdp-reveal-ease;
+	transition-delay: var(--jdp-reveal-delay, 0ms);
+
+	&.is-inview {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	// Focusable cards/links, or a focusable descendant (e.g. link inside a column wrapper).
+	&:focus-visible,
+	&:focus-within {
+		opacity: 1;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.jdp-animate-view-fade-in-up {
+		opacity: 1;
+		transform: none;
+		transition: none;
+		transition-delay: 0s !important;
+	}
+}
+
+@media (scripting: none) {
+
+	.jdp-animate-view-fade-in-up {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+/*--------------------------------------------------------------
+# Block editor / ACF preview (no scroll reveal in canvas)
+
+Theme `editor-styles` load in an iframe under `.editor-styles-wrapper`. ACF uses
+`.acf-block-preview` for live block previews. IntersectionObserver does not run
+there, so reveal targets would stay `opacity: 0` without these overrides.
+--------------------------------------------------------------*/
+
+.editor-styles-wrapper .jdp-animate-view-fade-in-up,
+.acf-block-preview .jdp-animate-view-fade-in-up,
+.block-editor-block-list__block .jdp-animate-view-fade-in-up {
+	opacity: 1;
+	transform: none;
+	transition: none;
+	transition-delay: 0s !important;
+}

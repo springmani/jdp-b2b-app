@@ -1,0 +1,132 @@
+.wpengine-smart-active-filter-container {
+  .active-filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    h4 {
+      margin: 0;
+      font-size: var(--wp--preset--font-size--medium);
+      font-weight: 600;
+      color: #111827;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .clear-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    padding: 15px;
+    font-size: var(--wp--preset--font-size--small);
+    cursor: pointer;
+    border-radius: 15px;
+    border: 1px solid #4b4b4b;
+    background: #ededed;
+
+    &:hover {
+      background: #a6a6a6;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .hide-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    padding: 15px;
+    font-size: var(--wp--preset--font-size--small);
+    cursor: pointer;
+    border-radius: 15px;
+    border: 1px solid #4b4b4b;
+    background: #ededed;
+
+    &:hover {
+      background: #a6a6a6;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .dashicons {
+    margin-left: -5px;
+    margin-right: 3px;
+  }
+
+  .text {
+    color: #333;
+  }
+
+  .active-filters-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .active-filter {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filter-name {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 0 5px;
+    height: 10px;
+    padding: 6px;
+    font-size: var(--wp--preset--font-size--small);
+    font-weight: var(--wp--preset--font-weight--semi-bold, 700);
+    color: #374151;
+    cursor: default;
+  }
+
+  .filter-value {
+    margin-left: 0.5rem;
+    align-items: center;
+    color: #374151;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid #4b4b4b;
+    background: #ededed;
+    font-size: var(--wp--preset--font-size--small);
+    font-weight: var(--wp--preset--font-weight--regular, 300);
+    text-transform: capitalize;
+  }
+
+  .remove-filter {
+    background: none;
+    border: none;
+    color: black;
+    font-size: var(--wp--preset--font-size--small);
+    cursor: pointer;
+    line-height: 1;
+
+    &:hover {
+      color: #dc2626;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

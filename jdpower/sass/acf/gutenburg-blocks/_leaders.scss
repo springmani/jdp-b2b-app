@@ -1,0 +1,445 @@
+section.leaders-block {
+	position: relative;
+	width: 100%;
+
+	&.leaders-block--photos-greyscale {
+
+		.leaders-block__img,
+		.leaders-block__dialog-img {
+			filter: grayscale(1);
+		}
+	}
+
+	// FORMAT.md: preheading typography is global (`.preheading`); intro is layout + alignment only.
+	.leaders-block__intro {
+		margin-bottom: 2.75rem;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 1220px;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+
+		.leaders-block__pre.preheading,
+		.leaders-block__pre {
+			width: 100%;
+			max-width: 56rem;
+		}
+
+		// Plain `h2` from global typography; margin + alignment only.
+		.leaders-block__heading {
+			margin: 0 auto;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.leaders-block__section {
+		margin-top: 3rem;
+		width: 100%;
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
+
+	// Section label uses global `.preheading` (default eyebrow); block adds width + alignment only.
+	.leaders-block__section-title.preheading {
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 1.75rem;
+		width: 100%;
+		max-width: 56rem;
+		text-align: center;
+	}
+
+	// Hero column + grid: CSS grid so split works below `lg` (was flex row only ≥992px).
+	.leaders-block__split {
+		display: grid;
+		width: 100%;
+		gap: 40px;
+		align-items: center;
+		grid-template-columns: 1fr;
+
+		@include media-breakpoint-up(md) {
+			grid-template-columns: minmax(200px, 300px) minmax(0, 1fr);
+			gap: 40px;
+		}
+
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+			gap: 40px;
+		}
+	}
+
+	// Only one featured leader and no others: centered hero, no empty column.
+	.leaders-block__split--solo-featured {
+		grid-template-columns: 1fr;
+		max-width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+		justify-items: center;
+	}
+
+	.leaders-block__featured-stack {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 40px;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.leaders-block__grid {
+		min-width: 0;
+		width: 100%;
+	}
+
+	.leaders-block__grid--with-featured-rest {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 40px;
+
+		@include media-breakpoint-up(md) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		@include media-breakpoint-up(xl) {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	// All non-featured sections: up to 6 columns on wide screens.
+	.leaders-block__grid--uniform {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 40px;
+
+		@include media-breakpoint-up(md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		@include media-breakpoint-up(lg) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		@include media-breakpoint-up(xl) {
+			grid-template-columns: repeat(6, 1fr);
+		}
+	}
+
+	.leaders-block__cell {
+		position: relative;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.leaders-block__cell--featured-slot {
+		width: 100%;
+	}
+
+	// Card is interactive but not a <button> — looks like static content; opens dialog via JS.
+	.leaders-block__card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		cursor: pointer;
+		color: inherit;
+		text-decoration: none;
+		transition: opacity 0.2s ease, transform 0.2s ease;
+
+		&:hover {
+			opacity: 0.92;
+			transform: translateY(-2px);
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&:focus-visible {
+			outline: 2px solid $brand_color_1;
+			outline-offset: 4px;
+		}
+	}
+
+	.leaders-block__media {
+		display: block;
+		width: 100%;
+		max-width: 200px;
+		aspect-ratio: 1;
+		border-radius: 6px;
+		overflow: hidden;
+		margin-bottom: 0.85rem;
+		background: rgba(0, 0, 0, 0.05);
+	}
+
+	.leaders-block__card--featured .leaders-block__media {
+		max-width: 100%;
+
+		@include media-breakpoint-up(lg) {
+			max-width: 100%;
+		}
+	}
+
+	.leaders-block__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.leaders-block__placeholder,
+	.leaders-block__dialog-placeholder {
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: 140px;
+		background: rgba(0, 0, 0, 0.07);
+	}
+
+	// Featured: `h2.small`; grid: `h2.xxxsmall`. Global typography; tone color only.
+	.leaders-block__name {
+		margin: 0 0 0.35rem;
+		color: $brand_color_1;
+	}
+
+	.leaders-block__title {
+		margin: 0;
+		max-width: 18rem;
+		font-size: 14px;
+		line-height: 1.25;
+		color: $color__text-main;
+	}
+
+	&.leaders-block--tone-light {
+
+		.leaders-block__intro .leaders-block__heading {
+			color: $background_dark;
+
+			span {
+				color: $brand_color_1;
+			}
+		}
+	}
+
+	&.leaders-block--tone-dark {
+
+		.leaders-block__intro .leaders-block__heading {
+			color: $white;
+
+			span {
+				color: $color__hero_preheading;
+			}
+		}
+
+		.leaders-block__intro .leaders-block__pre,
+		.leaders-block__intro .leaders-block__pre.preheading {
+			color: rgba(255, 255, 255, 0.9);
+		}
+
+		.leaders-block__section-title.preheading {
+			color: $color__hero_preheading;
+		}
+
+		.leaders-block__name {
+			color: $color__hero_preheading;
+		}
+
+		.leaders-block__title {
+			color: rgba(255, 255, 255, 0.88);
+		}
+	}
+
+	&.leaders-block--tone-medium {
+
+		.leaders-block__intro .leaders-block__heading {
+			color: $background_dark;
+
+			span {
+				color: $brand_color_1;
+			}
+		}
+
+	}
+
+	// —— Dialog: align with CTA Banner form modal ——
+	dialog.leaders-block__dialog {
+		max-width: min(92vw, 780px);
+		width: 100%;
+		padding: 0;
+		border: none;
+		border-radius: 5px;
+		background: #ececec;
+		color: $color__text-main;
+		box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+
+		&::backdrop {
+			background: rgba(0, 0, 0, 0.45);
+		}
+	}
+
+	.leaders-block__dialog-surface {
+		padding: 25px;
+		position: relative;
+	}
+
+	.leaders-block__dialog-head {
+		margin-bottom: 0;
+
+		&--has-heading {
+			margin-bottom: 0;
+			padding-right: 0;
+		}
+	}
+
+	.leaders-block__dialog-media {
+		width: 200px;
+		height: 200px;
+		aspect-ratio: 1 / 1;
+		max-width: 100%;
+		margin: 0 auto 10px;
+		border-radius: 6px;
+		overflow: hidden;
+		background: rgba(0, 0, 0, 0.06);
+		box-sizing: border-box;
+	}
+
+	.leaders-block__dialog-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	// Dialog name uses `h2.small` in PHP; spacing + alignment + tone (override global h2 span).
+	.leaders-block__dialog-name {
+		margin: 0 0 5px;
+		text-align: center;
+		font-weight: 800;
+		color: $background_dark;
+
+		span {
+			color: $background_dark;
+		}
+	}
+
+	.leaders-block__dialog-title {
+		margin: 0 0 5px;
+		text-align: center;
+		font-size: 14px;
+		line-height: 1.25;
+		color: $color__text-main;
+	}
+
+	.leaders-block__dialog-download {
+		margin: 0 0 5px;
+		text-align: center;
+	}
+
+	.leaders-block__dialog-download-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		text-decoration: none;
+		color: $brand_color_1;
+		font-family: $font__main;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 150%;
+		transition: color 0.3s ease;
+
+		.leaders-block__dialog-download-icon {
+			flex-shrink: 0;
+			display: flex;
+			line-height: 0;
+			color: $brand_color_1;
+
+			svg {
+				display: block;
+			}
+		}
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+			text-underline-offset: 0.15em;
+		}
+	}
+
+	.leaders-block__dialog-bio {
+		margin-top: 0;
+		padding-top: 5px;
+		text-align: left;
+		color: $color__text-main;
+		font-family: $font__main;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 150%;
+
+		p {
+			margin: 0 0 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.leaders-block__dialog-close {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 1;
+		appearance: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
+		padding: 0.5rem;
+		border: 0;
+		background: transparent;
+		line-height: 0;
+		cursor: pointer;
+		color: $color__text-main;
+		opacity: 0.75;
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+	}
+
+	.leaders-block__dialog-close-icon {
+		display: block;
+		line-height: 0;
+
+		svg {
+			display: block;
+			width: 25px;
+			height: 25px;
+		}
+	}
+}

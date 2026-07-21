@@ -1,0 +1,495 @@
+section.featured-insights-block {
+	position: relative;
+
+	.featured-insights-block__grid,
+	.featured-insights-block__card {
+		min-width: 0;
+	}
+
+	.featured-insights-block__head {
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		gap: 1rem;
+		margin-bottom: 25px;
+		flex-wrap: wrap;
+
+		&--end {
+			justify-content: flex-end;
+		}
+	}
+
+	.featured-insights-block__head-main {
+		flex: 1 1 auto;
+		min-width: 0;
+		margin-right: auto;
+
+		&:empty {
+			display: none;
+		}
+
+		.featured-insights-block__pre {
+			margin-bottom: 0;
+		}
+	}
+
+	.featured-insights-block__carousel-nav {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-shrink: 0;
+	}
+
+	// Carousel: same Intro Column Ratio as grid — left col = stacked heading + copy; right col = nav pinned to bottom (above slider).
+	.featured-insights-block__carousel-intro-row {
+		margin-bottom: 25px;
+	}
+
+	.featured-insights-block__carousel-intro-main,
+	.featured-insights-block__carousel-intro-aside {
+		min-width: 0;
+	}
+
+	// Nav sits at the bottom of the right column (flush with the row above the slider), not vertically centered on the heading.
+	.featured-insights-block__carousel-intro-aside {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-end;
+	}
+
+	.featured-insights-block__carousel-nav-row {
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 25px;
+	}
+
+	// Pre + arrows on one line when there is no heading/copy (avoids stacked gap + full-width nav row).
+	.featured-insights-block__carousel-pre-nav-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 25px;
+
+		.featured-insights-block__pre {
+			margin-bottom: 0;
+		}
+	}
+
+	// Heading-only or copy-only carousel: top-align columns so arrows are not pinned to the bottom of a stretched row.
+	.featured-insights-block__carousel-intro-row--partial .featured-insights-block__carousel-intro-aside {
+		justify-content: flex-start;
+	}
+
+	@include media-breakpoint-down(lg) {
+		.featured-insights-block__carousel-intro-aside {
+			margin-top: 1rem;
+		}
+	}
+
+	.featured-insights-block__pre {
+		margin-bottom: 15px;
+	}
+
+	.featured-insights-block__intro-row {
+		margin-bottom: 60px;
+	}
+
+	.featured-insights-block__intro--stacked {
+		margin-bottom: 60px;
+	}
+
+	&.featured-insights-block--layout-carousel {
+		.featured-insights-block__carousel-intro-main .featured-insights-block__intro--stacked {
+			margin-bottom: 0;
+			max-width: none;
+		}
+	}
+
+	.featured-insights-block__heading {
+		margin: 0;
+		color: $background_dark;
+	}
+
+	@include media-breakpoint-down(lg) {
+		.featured-insights-block__intro-row .featured-insights-block__copy--aside {
+			margin-top: 25px;
+		}
+	}
+
+	.featured-insights-block__copy,
+	.featured-insights-block__copy--aside {
+		color: $color__text-main;
+
+		p {
+			margin: 0 0 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.featured-insights-block__intro--stacked .featured-insights-block__heading+.featured-insights-block__copy {
+		margin-top: 25px;
+	}
+
+	.featured-insights-block__grid {
+		display: grid;
+		gap: 20px;
+		width: 100%;
+	}
+
+	// One card: do not stretch to full row width — match one column of the configured grid.
+	.featured-insights-block__grid--single {
+		justify-items: start;
+	}
+
+	.featured-insights-block__grid--single.featured-insights-block__grid--cols-3>.featured-insights-block__card {
+		width: calc((100% - 40px) / 3);
+		max-width: 100%;
+	}
+
+	// e.g. Related Insights with one result (grid--cols-1): match one slot in a 3-up row.
+	.featured-insights-block__grid--single.featured-insights-block__grid--cols-1>.featured-insights-block__card {
+		width: calc((100% - 40px) / 3);
+		max-width: 100%;
+	}
+
+	@include media-breakpoint-down(xl) {
+
+		.featured-insights-block__grid--single.featured-insights-block__grid--cols-1>.featured-insights-block__card,
+		.featured-insights-block__grid--single.featured-insights-block__grid--cols-3>.featured-insights-block__card {
+			width: calc((100% - 20px) / 2);
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		.featured-insights-block__grid--single {
+			justify-items: center;
+		}
+
+		// cols-4 single: rely on grid track width only (no fixed card width).
+		.featured-insights-block__grid--single:not(.featured-insights-block__grid--cols-4)>.featured-insights-block__card {
+			width: min(100%, 28rem);
+		}
+	}
+
+	.featured-insights-block__grid--cols-1 {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.featured-insights-block__grid--cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.featured-insights-block__grid--cols-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.featured-insights-block__grid--cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	// Below xl, 3- and 4-column grids stay 2-up (lg–xl was too narrow for four across).
+	@include media-breakpoint-down(xl) {
+
+		.featured-insights-block__grid--cols-3,
+		.featured-insights-block__grid--cols-4 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+
+		.featured-insights-block__grid--cols-2,
+		.featured-insights-block__grid--cols-3,
+		.featured-insights-block__grid--cols-4 {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.featured-insights-block__card {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		text-decoration: none;
+		color: inherit;
+		background-color: #f2f2f2;
+		border-radius: 6px;
+		overflow: hidden;
+
+		&:focus-visible {
+			outline: 2px solid $brand_color_1;
+			outline-offset: 3px;
+		}
+
+		&--static {
+			cursor: default;
+		}
+	}
+
+	.featured-insights-block__media {
+		display: block;
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background-color: #e5e5e5;
+	}
+
+	.featured-insights-block__img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		transform: scale(1);
+		transition: transform 0.35s ease;
+	}
+
+	a.featured-insights-block__card:hover .featured-insights-block__img,
+	a.featured-insights-block__card:focus-visible .featured-insights-block__img {
+		transform: scale(1.1);
+	}
+
+	a.featured-insights-block__card:hover .featured-insights-block__card-title,
+	a.featured-insights-block__card:focus-visible .featured-insights-block__card-title {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.featured-insights-block__card--static:hover .featured-insights-block__img {
+		transform: scale(1.1);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.featured-insights-block__img {
+			transition: none;
+		}
+
+		a.featured-insights-block__card:hover .featured-insights-block__img,
+		a.featured-insights-block__card:focus-visible .featured-insights-block__img,
+		.featured-insights-block__card--static:hover .featured-insights-block__img {
+			transform: none;
+		}
+	}
+
+	.featured-insights-block__placeholder {
+		@include jdpower-card-placeholder-mock;
+		min-height: 8rem;
+	}
+
+	.featured-insights-block__placeholder-label {
+		@include jdpower-card-placeholder-mock-label;
+	}
+
+	.featured-insights-block__card-segment {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		display: flex;
+		padding: 7px;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		font-family: $font__header;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 80%;
+		letter-spacing: -0.24px;
+		text-transform: uppercase;
+		color: $white;
+		background: $brand_color_1;
+		border-top-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		pointer-events: none;
+	}
+
+	.featured-insights-block__body {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 20px;
+	}
+
+	.featured-insights-block__card-type {
+		margin: 0 0 12px;
+		font-family: "Neulis Sans", $font__header;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 80%;
+		letter-spacing: -0.24px;
+		text-transform: uppercase;
+		color: $color__text-main;
+	}
+
+	h2.featured-insights-block__card-title,
+	h2.xxsmall.featured-insights-block__card-title {
+		margin: 0 0 15px;
+		font-family: "Neulis Sans", $font__header;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 110%;
+		letter-spacing: -0.48px;
+		text-transform: capitalize;
+		color: $brand_color_1;
+
+		@include media-breakpoint-down(md) {
+			font-size: 18px;
+		}
+	}
+
+	h3.featured-insights-block__card-sub {
+		margin: 0 0 15px;
+		color: $background_dark;
+		text-transform: capitalize;
+		font-weight: 800;
+	}
+
+	.featured-insights-block__card-copy {
+		flex: 1 1 auto;
+		min-height: 0;
+		min-width: 0;
+		margin: 0;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.5;
+		color: $color__text-main;
+		@include jdpower-line-clamp(3);
+
+		p {
+			margin: 0 0 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul,
+		ol {
+			margin: 0 0 8px;
+			padding-left: 1.25em;
+		}
+
+		ul {
+			list-style-type: disc;
+		}
+	}
+
+	.featured-insights-block__card-date {
+		display: block;
+		margin-top: auto;
+		padding-top: 12px;
+		font-family: $font__main;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 150%;
+		color: $color__text-main;
+	}
+
+	.featured-insights-block__cta {
+		display: flex;
+		justify-content: flex-end;
+		margin-top: 20px;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&.featured-insights-block--tone-dark {
+		.featured-insights-block__heading {
+			color: $white;
+
+			span {
+				color: $brand_color_1;
+			}
+		}
+
+		.featured-insights-block__copy,
+		.featured-insights-block__copy--aside {
+			color: rgba($white, 0.9);
+		}
+
+		.featured-insights-block__card {
+			background-color: rgba($white, 0.08);
+		}
+
+		.featured-insights-block__media {
+			background-color: rgba($white, 0.12);
+		}
+
+		.featured-insights-block__placeholder {
+			background-color: rgba($white, 0.12);
+		}
+
+		h3.featured-insights-block__card-sub {
+			color: $white;
+		}
+
+		.featured-insights-block__card-type {
+			color: rgba($white, 0.85);
+		}
+
+		.featured-insights-block__card-copy {
+			color: rgba($white, 0.9);
+		}
+
+		.featured-insights-block__card-date {
+			color: rgba($white, 0.85);
+		}
+
+		.featured-insights-block__cta {
+			a.arrow-link {
+				color: $white;
+
+				&::after {
+					background-color: $white;
+				}
+
+				&:visited,
+				&:hover,
+				&:focus,
+				&:active {
+					color: $white;
+				}
+			}
+		}
+
+		.featured-insights-columns-block__card-read-more.arrow-link {
+			color: $white;
+
+			&::after {
+				background-color: $white;
+			}
+
+			&:visited,
+			&:hover,
+			&:focus,
+			&:active {
+				color: $white;
+			}
+		}
+	}
+
+	// Grid layout only; carousel uses _carousel-scroll.scss.
+	&.featured-insights-block--layout-grid {
+		@include media-breakpoint-down(md) {
+			.jdp-animate-view-fade-in-up {
+				opacity: 1;
+				transform: none;
+				transition: none;
+				transition-delay: 0s !important;
+			}
+		}
+	}
+}

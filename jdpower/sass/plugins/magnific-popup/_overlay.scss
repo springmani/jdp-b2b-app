@@ -1,0 +1,55 @@
+.mfp-image-holder button.mfp-close, 
+.mfp-iframe-holder button.mfp-close, 
+button.mfp-arrow, 
+.mfp-image-holder button.mfp-close:hover, 
+.mfp-iframe-holder button.mfp-close:hover, 
+button.mfp-arrow:hover {
+    background: none;
+    color: $white;
+}
+.mfp-image-holder .mfp-close, 
+.mfp-iframe-holder .mfp-close {
+    right: 0;
+    font-size: 50px;
+}
+.mfp-arrow {
+    width: 40px;
+    height: 50px;
+    transform: none !important;
+    margin-top: -30px;
+}
+.mfp-arrow:active {
+    margin-top: -30px;
+}
+.mfp-arrow-left {
+    left: 0;
+}
+.mfp-arrow-right {
+    right: 0;
+}
+.mfp-arrow:after, 
+.mfp-arrow-left:after, 
+.mfp-arrow-right:after, 
+.mfp-arrow:before, 
+.mfp-arrow-right:before, 
+.mfp-arrow-left:before {
+    border: none;
+    margin: 0;
+    font-family: 'Font Awesome 5 Free';
+    font-size: 30px;
+    width: 20px;
+    top: 10px;
+}
+.mfp-arrow-left:before {
+    content: '\f053';
+    left: 10px;
+}
+.mfp-arrow-right:before {
+    content: '\f054';
+    left: auto;
+    right: 10px;
+}
+.mfp-arrow-left:after,
+.mfp-arrow-right:after {
+    display: none;
+}

@@ -1,0 +1,46 @@
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+img {
+	height: auto; // Make sure images are scaled correctly.
+	max-width: 100%; // Adhere to container width.
+}
+
+figure {
+	margin: 1em 0; // Extra wide images within figure tags don't overflow the content area.
+}
+
+.wp-block-image {
+	img {
+		width: 100%;
+	}
+}
+
+/*
+ * Responsive embed (16×9): padding-bottom % of width = box height; iframe fills absolutely.
+ */
+.wp-block-embed {
+	width: 100%;
+	min-width: 0;
+
+	.wp-block-embed__wrapper {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+		padding-bottom: 56.25%;
+
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			max-width: none;
+			border: 0;
+		}
+	}
+}

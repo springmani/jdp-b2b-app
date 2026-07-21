@@ -1,0 +1,38 @@
+html {
+	// Keeps `100vw` mega shell aligned with `.container` when a vertical scrollbar is present.
+	scrollbar-gutter: stable;
+	scroll-behavior: smooth;
+
+	@media (prefers-reduced-motion: reduce) {
+		scroll-behavior: auto;
+	}
+
+	// Clear fixed .site-header on desktop (matches #page padding-top in sass/site/_site.scss; nav = 1440px nav breakpoint).
+	@include media-breakpoint-up(nav) {
+		scroll-padding-top: 120px;
+	}
+
+	// Logged-in: header is offset below the admin bar (top: 32px at nav+).
+	&:has(body.admin-bar) {
+		@include media-breakpoint-up(nav) {
+			scroll-padding-top: calc(120px + 32px);
+		}
+	}
+
+	font-size: 16px;
+
+	// Page edge / `.container` inset; inherited by `.container`, carousels, etc.
+	// 20px below md; 40px from md up (see `$container-padding-x-*` in bootstrap-grid-overrides).
+	--bs-gutter-x: #{$container-padding-x-below-md};
+
+	@include media-breakpoint-up(md) {
+		--bs-gutter-x: #{$container-padding-x-below-xl};
+	}
+
+	// Column gutters between grid cells (separate from container padding).
+	@include media-breakpoint-down(md) {
+		.row {
+			--bs-gutter-x: 2.5rem;
+		}
+	}
+}

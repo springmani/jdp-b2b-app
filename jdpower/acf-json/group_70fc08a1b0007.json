@@ -1,0 +1,119 @@
+{
+    "key": "group_70fc08a1b0007",
+    "title": "[Segment] - Card Details",
+    "fields": [
+        {
+            "key": "field_70fc08a1b0701",
+            "label": "Heading Override",
+            "name": "segment_card_heading_override",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Replaces the segment title on Featured Segments cards when set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0702",
+            "label": "Sub Heading",
+            "name": "segment_card_sub_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Bold line below the primary card title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0703",
+            "label": "Short Description",
+            "name": "segment_card_short_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Summary for cards. Falls back to the manual excerpt or trimmed content when empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_70fc08a1b0704",
+            "label": "CTA text Override",
+            "name": "segment_card_cta_text_override",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Label after “Explore” on Featured Segments cards; defaults to the segment title when empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "segments"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Feeds Featured Segments cards (manual selection and Dynamic by Industry).",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

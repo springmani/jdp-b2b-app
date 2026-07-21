@@ -1,0 +1,109 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpengine-smart-search/filter-facet",
+  "version": "0.1.0",
+  "title": "Filter Facet",
+  "category": "wpengine-smart-search",
+  "icon": "filter",
+  "description": "WP Engine Smart Search block for categories filter",
+  "example": {},
+  "supports": {
+    "html": false,
+    "interactivity": true,
+    "align": ["wide", "full"],
+    "anchor": true,
+    "className": true
+  },
+  "attributes": {
+    "hasLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "label": {
+      "type": "string",
+      "default": "Filter Label"
+    },
+    "placeholder": {
+      "type": "string",
+      "default": "Dropdown..."
+    },
+    "formId": {
+      "type": "string",
+      "default": ""
+    },
+    "selectedDataSource": {
+      "type": "string",
+      "default": "category"
+    },
+    "selectedType": {
+      "type": "string",
+      "default": "checkbox",
+      "enum": ["select", "checkbox", "radio"]
+    },
+    "autoReload": {
+      "type": "boolean",
+      "default": true
+    },
+    "isSearchable": {
+      "type": "boolean",
+      "default": true
+    },
+    "isScrollable": {
+      "type": "boolean",
+      "default": true
+    },
+    "maxHeight": {
+      "type": "number",
+      "default": 300
+    },
+    "filterMode": {
+      "type": "string",
+      "default": "or",
+      "enum": ["or", "and"]
+    },
+    "dataSourceType": {
+      "type": "string",
+      "default": "taxonomy",
+      "enum": ["taxonomy", "post_type"]
+    },
+    "excludedTerms": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "excludedPostTypes": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "showHierarchy": {
+      "type": "boolean",
+      "default": false
+    },
+    "defaultExpandedHierarchy": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "keywords": [
+    "wpengine",
+    "WP Engine",
+    "smart search",
+    "smartsearch",
+    "Smarm Search",
+    "dropdown",
+    "categories"
+  ],
+  "textdomain": "wpengine-smart-search",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewStyle": "file:./style-index.css",
+  "viewScriptModule": "file:./view.js",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,41 @@
+section.all-faqs-block {
+	.accordion-block__summary-main {
+		flex-direction: row;
+		align-items: baseline;
+		gap: 1rem;
+	}
+
+	.accordion-block__item-heading {
+		margin: 0;
+	}
+
+	.accordion-block__item-intro {
+		margin-left: auto;
+		text-align: right;
+	}
+
+	.all-faqs-block__group {
+		margin-bottom: 40px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.all-faqs-block__group-heading {
+		margin: 0 0 15px;
+	}
+
+	&.accordion-block--tone-dark {
+		.all-faqs-block__group-heading {
+			color: $white;
+		}
+	}
+
+	&.accordion-block--tone-medium,
+	&.accordion-block--tone-light {
+		.all-faqs-block__group-heading {
+			color: $background_dark;
+		}
+	}
+}

@@ -1,0 +1,50 @@
+{
+    "key": "group_77fca_anchor001",
+    "title": "[Block] - Page anchor",
+    "fields": [
+        {
+            "key": "field_77fca_anchor_id",
+            "label": "HTML id",
+            "name": "page_anchor_html_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Fragment for in-page links, e.g. <code>our-team<\/code> → link to <code>#our-team<\/code>. Use letters, numbers, hyphens, and underscores only (no spaces).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": 80,
+            "allow_in_bindings": 0,
+            "placeholder": "section-id",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-anchor"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

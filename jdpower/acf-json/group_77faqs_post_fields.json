@@ -1,0 +1,50 @@
+{
+    "key": "group_77faqs_post_fields",
+    "title": "[Faqs] - Fields",
+    "fields": [
+        {
+            "key": "field_77faqs_short_description",
+            "label": "Short Description",
+            "name": "faq_short_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short line shown under the FAQ heading when collapsed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "faqs"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

@@ -1,0 +1,97 @@
+{
+    "key": "group_70fe10a1b0901",
+    "title": "[Event & Webinar] - Event details",
+    "fields": [
+        {
+            "key": "field_70fe10a1b0902",
+            "label": "Event date & time",
+            "name": "webinar_event_datetime",
+            "aria-label": "",
+            "type": "date_time_picker",
+            "instructions": "Scheduled start in the site timezone. Used for display and metadata.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "display_format": "F j, Y g:i a",
+            "return_format": "Y-m-d H:i:s",
+            "first_day": 0,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_70fe10a1b0903",
+            "label": "Event format",
+            "name": "webinar_event_format",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "How attendees participate (e.g. virtual vs on-site).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "online": "Online",
+                "in_person": "In person",
+                "hybrid": "Hybrid (online and in person)"
+            },
+            "default_value": "online",
+            "translations": "copy_once",
+            "pll_default_value": "online",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fe10a1b0904",
+            "label": "Registration CTA",
+            "name": "webinar_registration_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Button or text link to sign up or register (e.g. external form or event page).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "array",
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event_webinar"
+            }
+        ]
+    ],
+    "menu_order": 2,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Schedule, format, and registration for this event or webinar.",
+    "show_in_rest": 1,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

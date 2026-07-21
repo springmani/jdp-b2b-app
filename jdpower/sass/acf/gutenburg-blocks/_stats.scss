@@ -1,0 +1,317 @@
+section.stats-block {
+	position: relative;
+	// Site-wide `section { overflow: hidden }` creates a non-scrollable scrollport and breaks `view()` timelines.
+	overflow: visible;
+	--Power-Teal: #{$brand_color_1};
+
+	// Avoid horizontal scroll: flex/grid default min-width:auto lets large figures exceed column width.
+	.stats-block__grid,
+	.stats-block__stat {
+		min-width: 0;
+	}
+
+	.stats-block__figure {
+		min-width: 0;
+		max-width: 100%;
+	}
+
+	.stats-block__heading {
+		margin: 0;
+		color: $color__text-main;
+	}
+
+	// Layout tab: Intro max width — constrains pre-heading, heading, and copy together (aligns with container xl / lg / md).
+	&.stats-block--heading-max-large {
+
+		.stats-block__intro--full,
+		.stats-block__intro--split {
+			max-width: 1200px;
+		}
+
+		.stats-block__intro-row {
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	&.stats-block--heading-max-medium {
+
+		.stats-block__intro--full,
+		.stats-block__intro--split {
+			max-width: 960px;
+		}
+
+		.stats-block__intro-row {
+			max-width: 960px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	&.stats-block--heading-max-small {
+
+		.stats-block__intro--full,
+		.stats-block__intro--split {
+			max-width: 720px;
+		}
+
+		.stats-block__intro-row {
+			max-width: 720px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	// Heading → copy in the same intro column (stacked full or split).
+	.stats-block__heading+.stats-block__copy {
+		margin-top: 25px;
+	}
+
+	.stats-block__copy,
+	.stats-block__copy--aside {
+		color: $color__text-main;
+
+		p {
+			margin: 0 0 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// Stacked intro row: copy column drops below heading column below lg — separate from column above.
+	@include media-breakpoint-down(lg) {
+		.stats-block__intro-row .stats-block__copy--aside {
+			margin-top: 25px;
+		}
+	}
+
+	// Split layout: intro and stats stack below xl — match stacked intro→stats gap (60px).
+	&.stats-block--layout-split {
+		@include media-breakpoint-down(xl) {
+			.stats-block__stats--split {
+				margin-top: 60px;
+			}
+		}
+	}
+
+	.stats-block__grid {
+		display: grid;
+		gap: 1.5rem 1.25rem;
+		width: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&.stats-block--cols-2 .stats-block__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	&.stats-block--cols-3 .stats-block__grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	&.stats-block--cols-4 .stats-block__grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@include media-breakpoint-down(md) {
+		.stats-block__grid {
+			gap: 2.5rem 1.25rem;
+		}
+
+		&.stats-block--cols-3 .stats-block__grid,
+		&.stats-block--cols-4 .stats-block__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		.stats-block__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.stats-block__stat {
+		margin: 0;
+	}
+
+	.stats-block__figure {
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0 0.12em;
+		line-height: 0.9;
+	}
+
+	.stats-block__value {
+		margin: 0;
+		color: $brand_color_1;
+		font-family: $font__main;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 90%;
+		text-transform: uppercase;
+	}
+
+	.stats-block__prefix,
+	.stats-block__suffix {
+		margin: 0;
+		color: $brand_color_1;
+		font-family: $font__main;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 90%;
+		text-transform: uppercase;
+	}
+
+	// Value size + prefix/suffix: "large" shares the main figure scale; "small" is the 62px-based scale.
+	.stats-block__value--size-large,
+	.stats-block__prefix--size-large,
+	.stats-block__suffix--size-large {
+		font-size: 120px;
+		letter-spacing: -4.8px;
+	}
+
+	.stats-block__value--size-small,
+	.stats-block__prefix--size-small,
+	.stats-block__suffix--size-small {
+		font-size: 62px;
+		letter-spacing: -6px;
+	}
+
+	// Breakpoints align with sass/base/typography/_headings.scss (h1.large scale).
+
+	@include media-breakpoint-down(xl) {
+
+		.stats-block__value--size-large,
+		.stats-block__prefix--size-large,
+		.stats-block__suffix--size-large {
+			font-size: 96px;
+			letter-spacing: -4.8px;
+		}
+
+		.stats-block__value--size-small,
+		.stats-block__prefix--size-small,
+		.stats-block__suffix--size-small {
+			font-size: 48px;
+			letter-spacing: -4.8px;
+		}
+	}
+
+	@include media-breakpoint-down(lg) {
+
+		.stats-block__value--size-large,
+		.stats-block__prefix--size-large,
+		.stats-block__suffix--size-large {
+			font-size: 76px;
+			letter-spacing: -3.84px;
+		}
+
+		.stats-block__value--size-small,
+		.stats-block__prefix--size-small,
+		.stats-block__suffix--size-small {
+			font-size: 38px;
+			letter-spacing: -3.84px;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+
+		.stats-block__value--size-large,
+		.stats-block__prefix--size-large,
+		.stats-block__suffix--size-large {
+			font-size: 66px;
+			letter-spacing: -3.36px;
+		}
+
+		.stats-block__value--size-small,
+		.stats-block__prefix--size-small,
+		.stats-block__suffix--size-small {
+			font-size: 33px;
+			letter-spacing: -3.36px;
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+
+		.stats-block__value--size-large,
+		.stats-block__prefix--size-large,
+		.stats-block__suffix--size-large {
+			font-size: 52px;
+			letter-spacing: -2.6px;
+		}
+
+		.stats-block__value--size-small,
+		.stats-block__prefix--size-small,
+		.stats-block__suffix--size-small {
+			font-size: 26px;
+			letter-spacing: -2.6px;
+		}
+	}
+
+	.stats-block__label {
+		margin: 25px 0 0;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 100%;
+		letter-spacing: -0.4px;
+		color: $color__text-main;
+
+		@include media-breakpoint-down(md) {
+			margin: 10px 0 0;
+		}
+	}
+
+	&.stats-block--align-center .stats-block__stat {
+		text-align: center;
+	}
+
+	&.stats-block--align-center .stats-block__figure {
+		justify-content: center;
+	}
+
+	&.stats-block--align-left .stats-block__stat {
+		text-align: left;
+	}
+
+	&.stats-block--align-left .stats-block__figure {
+		justify-content: flex-start;
+	}
+
+	&.stats-block--layout-stacked .stats-block__stats--after-intro {
+		margin-top: 60px;
+	}
+
+	&.stats-block--tone-dark {
+
+		.stats-block__heading {
+			color: $white;
+		}
+
+		.stats-block__copy,
+		.stats-block__copy--aside {
+			color: $white;
+
+			a {
+				color: $white;
+			}
+		}
+
+		.stats-block__label {
+			color: $white;
+		}
+	}
+
+	&.stats-block--tone-light {
+
+		.stats-block__heading {
+			color: $color__text-main;
+		}
+	}
+}

@@ -1,0 +1,248 @@
+section.accordion-block {
+	position: relative;
+
+	.accordion-block__header {
+		margin-bottom: 10px;
+	}
+
+	.accordion-block__items {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.accordion-block__item {
+		border: 1px solid rgba($white, 0.22);
+		border-radius: 4px;
+	}
+
+	.accordion-block__summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		list-style: none;
+		cursor: pointer;
+		padding: 1.25rem 1.25rem;
+		margin: 0;
+		text-align: left;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::marker {
+			display: none;
+			content: "";
+		}
+	}
+
+	.accordion-block__summary-main {
+		flex: 1 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.accordion-block__item-heading {
+		margin: 0 0 15px;
+	}
+
+	.accordion-block__item-intro {
+		display: block;
+		font-family: $font__main;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 150%;
+	}
+
+	// Plus → minus: horizontal bar stays; vertical bar spins 90° to sit on top (reads as −).
+	.accordion-block__toggle {
+		flex-shrink: 0;
+		width: 2.25rem;
+		height: 2.25rem;
+		position: relative;
+		margin-top: 0.15rem;
+		color: $white;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			background-color: currentColor;
+			transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		&::before {
+			width: 1.625rem;
+			height: 3px;
+			transform: translate(-50%, -50%);
+		}
+
+		&::after {
+			width: 3px;
+			height: 1.625rem;
+			transform: translate(-50%, -50%) rotate(0deg);
+			transform-origin: center center;
+		}
+	}
+
+	details.accordion-block__item[open] .accordion-block__toggle::after {
+		transform: translate(-50%, -50%) rotate(90deg);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.accordion-block__toggle::before,
+		.accordion-block__toggle::after {
+			transition: none;
+		}
+	}
+
+	.accordion-block__panel {
+		padding: 0 1.25rem 1.25rem;
+		text-align: left;
+	}
+
+	.accordion-block__body {
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+
+		p {
+			margin: 0 0 12px;
+			line-height: 1.5;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul,
+		ol {
+			margin: 0 0 12px;
+			padding-left: 1.25em;
+		}
+
+		ul {
+			list-style-type: disc;
+		}
+
+		li {
+			margin: 0 0 8px;
+			line-height: 1.5;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.accordion-block__body--list-columns {
+		ul,
+		ol {
+			list-style: none;
+			padding-left: 0;
+
+			@include media-breakpoint-up(md) {
+				column-count: 2;
+				column-gap: 2rem;
+			}
+		}
+
+		li {
+			@include media-breakpoint-up(md) {
+				break-inside: avoid;
+			}
+		}
+	}
+
+	.accordion-block__footnote {
+		margin: 1rem 0 0;
+		font-size: 14px;
+		line-height: 150%;
+		text-align: left;
+
+		p {
+			margin: 0;
+
+			&:not(:last-child) {
+				margin-bottom: 8px;
+			}
+		}
+	}
+
+	&.accordion-block--tone-dark {
+		color: $white;
+
+		.accordion-block__heading {
+			color: $white;
+		}
+
+		.accordion-block__item-heading {
+			color: $white;
+		}
+
+		.accordion-block__item-intro {
+			color: rgba($white, 0.9);
+		}
+
+		.accordion-block__toggle {
+			color: $white;
+		}
+
+		.accordion-block__body {
+			color: rgba($white, 0.95);
+
+			a {
+				color: $white;
+			}
+		}
+
+		.accordion-block__footnote {
+			color: rgba($white, 0.75);
+		}
+	}
+
+	&.accordion-block--tone-medium,
+	&.accordion-block--tone-light {
+		.accordion-block__item {
+			border-color: rgba($black, 0.15);
+		}
+
+		.accordion-block__heading {
+			color: $background_dark;
+		}
+
+		.accordion-block__item-heading {
+			color: $background_dark;
+		}
+
+		.accordion-block__item-intro {
+			color: $color__text-main;
+		}
+
+		.accordion-block__toggle {
+			color: $background_dark;
+		}
+
+		.accordion-block__body {
+			color: $color__text-main;
+
+			a {
+				color: $color__link;
+			}
+		}
+
+		.accordion-block__footnote {
+			color: $color__text-screen;
+		}
+	}
+}

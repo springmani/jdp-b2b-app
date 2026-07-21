@@ -1,0 +1,300 @@
+section.featured-industries-block {
+	position: relative;
+
+	.featured-industries-block__grid,
+	.featured-industries-block__card {
+		min-width: 0;
+	}
+
+	.featured-industries-block__pre {
+		margin-bottom: 15px;
+	}
+
+	.featured-industries-block__intro-row {
+		margin-bottom: 60px;
+	}
+
+	.featured-industries-block__intro--stacked {
+		margin-bottom: 60px;
+	}
+
+	.featured-industries-block__pre + .featured-industries-block__grid {
+		margin-top: 45px;
+	}
+
+	.featured-industries-block__heading {
+		margin: 0;
+		color: $background_dark;
+	}
+
+	@include media-breakpoint-down(lg) {
+		.featured-industries-block__intro-row .featured-industries-block__copy--aside {
+			margin-top: 25px;
+		}
+	}
+
+	.featured-industries-block__copy,
+	.featured-industries-block__copy--aside {
+		color: $color__text-main;
+
+		p {
+			margin: 0 0 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.featured-industries-block__intro--stacked .featured-industries-block__heading + .featured-industries-block__copy {
+		margin-top: 25px;
+	}
+
+	.featured-industries-block__grid {
+		display: grid;
+		gap: 20px;
+		width: 100%;
+	}
+
+	.featured-industries-block__grid--cols-1 {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.featured-industries-block__grid--cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.featured-industries-block__grid--cols-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.featured-industries-block__grid--cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@include media-breakpoint-down(xl) {
+		.featured-industries-block__grid--cols-3,
+		.featured-industries-block__grid--cols-4 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		.featured-industries-block__grid--cols-2,
+		.featured-industries-block__grid--cols-3,
+		.featured-industries-block__grid--cols-4 {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.featured-industries-block__card {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		text-decoration: none;
+		color: inherit;
+		background-color: #f2f2f2;
+		border-radius: 6px;
+		overflow: hidden;
+
+		&:focus-visible {
+			outline: 2px solid $brand_color_1;
+			outline-offset: 3px;
+		}
+
+		&--static {
+			cursor: default;
+		}
+	}
+
+	.featured-industries-block__media {
+		display: block;
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background-color: #e5e5e5;
+	}
+
+	.featured-industries-block__img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		transform: scale(1);
+		transition: transform 0.35s ease;
+	}
+
+	a.featured-industries-block__card:hover .featured-industries-block__img,
+	a.featured-industries-block__card:focus-visible .featured-industries-block__img {
+		transform: scale(1.1);
+	}
+
+	a.featured-industries-block__card:hover .featured-industries-block__card-explore,
+	a.featured-industries-block__card:focus-visible .featured-industries-block__card-explore {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	a.featured-industries-block__card:hover h2.featured-industries-block__card-title,
+	a.featured-industries-block__card:focus-visible h2.featured-industries-block__card-title {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.featured-industries-block__card--static:hover .featured-industries-block__img {
+		transform: scale(1.1);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.featured-industries-block__img {
+			transition: none;
+		}
+
+		a.featured-industries-block__card:hover .featured-industries-block__img,
+		a.featured-industries-block__card:focus-visible .featured-industries-block__img,
+		.featured-industries-block__card--static:hover .featured-industries-block__img {
+			transform: none;
+		}
+	}
+
+	.featured-industries-block__placeholder {
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: 8rem;
+		background-color: #e5e5e5;
+	}
+
+	.featured-industries-block__body {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 20px;
+	}
+
+	h2.featured-industries-block__card-title {
+		margin: 0 0 15px;
+		color: $brand_color_1;
+		text-transform: none;
+		font-weight: 800;
+	}
+
+	h3.featured-industries-block__card-sub {
+		margin: 0 0 15px;
+		color: $background_dark;
+		text-transform: capitalize;
+		font-weight: 800;
+	}
+
+	.featured-industries-block__card-copy {
+		display: block;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.5;
+		color: $color__text-main;
+
+		p {
+			margin: 0 0 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul,
+		ol {
+			margin: 0 0 8px;
+			padding-left: 1.25em;
+		}
+
+		ul {
+			list-style-type: disc;
+		}
+	}
+
+	.featured-industries-block__card-explore {
+		margin-top: auto;
+		padding-top: 20px;
+		align-self: flex-start;
+		font-family: $font__header;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 150%;
+		letter-spacing: normal;
+		text-transform: none;
+	}
+
+	.featured-industries-block__cta {
+		display: flex;
+		justify-content: flex-end;
+		margin-top: 20px;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&.featured-industries-block--tone-dark {
+		.featured-industries-block__heading {
+			color: $white;
+
+			span {
+				color: $brand_color_1;
+			}
+		}
+
+		.featured-industries-block__copy,
+		.featured-industries-block__copy--aside {
+			color: rgba($white, 0.9);
+		}
+
+		.featured-industries-block__card {
+			background-color: rgba($white, 0.08);
+		}
+
+		.featured-industries-block__media {
+			background-color: rgba($white, 0.12);
+		}
+
+		.featured-industries-block__placeholder {
+			background-color: rgba($white, 0.12);
+		}
+
+		h3.featured-industries-block__card-sub {
+			color: $white;
+		}
+
+		.featured-industries-block__card-copy {
+			color: rgba($white, 0.9);
+		}
+
+		.featured-industries-block__card-explore.arrow-link {
+			color: $white;
+
+			&::after {
+				background-color: $white;
+			}
+		}
+
+		.featured-industries-block__cta {
+			a.arrow-link {
+				color: $white;
+
+				&::after {
+					background-color: $white;
+				}
+
+				&:visited,
+				&:hover,
+				&:focus,
+				&:active {
+					color: $white;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,73 @@
+{
+    "key": "group_70fe10a1b0pd1",
+    "title": "[Block] - Podcast",
+    "fields": [
+        {
+            "key": "field_607746cba6788",
+            "label": "Embed",
+            "name": "m13_embed",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Paste the full embed code (e.g. Spotify iframe). Imported content uses this field name.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 8,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_607746e4a6789",
+            "label": "Caption",
+            "name": "m13_caption",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional text below the player.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": "wpautop"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/podcast"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Podcast \/ audio embed block. Field keys match legacy imports (m13_embed, m13_caption).",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}
