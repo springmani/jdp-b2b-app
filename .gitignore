@@ -1,6 +1,9 @@
-node_modules
 process_acf_polylang.py
-
+node_modules/
+.DS_Store
+*.log
+dist/
+build/
 *.map
 FORMAT.md
 *issues.md
