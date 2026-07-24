@@ -1,0 +1,540 @@
+{
+    "key": "group_70fc05a1b0001",
+    "title": "[Block] - Icon Columns",
+    "fields": [
+        {
+            "key": "field_70fc05a1b0101",
+            "label": "Setup",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc05a1b0102",
+            "label": "Padding Top",
+            "name": "icon_columns_padding_top",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc05a1b0103",
+            "label": "Padding Bottom",
+            "name": "icon_columns_padding_bottom",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc05a1b0104",
+            "label": "Background",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc05a1b0105",
+            "label": "Background",
+            "name": "icon_columns_background_tone",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "medium": "Medium",
+                "light": "Light"
+            },
+            "default_value": "light",
+            "translations": "copy_once",
+            "pll_default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc05a1b0106",
+            "label": "Layout",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc05a1b0115",
+            "label": "Block Layout",
+            "name": "icon_columns_block_layout",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Stacked places the intro above the grid. Columns places the intro and copy beside the icon list.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "stacked": "Stacked",
+                "columns": "Columns"
+            },
+            "default_value": "stacked",
+            "translations": "copy_once",
+            "pll_default_value": "stacked",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc05a1b0107",
+            "label": "Columns",
+            "name": "icon_columns_columns",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Number of columns on large screens; stacks on small screens.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc05a1b0115",
+                        "operator": "==",
+                        "value": "stacked"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "2",
+                "3": "3"
+            },
+            "default_value": "3",
+            "translations": "copy_once",
+            "pll_default_value": "3",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc05a1b0117",
+            "label": "Column Size",
+            "name": "icon_columns_column_split",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Each ratio is Content \/ Icons.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc05a1b0115",
+                        "operator": "==",
+                        "value": "columns"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "half": "50\/50 — Content \/ Icons",
+                "content_60": "60\/40 — Content \/ Icons",
+                "content_70": "70\/30 — Content \/ Icons",
+                "content_40": "40\/60 — Content \/ Icons"
+            },
+            "default_value": "half",
+            "translations": "copy_once",
+            "pll_default_value": "half",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc05a1b0108",
+            "label": "Content",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc05a1b0109",
+            "label": "Pre-Heading",
+            "name": "icon_columns_pre_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc05a1b0110",
+            "label": "Heading",
+            "name": "icon_columns_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Main section heading (large, upper case on the front end). Wrap text in span tags to highlight it. Example: <code>&lt;span&gt;highlighted text&lt;\/span&gt;<\/code>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_77ic_heading_size01",
+            "label": "Heading Size",
+            "name": "icon_columns_heading_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "large": "Large",
+                "medium": "Medium",
+                "small": "Small",
+                "xsmall": "X Small",
+                "xxsmall": "XX Small"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc05a1b0116",
+            "label": "Copy",
+            "name": "icon_columns_intro_copy",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_77fca01b0ico1",
+            "label": "Animate icon columns",
+            "name": "icon_columns_animate_columns",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Animate each icon column or row item when it comes into view. Turn off to show content immediately.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "translations": "copy_once",
+            "pll_default_value": 1,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off"
+        },
+        {
+            "key": "field_70fc05a1b0111",
+            "label": "Columns",
+            "name": "icon_columns_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_70fc05a1b0113",
+            "button_label": "Add Column",
+            "rows_per_page": 20,
+            "allow_in_bindings": 0,
+            "sub_fields": [
+                {
+                    "key": "field_70fc05a1b0112",
+                    "label": "Icon",
+                    "name": "icon_columns_icon",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Line art or transparent PNG\/SVG; displayed at a consistent height.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_70fc05a1b0113",
+                    "label": "Heading",
+                    "name": "icon_columns_column_heading",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "rows": 3,
+                    "placeholder": "",
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_70fc05a1b0114",
+                    "label": "Copy",
+                    "name": "icon_columns_copy",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-icon-columns"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1781494800,
+    "pll_display_field_instructions": 0
+}

@@ -1,0 +1,55 @@
+$section_padding_y_none: 0;
+$section_padding_y_small: 30px;
+$section_padding_y_medium: 60px;
+$section_padding_y_large: 120px;
+$section_padding_y_default: 100px;
+
+// Example: class="pt-default pb-large"
+
+.pt-none {
+	padding-top: $section_padding_y_none;
+}
+
+.pt-small {
+	padding-top: $section_padding_y_small;
+}
+
+.pt-medium {
+	padding-top: $section_padding_y_medium;
+}
+
+.pt-large {
+	padding-top: $section_padding_y_large;
+}
+
+.pt-default {
+	padding-top: $section_padding_y_default;
+
+	@include media-breakpoint-down(md) {
+		padding-top: 50px;
+	}
+}
+
+.pb-none {
+	padding-bottom: $section_padding_y_none;
+}
+
+.pb-small {
+	padding-bottom: $section_padding_y_small;
+}
+
+.pb-medium {
+	padding-bottom: $section_padding_y_medium;
+}
+
+.pb-large {
+	padding-bottom: $section_padding_y_large;
+}
+
+.pb-default {
+	padding-bottom: $section_padding_y_default;
+
+	@include media-breakpoint-down(md) {
+		padding-bottom: 50px;
+	}
+}

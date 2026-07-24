@@ -1,0 +1,503 @@
+{
+    "key": "group_6a616b313d543",
+    "title": "[Block] - QA Sandbox",
+    "fields": [
+        {
+            "key": "field_6a616b313fb3a",
+            "label": "Setup",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6a616b313fb82",
+            "label": "Padding Top",
+            "name": "qa_sandbox_padding_top",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "default"
+        },
+        {
+            "key": "field_6a616b313fbcb",
+            "label": "Padding Bottom",
+            "name": "qa_sandbox_padding_bottom",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "default"
+        },
+        {
+            "key": "field_6a616b313fc11",
+            "label": "Background",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6a616b313fc58",
+            "label": "Background",
+            "name": "qa_sandbox_background",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "medium": "Medium",
+                "light": "Light"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "light"
+        },
+        {
+            "key": "field_6a616b313fc9d",
+            "label": "Layout",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6a616b313fce4",
+            "label": "Image Position",
+            "name": "qa_sandbox_image_position",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Left",
+                "right": "Right"
+            },
+            "default_value": "left",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "left"
+        },
+        {
+            "key": "field_6a616b313fd2a",
+            "label": "Column Split",
+            "name": "qa_sandbox_column_split",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Each ratio is Content \/ Image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "half": "50\/50 — Content \/ Image",
+                "image_wide": "60\/40 — Content \/ Image",
+                "image_narrow": "40\/60 — Content \/ Image",
+                "image_two_thirds": "33\/66 — Content \/ Image",
+                "image_third": "66\/33 — Content \/ Image"
+            },
+            "default_value": "half",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "half"
+        },
+        {
+            "key": "field_6a616b313fdb6",
+            "label": "Vertical Alignment",
+            "name": "qa_sandbox_vertical_alignment",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Aligns the content column to the image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "top": "Top",
+                "middle": "Middle",
+                "bottom": "Bottom"
+            },
+            "default_value": "top",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "top"
+        },
+        {
+            "key": "field_6a616b313fdfc",
+            "label": "Pre-Heading Placement",
+            "name": "qa_sandbox_pre-heading_placement",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Full width places the pre-heading above the image and content row.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6a616b313fdb6",
+                        "operator": "==",
+                        "value": "top"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "with_content": "With Content",
+                "above": "Full Width Above"
+            },
+            "default_value": "with_content",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "with_content"
+        },
+        {
+            "key": "field_6a616b313fe1c",
+            "label": "Content",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6a616b313fe66",
+            "label": "Pre-Heading",
+            "name": "qa_sandbox_pre-heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "pll_default_value": ""
+        },
+        {
+            "key": "field_6a616b313fead",
+            "label": "Heading",
+            "name": "qa_sandbox_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Wrap text in span tags to highlight it. Example: <code>&lt;span&gt;highlighted text&lt;\/span&gt;<\/code>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br",
+            "pll_default_value": ""
+        },
+        {
+            "key": "field_6a616b313fef4",
+            "label": "Heading Size",
+            "name": "qa_sandbox_heading_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "large": "Large",
+                "medium": "Medium",
+                "small": "Small",
+                "xsmall": "X Small",
+                "xxsmall": "XX Small"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "default"
+        },
+        {
+            "key": "field_6a616b313ffc8",
+            "label": "Image",
+            "name": "qa_sandbox_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "translations": "copy_once",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_6a616b314000f",
+            "label": "Image Aspect Ratio",
+            "name": "qa_sandbox_image_aspect_ratio",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Square and 16:9 crop the image to fill the frame. Auto uses the image’s natural proportions.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "square": "Square (1:1)",
+                "16_9": "16:9",
+                "auto": "Auto (natural proportion)"
+            },
+            "default_value": "square",
+            "return_format": "value",
+            "multiple": 0,
+            "translations": "copy_once",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "pll_default_value": "square"
+        },
+        {
+            "key": "field_6a616b3140055",
+            "label": "Image Caption",
+            "name": "qa_sandbox_image_caption",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Displays directly under the image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "pll_default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-qa-sandbox"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "pll_display_field_instructions": 0,
+    "modified": 1784771434
+}

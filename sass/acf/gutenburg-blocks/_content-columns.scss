@@ -1,0 +1,132 @@
+section.content-columns-block {
+	position: relative;
+
+	.content-columns-block__row,
+	.content-columns-block__column {
+		min-width: 0;
+	}
+
+	.content-columns-block__row {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		column-gap: var(--bs-gutter-x, 1.5rem);
+		row-gap: var(--bs-gutter-y, 1.5rem);
+
+		@include media-breakpoint-up(lg) {
+			&.content-columns-block__row--cols-2 {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			&.content-columns-block__row--cols-3 {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			&.content-columns-block__row--cols-4 {
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+			}
+		}
+	}
+
+	.content-columns-block__heading {
+		margin: 0;
+		color: $background_dark;
+	}
+
+	.content-columns-block__heading + .content-columns-block__copy,
+	.content-columns-block__heading + .content-columns-block__cta {
+		margin-top: 15px;
+	}
+
+	.content-columns-block__copy + .content-columns-block__cta {
+		margin-top: 15px;
+	}
+
+	.content-columns-block__copy {
+		color: $color__text-main;
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+
+		p {
+			margin: 0 0 12px;
+			line-height: 1.5;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul,
+		ol {
+			margin: 0 0 12px;
+			padding-left: 1.25em;
+		}
+
+		ul {
+			list-style-type: disc;
+		}
+
+		li {
+			margin: 0 0 8px;
+			line-height: 1.5;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.content-columns-block__cta {
+		margin: 0;
+	}
+
+	&.content-columns-block--tone-dark {
+
+		.content-columns-block__heading {
+			color: $white;
+		}
+
+		.content-columns-block__copy {
+			color: $white;
+
+			a {
+				color: $white;
+			}
+		}
+
+		.content-columns-block__link {
+			color: $white;
+		}
+	}
+
+	&.content-columns-block--tone-medium {
+
+		.content-columns-block__heading {
+			color: $background_dark;
+		}
+
+		.content-columns-block__copy {
+			color: $color__text-main;
+
+			a {
+				color: $color__link;
+			}
+		}
+
+		.content-columns-block__link {
+			color: $color__link;
+		}
+	}
+
+	&.content-columns-block--tone-light {
+
+		.content-columns-block__link {
+			color: $color__link;
+		}
+	}
+}

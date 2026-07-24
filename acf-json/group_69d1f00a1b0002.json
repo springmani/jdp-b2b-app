@@ -1,0 +1,765 @@
+{
+    "key": "group_69d1f00a1b0002",
+    "title": "[Block] - Content With Image",
+    "fields": [
+        {
+            "key": "field_69d1f00a1b201",
+            "label": "Setup",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_69d1f00a1b202",
+            "label": "Padding Top",
+            "name": "content_with_image_padding_top",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b203",
+            "label": "Padding Bottom",
+            "name": "content_with_image_padding_bottom",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b204",
+            "label": "Background",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_69d1f00a1b205",
+            "label": "Background",
+            "name": "content_with_image_background_tone",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "medium": "Medium",
+                "light": "Light"
+            },
+            "default_value": "light",
+            "translations": "copy_once",
+            "pll_default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b206",
+            "label": "Layout",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_69d1f00a1b207",
+            "label": "Image Position",
+            "name": "content_with_image_image_position",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Left",
+                "right": "Right"
+            },
+            "default_value": "left",
+            "translations": "copy_once",
+            "pll_default_value": "left",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b20f",
+            "label": "Column Split",
+            "name": "content_with_image_column_split",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Each ratio is Content \/ Image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "half": "50\/50 — Content \/ Image",
+                "image_wide": "60\/40 — Content \/ Image",
+                "image_narrow": "40\/60 — Content \/ Image",
+                "image_two_thirds": "33\/66 — Content \/ Image",
+                "image_third": "66\/33 — Content \/ Image"
+            },
+            "default_value": "half",
+            "translations": "copy_once",
+            "pll_default_value": "half",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b210",
+            "label": "Mobile Order",
+            "name": "content_with_image_mobile_order",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Which column appears first when stacked on small screens.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "image_first": "Image First",
+                "content_first": "Content First"
+            },
+            "default_value": "content_first",
+            "translations": "copy_once",
+            "pll_default_value": "content_first",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b212",
+            "label": "Vertical Alignment",
+            "name": "content_with_image_vertical_align",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Aligns the content column to the image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "top": "Top",
+                "middle": "Middle",
+                "bottom": "Bottom"
+            },
+            "default_value": "top",
+            "translations": "copy_once",
+            "pll_default_value": "top",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b213",
+            "label": "Pre-Heading Placement",
+            "name": "content_with_image_pre_heading_placement",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Full width places the pre-heading above the image and content row.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_69d1f00a1b212",
+                        "operator": "==",
+                        "value": "top"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "with_content": "With Content",
+                "above": "Full Width Above"
+            },
+            "default_value": "with_content",
+            "translations": "copy_once",
+            "pll_default_value": "with_content",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b208",
+            "label": "Content",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_69d1f00a1b209",
+            "label": "Pre-Heading",
+            "name": "content_with_image_pre_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_69d1f00a1b20a",
+            "label": "Heading",
+            "name": "content_with_image_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Wrap text in span tags to highlight it. Example: <code>&lt;span&gt;highlighted text&lt;\/span&gt;<\/code>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_77cwi_heading_size01",
+            "label": "Heading Size",
+            "name": "content_with_image_heading_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "large": "Large",
+                "medium": "Medium",
+                "small": "Small",
+                "xsmall": "X Small",
+                "xxsmall": "XX Small"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b20b",
+            "label": "Copy",
+            "name": "content_with_image_copy",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Optional when using Copy Rows below. If Copy Rows has entries, those are shown instead of this field.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_69d1f00a1b214",
+            "label": "Copy Rows",
+            "name": "content_with_image_copy_rows",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Optional repeating sections with sub-heading and copy. When at least one row has content, these replace the single Copy field above.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_69d1f00a1b215",
+            "button_label": "Add Copy Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_69d1f00a1b215",
+                    "label": "Sub Heading",
+                    "name": "content_with_image_copy_row_sub_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_69d1f00a1b216",
+                    "label": "Copy",
+                    "name": "content_with_image_copy_row_copy",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0
+                },
+                {
+                    "key": "field_69d1f00a1b217",
+                    "label": "List items in columns",
+                    "name": "content_with_image_copy_row_list_columns",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "When the copy includes a list, display list items in two columns on larger screens.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "translations": "copy_once",
+                    "pll_default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
+                }
+            ]
+        },
+        {
+            "key": "field_69d1f00a1b20c",
+            "label": "Image",
+            "name": "content_with_image_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_77fd2cwi_aspect01",
+            "label": "Image Aspect Ratio",
+            "name": "content_with_image_image_aspect_ratio",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Square and 16:9 crop the image to fill the frame. Auto uses the image’s natural proportions.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "square": "Square (1:1)",
+                "16_9": "16:9",
+                "auto": "Auto (natural proportion)"
+            },
+            "default_value": "square",
+            "translations": "copy_once",
+            "pll_default_value": "square",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_69d1f00a1b211",
+            "label": "Image Caption",
+            "name": "content_with_image_image_caption",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Displays directly under the image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_77fd2cwi_video01",
+            "label": "Video Embed",
+            "name": "content_with_image_video_embed",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Paste the full embed code (e.g. YouTube or Vimeo iframe). When set, this replaces the image in the media column.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 8,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_69d1f00a1b20d",
+            "label": "CTA",
+            "name": "content_with_image_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_77fd2cwi_ctas_rep",
+            "label": "Additional CTAs",
+            "name": "content_with_image_ctas",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Optional. Add more links; each uses the same CTA Style as the main CTA (Button or Arrow Link). You can use the main CTA only, this list only, or both together.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_77fd2cwi_ctas_rep_link",
+            "button_label": "Add CTA",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_77fd2cwi_ctas_rep_link",
+                    "label": "Link",
+                    "name": "content_with_image_cta_item",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "return_format": "array",
+                    "allow_in_bindings": 0
+                }
+            ]
+        },
+        {
+            "key": "field_69d1f00a1b20e",
+            "label": "CTA Style",
+            "name": "content_with_image_cta_style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Applies to the main CTA and all additional CTAs in the repeater above.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "button": "Button",
+                "arrow": "Arrow Link"
+            },
+            "default_value": "button",
+            "translations": "copy_once",
+            "pll_default_value": "button",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-content-with-image"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1781495400,
+    "pll_display_field_instructions": 0
+}

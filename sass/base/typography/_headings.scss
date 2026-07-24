@@ -1,0 +1,712 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+	font-family: $font__header;
+	color: $color__text-headings;
+	font-weight: 900;
+
+	span {
+		color: $brand_color_1;
+	}
+}
+
+h1,
+h2 {
+	text-transform: uppercase;
+}
+
+h1 {
+	font-size: 84px;
+	line-height: 80%;
+	letter-spacing: -3.36px;
+
+	&.medium {
+		font-size: 96px;
+		line-height: 80%;
+		letter-spacing: -3.84px;
+	}
+
+	&.large {
+		font-size: 120px;
+		line-height: 80%;
+		letter-spacing: -7px;
+	}
+
+	&:lang(de-DE),
+	&:lang(fr-FR),
+	&:lang(it-IT),
+	&:lang(es-ES) {
+		hyphens: auto;
+		line-height: 100%;
+		padding-top: 4px;
+	}
+}
+
+.single-post,
+.single-press_release,
+.single-podcast,
+.single-event_webinar,
+.single-resource {
+	h1 {
+		margin: 0 0 15px;
+		font-size: 56px;
+		font-weight: 800;
+		line-height: 100%;
+		letter-spacing: -2.24px;
+		text-transform: initial;
+		color: $background_dark;
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+}
+
+.single-product {
+	h1 {
+		font-size: 84px;
+		line-height: 80%;
+		letter-spacing: -3.36px;
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+}
+
+h2 {
+	font-size: 84px;
+	line-height: 90%;
+	letter-spacing: -4px;
+
+	&.medium {
+		font-size: 56px;
+		line-height: 90%;
+		font-weight: 800;
+		letter-spacing: -2.24px;
+	}
+
+	&.x-medium {
+		font-size: 48px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 90%;
+		letter-spacing: -1.92px;
+		text-transform: none;
+	}
+
+	&.large {
+		font-size: 64px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 85%;
+		letter-spacing: -2.56px;
+		text-transform: none;
+	}
+
+	&.small {
+		font-size: 36px;
+		line-height: 100%;
+		letter-spacing: -1.08px;
+		text-transform: none;
+	}
+
+	// Between `.small` (36px) and `.xsmall` (30px) — card titles, related products, etc.
+	&.small-min {
+		font-size: 28px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 110%;
+		letter-spacing: -0.56px;
+	}
+
+	&.xsmall {
+		font-size: 30px;
+		font-style: normal;
+		line-height: 100%;
+		letter-spacing: -0.9px;
+		text-transform: none;
+	}
+
+	&.xxsmall {
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 110%;
+		letter-spacing: -0.4px;
+		text-transform: capitalize;
+	}
+
+	&.xxxsmall {
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 100%;
+		letter-spacing: -0.32px;
+		text-transform: none;
+	}
+
+	&.xsmaller {
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 110%;
+		letter-spacing: -0.48px;
+		text-transform: capitalize;
+	}
+
+	&:lang(de-DE),
+	&:lang(fr-FR),
+	&:lang(it-IT),
+	&:lang(es-ES) {
+		hyphens: auto;
+		line-height: 100%;
+		padding-top: 4px;
+	}
+}
+
+// Single post / press release / resource: body copy h2s (e.g. from the editor) match `h2.small`.
+// Font size follows WP preset `--wp--preset--font-size--medium` (see theme.json); tightened at md via `:root`.
+.single-post .entry-content h2,
+.single-press_release .entry-content h2,
+.single-resource .entry-content h2 {
+	font-size: var(--wp--preset--font-size--medium, 36px);
+	line-height: 100%;
+	letter-spacing: -1.08px;
+	text-transform: none;
+	color: $background_dark;
+
+	span {
+		color: $background_dark;
+	}
+
+	b,
+	strong {
+		font-weight: 800;
+		color: $background_dark;
+	}
+}
+
+.single-post h2.wp-block-heading.has-regular-font-size {
+	margin-top: 40px;
+}
+
+h3 {
+	font-size: 36px;
+	line-height: 100%;
+	letter-spacing: -1.08px;
+
+	&.small {
+		font-size: 24px;
+		line-height: 110%;
+		letter-spacing: -0.48px;
+	}
+}
+
+h4 {
+	font-size: 24px;
+	line-height: 110%;
+	letter-spacing: -0.48px;
+}
+
+.preheading {
+	margin: 0 0 15px;
+	font-family: $font__header;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: 120%;
+	letter-spacing: -0.48px;
+	text-transform: uppercase;
+	color: $brand_color_1;
+}
+
+// Extra extra large	2xl	≥1536px
+// Extra large	xl	≥1280px
+// Large	lg	≥1024px
+// Medium	md	≥768px
+// Small	sm	≥640px
+// X-Small	xs	<640px
+
+@include media-breakpoint-down(xl) {
+	h1 {
+		font-size: 84px;
+		line-height: 80%;
+		letter-spacing: -3.36px;
+
+		&.medium {
+			font-size: 85px;
+			line-height: 80%;
+			letter-spacing: -3.4px;
+		}
+
+		&.large {
+			font-size: 104px;
+			line-height: 80%;
+			letter-spacing: -6.07px;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+
+	.single-post,
+	.single-press_release,
+	.single-podcast,
+	.single-event_webinar,
+	.single-resource {
+		h1 {
+			font-size: 56px;
+			line-height: 100%;
+			letter-spacing: -2.24px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	.single-product {
+		h1 {
+			font-size: 84px;
+			line-height: 80%;
+			letter-spacing: -3.36px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	h2 {
+		font-size: 74px;
+
+		&.medium {
+			font-size: 49px;
+			line-height: 90%;
+			letter-spacing: -1.96px;
+		}
+
+		&.x-medium {
+			font-size: 42px;
+			line-height: 90%;
+			letter-spacing: -1.68px;
+		}
+
+		&.large {
+			font-size: 56px;
+			line-height: 85%;
+			letter-spacing: -2.24px;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		br {
+			display: none;
+		}
+	}
+}
+
+@include media-breakpoint-down(lg) {
+	h1 {
+		font-size: 67px;
+		line-height: 80%;
+		letter-spacing: -2.68px;
+
+		&.medium {
+			font-size: 74px;
+			line-height: 80%;
+			letter-spacing: -2.96px;
+		}
+
+		&.large {
+			font-size: 88px;
+			line-height: 80%;
+			letter-spacing: -5.13px;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+
+	.single-post,
+	.single-press_release,
+	.single-podcast,
+	.single-event_webinar,
+	.single-resource {
+		h1 {
+			font-size: 45px;
+			line-height: 100%;
+			letter-spacing: -1.8px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	.single-product {
+		h1 {
+			font-size: 67px;
+			line-height: 80%;
+			letter-spacing: -2.68px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	h2 {
+		font-size: 64px;
+
+		&.medium {
+			font-size: 43px;
+			line-height: 90%;
+			letter-spacing: -1.72px;
+		}
+
+		&.x-medium {
+			font-size: 37px;
+			line-height: 90%;
+			letter-spacing: -1.48px;
+		}
+
+		&.large {
+			font-size: 49px;
+			line-height: 85%;
+			letter-spacing: -1.96px;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+}
+
+@include media-breakpoint-down(md) {
+	:root {
+		--wp--preset--font-size--medium: 26px;
+	}
+
+	h1 {
+		font-size: 58px;
+		line-height: 80%;
+		letter-spacing: -2.32px;
+
+		&.medium {
+			font-size: 63px;
+			line-height: 80%;
+			letter-spacing: -2.52px;
+		}
+
+		&.large {
+			font-size: 72px;
+			line-height: 80%;
+			letter-spacing: -4.2px;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+
+	.single-post,
+	.single-press_release,
+	.single-podcast,
+	.single-event_webinar,
+	.single-resource {
+		h1 {
+			font-size: 39px;
+			line-height: 100%;
+			letter-spacing: -1.56px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	.single-product {
+		h1 {
+			font-size: 58px;
+			line-height: 80%;
+			letter-spacing: -2.32px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	h2 {
+		font-size: 54px;
+		letter-spacing: -3px;
+
+		&.medium {
+			font-size: 36px;
+			line-height: 90%;
+			letter-spacing: -1.44px;
+		}
+
+		&.x-medium {
+			font-size: 31px;
+			line-height: 90%;
+			letter-spacing: -1.24px;
+		}
+
+		&.large {
+			font-size: 41px;
+			line-height: 85%;
+			letter-spacing: -1.64px;
+		}
+
+		&.small {
+			font-size: 26px;
+			line-height: 100%;
+			letter-spacing: -1.08px;
+		}
+
+		&.small-min {
+			font-size: 24px;
+			line-height: 110%;
+			letter-spacing: -0.48px;
+		}
+
+		&.xsmall {
+			font-size: 22px;
+			line-height: 100%;
+			letter-spacing: -0.66px;
+		}
+
+		&.xxsmall {
+			font-size: 18px;
+			line-height: 110%;
+			letter-spacing: -0.36px;
+		}
+
+		&.xxxsmall {
+			font-size: 16px;
+			line-height: 100%;
+			letter-spacing: -0.32px;
+		}
+
+		&.xsmaller {
+			font-size: 22px;
+			line-height: 110%;
+			letter-spacing: -0.44px;
+			text-transform: capitalize;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+
+	h3 {
+		font-size: 26px;
+		line-height: 100%;
+		letter-spacing: -1.08px;
+
+		&.small {
+			font-size: 20px;
+			line-height: 110%;
+			letter-spacing: -0.48px;
+		}
+	}
+
+	h4 {
+		font-size: 20px;
+		line-height: 110%;
+		letter-spacing: -0.48px;
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	h1 {
+		font-size: 48px;
+		line-height: 80%;
+		letter-spacing: -1.92px;
+
+		&.medium {
+			font-size: 52px;
+			line-height: 80%;
+			letter-spacing: -2.08px;
+		}
+
+		&.large {
+			font-size: 56px;
+			line-height: 80%;
+			letter-spacing: -3.27px;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+
+	.single-post,
+	.single-press_release,
+	.single-podcast,
+	.single-event_webinar,
+	.single-resource {
+		h1 {
+			font-size: 32px;
+			line-height: 100%;
+			letter-spacing: -1.28px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	.single-product {
+		h1 {
+			font-size: 48px;
+			line-height: 80%;
+			letter-spacing: -1.92px;
+
+			&:lang(de-DE),
+			&:lang(fr-FR),
+			&:lang(it-IT),
+			&:lang(es-ES) {
+				hyphens: auto;
+				line-height: 100%;
+				padding-top: 4px;
+			}
+		}
+	}
+
+	h2 {
+		font-size: 48px;
+		letter-spacing: -3px;
+
+		&.medium {
+			font-size: 32px;
+			line-height: 90%;
+			letter-spacing: -1.28px;
+		}
+
+		&.x-medium {
+			font-size: 27px;
+			line-height: 90%;
+			letter-spacing: -1.08px;
+		}
+
+		&.large {
+			font-size: 36px;
+			line-height: 85%;
+			letter-spacing: -1.44px;
+		}
+
+		&:lang(de-DE),
+		&:lang(fr-FR),
+		&:lang(it-IT),
+		&:lang(es-ES) {
+			hyphens: auto;
+			line-height: 100%;
+			padding-top: 4px;
+		}
+	}
+
+	.preheading {
+		font-size: 20px;
+		letter-spacing: -0.4px;
+	}
+}

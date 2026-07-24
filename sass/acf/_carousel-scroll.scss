@@ -1,0 +1,374 @@
+// Shared horizontal carousel (scroll track + nav): Related Products, Featured Insights.
+// Shell inset + card widths follow Bootstrap `.container` max-widths at each breakpoint.
+
+@use "sass:map";
+@use "sass:string";
+
+$carousel-gap: 20px;
+// Featured Insights mobile: visible slice of the next card (not full second slide).
+$carousel-mobile-peek: 4rem;
+// Match `.container` horizontal padding (`--bs-gutter-x` on `html`), not `$grid-gutter-width * 0.5` (0.75rem).
+$carousel-edge-padding: 'var(--bs-gutter-x, #{$container-padding-x-below-md})';
+
+// Theme `$container-max-widths` may only define `xl` (fluid below that). Carousel math still runs
+// at sm/md/lg/2xl; missing keys used to compile as `min(, 100vw)` and invalidate `--carousel-inset`.
+@function carousel-container-max-px($breakpoint-key) {
+	$v: map.get($container-max-widths, $breakpoint-key);
+	@if $v != null {
+		@return $v;
+	}
+	// Below the `xl` viewport, `.container` is uncapped — treat as full-width for `min(..., 100vw)`.
+	$bp-min: map.get($grid-breakpoints, $breakpoint-key);
+	$xl-bp-min: map.get($grid-breakpoints, xl);
+	$xl-cap: map.get($container-max-widths, xl);
+	@if $bp-min != null and $xl-bp-min != null and $xl-cap != null and $bp-min >= $xl-bp-min {
+		@return $xl-cap;
+	}
+	@return 999999px;
+}
+
+// Inset from viewport left to match inner edge of centered `.container` (padding + centering).
+// Output raw CSS `max()` + `calc()` — Sass would otherwise simplify `calc()` incorrectly.
+@function carousel-inset-for-max($container-max-px) {
+	@return string.unquote(
+		"max(#{$carousel-edge-padding}, calc((100vw - min(#{$container-max-px}, 100vw)) / 2 + #{$carousel-edge-padding}))"
+	);
+}
+
+// Unstyled icon buttons (theme `button` rules add CTA borders/backgrounds — reset fully).
+.related-products-block__nav-btn,
+.featured-insights-block__nav-btn {
+	appearance: none;
+	-webkit-appearance: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2rem;
+	min-height: 2rem;
+	padding: 0.25rem;
+	margin: 0;
+	border: 0 !important;
+	border-radius: 0;
+	background: transparent !important;
+	color: $black !important;
+	cursor: pointer;
+	line-height: 0;
+	font-size: inherit;
+	text-transform: none;
+	letter-spacing: normal;
+	transition: color 0.15s ease;
+	-webkit-tap-highlight-color: transparent;
+
+	&:hover:not(:disabled) {
+		background: transparent !important;
+		border-color: transparent !important;
+		color: #4a4a4a !important;
+	}
+
+	// Global `button:focus` sets white text on CTA color; we keep transparent bg, so without
+	// an explicit color the SVG (stroke="currentColor") becomes invisible on a light section.
+	&:focus {
+		outline: none;
+		background: transparent !important;
+		border-color: transparent !important;
+		color: $black !important;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $brand_color_1;
+		outline-offset: 3px;
+		background: transparent !important;
+		border-color: transparent !important;
+		color: $black !important;
+	}
+
+	&:active:not(:disabled) {
+		background: transparent !important;
+		border-color: transparent !important;
+		color: #4a4a4a !important;
+	}
+
+	&:disabled {
+		color: #8a8a8a !important;
+		cursor: default;
+		background: transparent !important;
+	}
+}
+
+.related-products-block__nav-icon,
+.featured-insights-block__nav-icon {
+	display: flex;
+	line-height: 0;
+}
+
+.related-products-block__chevron,
+.featured-insights-block__chevron {
+	display: block;
+}
+
+section.related-products-block.related-products-block--layout-carousel,
+section.featured-insights-block.featured-insights-block--layout-carousel {
+	// Match `.container` horizontal padding (`base/elements/_html.scss` sets responsive `--bs-gutter-x`).
+	--carousel-inset: #{$carousel-edge-padding};
+
+	@include media-breakpoint-up(sm) {
+		--carousel-inset: #{carousel-inset-for-max(carousel-container-max-px(sm))};
+	}
+
+	@include media-breakpoint-up(md) {
+		--carousel-inset: #{carousel-inset-for-max(carousel-container-max-px(md))};
+	}
+
+	@include media-breakpoint-up(lg) {
+		--carousel-inset: #{carousel-inset-for-max(carousel-container-max-px(lg))};
+	}
+
+	@include media-breakpoint-up(xl) {
+		--carousel-inset: #{carousel-inset-for-max(carousel-container-max-px(xl))};
+	}
+
+	@include media-breakpoint-up(2xl) {
+		--carousel-inset: #{carousel-inset-for-max(carousel-container-max-px(2xl))};
+	}
+
+	.related-products-block__carousel-shell,
+	.featured-insights-block__carousel-shell {
+		margin-left: var(--carousel-inset);
+		width: calc(100vw - var(--carousel-inset));
+		max-width: none;
+		overflow: hidden;
+	}
+
+	.related-products-block__carousel,
+	.featured-insights-block__carousel {
+		display: flex;
+		gap: $carousel-gap;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scroll-snap-type: x proximity;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-x: contain;
+		cursor: grab;
+		touch-action: pan-x pan-y pinch-zoom;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		padding-top: 2px;
+		padding-bottom: 0.5rem;
+		padding-left: 0;
+		padding-right: var(--carousel-inset);
+
+		// Native image-drag steals mousemove in some browsers; keep clicks on the card link.
+		.related-products-block__img,
+		.featured-insights-block__img {
+			-webkit-user-drag: none;
+			user-select: none;
+		}
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		&.is-dragging {
+			cursor: grabbing;
+			scroll-snap-type: none;
+			user-select: none;
+
+			.related-products-block__card,
+			.related-products-block__card *,
+			.featured-insights-block__card,
+			.featured-insights-block__card * {
+				user-select: none;
+			}
+
+			.related-products-block__card,
+			.featured-insights-block__card {
+				scroll-snap-align: none;
+			}
+
+			.related-products-block__img,
+			.featured-insights-block__img {
+				pointer-events: none;
+			}
+		}
+	}
+
+	// Inner content width ≈ min(container max, 100vw) − horizontal padding (matches grid above).
+	.related-products-block__carousel .related-products-block__card,
+	.featured-insights-block__carousel .featured-insights-block__card {
+		min-width: 0;
+		height: auto;
+		scroll-snap-align: start;
+
+		// < sm: one column (fluid container).
+		flex: 0 0 calc(100vw - #{$grid-gutter-width});
+		width: calc(100vw - #{$grid-gutter-width});
+		max-width: calc(100vw - #{$grid-gutter-width});
+
+		@include media-breakpoint-up(sm) {
+			$inner: calc(min(#{carousel-container-max-px(sm)}, 100vw) - #{$grid-gutter-width});
+			flex: 0 0 calc((#{$inner} - #{$carousel-gap}) / 2);
+			width: calc((#{$inner} - #{$carousel-gap}) / 2);
+			max-width: calc((#{$inner} - #{$carousel-gap}) / 2);
+		}
+
+		@include media-breakpoint-up(md) {
+			$inner: calc(min(#{carousel-container-max-px(md)}, 100vw) - #{$grid-gutter-width});
+			flex: 0 0 calc((#{$inner} - #{$carousel-gap}) / 2);
+			width: calc((#{$inner} - #{$carousel-gap}) / 2);
+			max-width: calc((#{$inner} - #{$carousel-gap}) / 2);
+		}
+
+		@include media-breakpoint-up(lg) {
+			$inner: calc(min(#{carousel-container-max-px(lg)}, 100vw) - #{$grid-gutter-width});
+			flex: 0 0 calc((#{$inner} - #{$carousel-gap}) / 2);
+			width: calc((#{$inner} - #{$carousel-gap}) / 2);
+			max-width: calc((#{$inner} - #{$carousel-gap}) / 2);
+		}
+
+		@include media-breakpoint-up(xl) {
+			$inner: calc(min(#{carousel-container-max-px(xl)}, 100vw) - #{$grid-gutter-width});
+			flex: 0 0 calc((#{$inner} - 3 * #{$carousel-gap}) / 4);
+			width: calc((#{$inner} - 3 * #{$carousel-gap}) / 4);
+			max-width: calc((#{$inner} - 3 * #{$carousel-gap}) / 4);
+		}
+
+		@include media-breakpoint-up(2xl) {
+			$inner: calc(min(#{carousel-container-max-px(2xl)}, 100vw) - #{$grid-gutter-width});
+			flex: 0 0 calc((#{$inner} - 3 * #{$carousel-gap}) / 4);
+			width: calc((#{$inner} - 3 * #{$carousel-gap}) / 4);
+			max-width: calc((#{$inner} - 3 * #{$carousel-gap}) / 4);
+		}
+	}
+
+	// Carousel 2-up (tablet): one gap between two cards; width tracks `--carousel-inset`.
+	@include media-breakpoint-up(md) {
+		@include media-breakpoint-down(xl) {
+			.related-products-block__carousel .related-products-block__card,
+			.featured-insights-block__carousel .featured-insights-block__card {
+				$two-up: calc((100vw - 2 * var(--carousel-inset) - #{$carousel-gap}) / 2);
+				flex: 0 0 $two-up;
+				width: $two-up;
+				max-width: $two-up;
+			}
+		}
+	}
+
+	// Carousel 4-up: three 20px gaps between four cards; width tracks `--carousel-inset` so card 4
+	// meets the container right edge while the track still scrolls past it.
+	@include media-breakpoint-up(xl) {
+		.related-products-block__carousel .related-products-block__card,
+		.featured-insights-block__carousel .featured-insights-block__card {
+			$four-up: calc((100vw - 2 * var(--carousel-inset) - 3 * #{$carousel-gap}) / 4);
+			flex: 0 0 $four-up;
+			width: $four-up;
+			max-width: $four-up;
+		}
+	}
+
+	// Cards peeking past the `.container` right edge (set via JS on scroll/resize).
+	.related-products-block__carousel .related-products-block__card.is-carousel-outside,
+	.featured-insights-block__carousel .featured-insights-block__card.is-carousel-outside {
+		opacity: 0.2;
+		transition: opacity 0.2s ease;
+	}
+
+	// < sm: use padding + width:100%, not 100vw (scrollbar gutter breaks 100vw alignment).
+	// `--carousel-inset` above tracks `--bs-gutter-x`, same as `.container`.
+	@include media-breakpoint-down(sm) {
+		.related-products-block__carousel-shell,
+		.featured-insights-block__carousel-shell {
+			margin-left: 0;
+			margin-right: 0;
+			width: 100%;
+			max-width: none;
+			padding-left: var(--carousel-inset);
+			padding-right: var(--carousel-inset);
+			box-sizing: border-box;
+		}
+
+		.related-products-block__carousel,
+		.featured-insights-block__carousel {
+			padding-right: 0;
+		}
+
+		.related-products-block__carousel .related-products-block__card {
+			flex: 0 0 100%;
+			width: 100%;
+			max-width: 100%;
+		}
+
+		.featured-insights-block__carousel .featured-insights-block__card {
+			flex: 0 0 calc(100% - #{$carousel-mobile-peek});
+			width: calc(100% - #{$carousel-mobile-peek});
+			max-width: calc(100% - #{$carousel-mobile-peek});
+		}
+	}
+
+	// Featured Insights: one card + peek below md (overrides 2-up card widths from sm/md rules).
+	@include media-breakpoint-down(md) {
+		.featured-insights-block__carousel-shell {
+			margin-left: 0;
+			margin-right: 0;
+			width: 100%;
+			max-width: none;
+			padding-left: var(--carousel-inset);
+			padding-right: var(--carousel-inset);
+			box-sizing: border-box;
+		}
+
+		.featured-insights-block__carousel {
+			padding-right: 0;
+		}
+
+		.featured-insights-block__carousel .featured-insights-block__card {
+			flex: 0 0 calc(100% - #{$carousel-mobile-peek});
+			width: calc(100% - #{$carousel-mobile-peek});
+			max-width: calc(100% - #{$carousel-mobile-peek});
+		}
+	}
+
+	// No scroll-reveal on small screens (horizontal track; cards stay visible).
+	@include media-breakpoint-down(md) {
+		.jdp-animate-view-fade-in-up {
+			opacity: 1;
+			transform: none;
+			transition: none;
+			transition-delay: 0s !important;
+		}
+	}
+}
+
+section.related-products-block.related-products-block--tone-dark,
+section.featured-insights-block.featured-insights-block--tone-dark {
+	.related-products-block__nav-btn,
+	.featured-insights-block__nav-btn {
+		color: $white !important;
+
+		&:hover:not(:disabled) {
+			background: transparent !important;
+			border-color: transparent !important;
+			color: rgba($white, 0.85) !important;
+		}
+
+		&:focus {
+			background: transparent !important;
+			color: $white !important;
+		}
+
+		&:focus-visible {
+			outline-color: $white;
+			background: transparent !important;
+			color: $white !important;
+		}
+
+		&:active:not(:disabled) {
+			background: transparent !important;
+			color: rgba($white, 0.85) !important;
+		}
+
+		&:disabled {
+			color: rgba($white, 0.35) !important;
+			background: transparent !important;
+		}
+	}
+}

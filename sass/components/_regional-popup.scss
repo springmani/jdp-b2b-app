@@ -1,0 +1,281 @@
+/**
+ * Regional mismatch popup — two-card layout (global map | regional map).
+ */
+
+dialog.regional-popup {
+	max-width: min(92vw, 680px);
+	width: 100%;
+	margin: auto;
+	padding: 0;
+	border: none;
+	border-radius: 8px;
+	background: #fff;
+	color: $color__text-main;
+	box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25);
+	text-align: center;
+	overflow: visible;
+
+	&::backdrop {
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
+	}
+}
+
+.regional-popup__surface {
+	position: relative;
+	padding: 40px 40px 36px;
+}
+
+dialog.regional-popup .regional-popup__close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	left: auto;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: auto;
+	height: auto;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+	background: none;
+	background-color: transparent;
+	box-shadow: none;
+	color: $background_dark;
+	cursor: pointer;
+	line-height: 1;
+
+	&:hover,
+	&:focus,
+	&:active {
+		background: none;
+		background-color: transparent;
+		box-shadow: none;
+		color: $background_dark;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $brand_color_1;
+		outline-offset: 2px;
+	}
+}
+
+.regional-popup__close-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 14px;
+	height: 14px;
+
+	svg {
+		display: block;
+		width: 14px;
+		height: 14px;
+	}
+}
+
+.regional-popup__icon {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto 16px;
+
+	img {
+		display: block;
+		width: 32px;
+		height: auto;
+	}
+}
+
+// Beat global `h2` (84px / 900 weight) from base/typography/_headings.scss.
+dialog.regional-popup h2.regional-popup__heading {
+	clear: none;
+	margin: 0 0 10px;
+	padding: 0;
+	font-family: "Neulis Sans", $font__header;
+	font-size: clamp(22px, 4vw, 32px);
+	font-style: normal;
+	font-weight: 800;
+	line-height: 120%;
+	letter-spacing: -0.02em;
+	text-transform: none;
+	color: $background_dark;
+	text-align: center;
+
+	.regional-popup__heading-line,
+	.regional-popup__heading-region,
+	.regional-popup__heading-period {
+		display: inline;
+		font-family: inherit;
+		font-size: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		letter-spacing: inherit;
+		text-transform: none;
+	}
+
+	.regional-popup__heading-line {
+		color: inherit;
+
+		+ .regional-popup__heading-region::before {
+			content: " ";
+		}
+	}
+
+	.regional-popup__heading-region {
+		color: $brand_color_1;
+	}
+
+	.regional-popup__heading-period {
+		color: $brand_color_1;
+	}
+}
+
+dialog.regional-popup p.regional-popup__sub-heading {
+	margin: 0 0 8px;
+	padding: 0;
+	font-family: $font__main;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%;
+	color: $color__text-main;
+	text-align: center;
+}
+
+dialog.regional-popup p.regional-popup__choices-heading {
+	margin: 0 0 20px;
+	padding: 0;
+	font-family: $font__main;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%;
+	color: $color__text-main;
+	text-align: center;
+}
+
+.regional-popup__choices {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+	max-width: 520px;
+	margin: 0 auto;
+	align-items: stretch;
+	text-align: center;
+}
+
+// Shared card tile — beat global `button` pill styles in base/elements/_buttons.scss.
+dialog.regional-popup .regional-popup__choice {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	border: none;
+	border-radius: 4px;
+	overflow: hidden;
+	background: $color__grey;
+	font-family: $font__main;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	letter-spacing: 0;
+	text-transform: none;
+	text-decoration: none;
+	color: inherit;
+	box-shadow: none;
+	transition: none;
+	cursor: pointer;
+	box-sizing: border-box;
+	text-align: center;
+	appearance: none;
+
+	&:visited {
+		color: inherit;
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		background: $color__grey;
+		color: inherit;
+		border: none;
+		box-shadow: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $brand_color_1;
+		outline-offset: 2px;
+	}
+}
+
+.regional-popup__choice-media {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 350 / 263;
+	padding: 0;
+	background: $background_dark;
+	overflow: hidden;
+
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: center;
+	}
+}
+
+.regional-popup__choice-label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 72px;
+	padding: 16px 12px;
+	font-family: "Neulis Sans", $font__header;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: 110%;
+	letter-spacing: -0.48px;
+	text-transform: capitalize;
+	color: $brand_color_1;
+	background: $color__grey;
+}
+
+dialog.regional-popup .regional-popup__choice:hover .regional-popup__choice-label,
+dialog.regional-popup .regional-popup__choice:focus .regional-popup__choice-label {
+	color: darken($brand_color_1, 6%);
+}
+
+@media (max-width: 700px) {
+	.regional-popup__surface {
+		padding: 44px 20px 28px;
+	}
+
+	.regional-popup__choices {
+		grid-template-columns: 1fr;
+		max-width: 280px;
+		gap: 12px;
+	}
+
+	.regional-popup__choice-label {
+		min-height: 64px;
+		font-size: clamp(16px, 4.5vw, 24px);
+		letter-spacing: -0.32px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	dialog.regional-popup::backdrop {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+}

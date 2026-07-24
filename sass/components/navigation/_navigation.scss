@@ -1,0 +1,2609 @@
+/**
+ * Mega Menu Styles
+ */
+
+// Chevron for items with children — white strokes for mask; color comes from `currentColor` on ::after.
+$nav-submenu-chevron: url("images/nav-submenu.svg");
+// Right-pointing arrow (link-with-arrow pattern).
+$nav-arrow-link: url("images/arrow-link.svg");
+// Mobile image card overlay arrow.
+$nav-image-arrow: url("images/nav-image-arrow.svg");
+// “Open in new tab” — white fill in SVG for mask; color from `currentColor` (see images/external-icon.svg).
+$nav-external-icon: url("images/external-icon.svg");
+
+// Top-level primary nav link typography (bar + mobile drawer base).
+@mixin nav-primary-link-type {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: 110%;
+	text-transform: uppercase;
+}
+
+// Regular flyout dropdown links (not mega column / card links).
+@mixin nav-flyout-link-type {
+	font-family: $font__header;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: 110%;
+	letter-spacing: -0.36px;
+	text-transform: capitalize;
+	color: $color__text-headings;
+}
+
+@mixin mega-menu-login-link-type {
+	font-family: $font__header;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 800;
+	line-height: 110%;
+	letter-spacing: -0.36px;
+	text-transform: capitalize;
+}
+
+@mixin mega-menu-login-link-chevron {
+	display: block;
+	flex-shrink: 0;
+	width: 0.45em;
+	height: 0.45em;
+	margin-top: 0.05em;
+	border: solid currentColor;
+	border-width: 0 2px 2px 0;
+	transform: rotate(-45deg);
+	opacity: 0.85;
+}
+
+@mixin mega-menu-login-link-anchor {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.5rem;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.625rem 1rem;
+	background-color: $color__grey;
+	border-radius: 5px;
+	@include mega-menu-login-link-type;
+	text-align: right;
+	text-decoration: none;
+	color: $brand_color_1;
+	transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+
+	&::before,
+	&::after {
+		content: none;
+		display: none;
+		mask: none;
+		-webkit-mask: none;
+		width: 0;
+		height: 0;
+		border: none;
+	}
+
+	.mega-menu-login-link__label {
+		flex: 0 1 auto;
+		@include mega-menu-login-link-type;
+	}
+
+	.mega-menu-login-link__chevron {
+		@include mega-menu-login-link-chevron;
+	}
+
+	&:visited {
+		color: $brand_color_1;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: darken($color__grey, 4%);
+		color: $color__cta_teal_hover;
+		text-decoration: none;
+		opacity: 1;
+	}
+}
+
+// Shared list reset for mega menu blocks
+%mega-list-plain {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	&::before,
+	&::after {
+		content: none;
+	}
+}
+
+.site-header {
+	background: $color__background-header;
+	position: relative;
+	overflow: visible;
+
+	// Do not set max-width here — .container.* max-width comes from Bootstrap;
+	// .container.nav-wrapper would override it and break desktop width caps.
+	.container.nav-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		position: relative;
+
+		// Desktop: single grid cell so .main-navigation is full .nav-wrapper width (mega dropdown
+		// left:0; right:0 spans container). Logo sits on top with z-index; menu stays flex-end.
+		@include media-breakpoint-up(nav) {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-rows: auto;
+			align-items: center;
+			justify-items: stretch;
+
+			.site-branding {
+				grid-column: 1;
+				grid-row: 1;
+				justify-self: start;
+				align-self: center;
+				// Above mega hover bridge (z-index: 1) so logo stays clickable while mega is open.
+				z-index: 3;
+			}
+
+			.main-navigation {
+				grid-column: 1;
+				grid-row: 1;
+				justify-self: stretch;
+				align-self: stretch;
+				width: 100%;
+				max-width: none;
+				margin-left: 0;
+				margin-right: 0;
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: flex-end;
+				align-items: center;
+				min-width: 0;
+			}
+		}
+
+		// Mobile: stack rows; stretch cross-axis so .main-navigation + lists span the content area.
+		// Horizontal inset matches the header `.container` (`--bs-gutter-x` padding on `.nav-wrapper`).
+		@include media-breakpoint-down(nav) {
+			flex-direction: column;
+			flex-wrap: nowrap;
+			align-items: stretch;
+			justify-content: flex-start;
+
+			.site-branding {
+				width: 100%;
+				min-width: 0;
+				box-sizing: border-box;
+				padding-right: 2.75rem;
+			}
+
+			.main-navigation {
+				position: static;
+				width: 100%;
+				max-width: 100%;
+				flex: none;
+				min-width: 0;
+				margin-left: 0;
+				margin-right: 0;
+
+				.menu-toggle {
+					position: absolute;
+					top: 7px;
+					// Full-bleed header: match `.container` horizontal inset (20px / 40px via `--bs-gutter-x`).
+					right: var(--bs-gutter-x, #{$container-padding-x-below-md});
+					transform: none;
+				}
+
+				>ul,
+				#primary-menu {
+					box-sizing: border-box;
+					width: 100%;
+					max-width: 100%;
+					overflow-x: hidden;
+				}
+			}
+		}
+
+		.main-navigation {
+			.mega-menu-parent .mega-menu-dropdown-fluid {
+				overflow-x: hidden;
+			}
+		}
+	}
+}
+
+.main-navigation {
+	position: relative;
+	overflow: visible;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	align-items: flex-start;
+	width: auto;
+	margin-left: auto;
+	box-sizing: border-box;
+	font-family: $font__header;
+
+	.menu-toggle {
+		transition: all 0.25s linear;
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 900;
+		display: inline-block;
+		width: 30px;
+		height: 20px;
+		line-height: 0;
+		cursor: pointer;
+		outline: none;
+		flex-shrink: 0;
+
+		span {
+			transition: transform 0.12s linear, opacity 0.12s linear;
+			position: absolute;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 4px;
+			border-radius: 4px;
+			background: $black;
+			transform-origin: center;
+
+			&:first-child {
+				top: 0;
+			}
+
+			&:nth-child(2) {
+				top: 8px;
+			}
+
+			&:nth-child(3) {
+				top: 16px;
+			}
+		}
+	}
+
+	>ul,
+	#primary-menu {
+		display: none;
+		flex: 1 0 100%;
+		order: 10;
+		align-self: stretch;
+		width: 100%;
+		max-width: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 0;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		box-sizing: border-box;
+
+		>li {
+			position: relative;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			&::before,
+			&::after {
+				content: none;
+			}
+
+			>a {
+				display: block;
+				padding: 1rem 1.5rem;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				color: $black;
+				@include nav-primary-link-type;
+			}
+
+			// Top-level text links (not CTA buttons, search icon, or language switcher trigger).
+			>a:not(.nav-menu-button):not(.nav-menu-search-icon):not(.jdpower-lang-switcher-trigger) {
+
+				&:hover,
+				&:focus {
+					color: $brand_color_1;
+				}
+			}
+
+			&.mega-menu-parent:hover>a:not(.nav-menu-button):not(.nav-menu-search-icon),
+			&.mega-menu-parent:focus-within>a:not(.nav-menu-button):not(.nav-menu-search-icon) {
+				color: $brand_color_1;
+			}
+		}
+	}
+
+	// WordPress adds .menu-item-has-children to any <li> with a submenu (top-level, flyouts, mega columns).
+	li.menu-item-has-children>a::after {
+		content: '';
+		display: block;
+		flex-shrink: 0;
+		align-self: center;
+		width: 10px;
+		height: 6px;
+		background-color: currentColor;
+		-webkit-mask-image: $nav-submenu-chevron;
+		mask-image: $nav-submenu-chevron;
+		-webkit-mask-size: contain;
+		mask-size: contain;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center;
+		transition: transform 0.2s ease;
+	}
+
+	li.menu-item-has-children:hover>a::after,
+	li.menu-item-has-children:focus-within>a::after {
+		transform: rotate(180deg);
+	}
+
+	#primary-menu>li.menu-item-has-children>a,
+	>ul>li.menu-item-has-children>a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	// Polylang language switcher — icon + slug (EN / ES); icon uses currentColor like nav chevrons.
+	#primary-menu>li.pll-parent-menu-item {
+		>a.jdpower-lang-switcher-trigger {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			color: $background_dark;
+
+			// Trigger stays static; hover feedback lives on the dropdown links only.
+			&:hover,
+			&:focus,
+			&:focus-visible {
+				color: $background_dark;
+			}
+		}
+
+		// No submenu chevron on the language trigger (desktop flyout only).
+		@include media-breakpoint-up(nav) {
+
+			&.menu-item-has-children>a::after,
+			&.menu-item-has-children>a.jdpower-lang-switcher-trigger::after,
+			&.menu-item-has-children:hover>a::after,
+			&.menu-item-has-children:focus-within>a::after,
+			&.menu-item-has-children.is-submenu-open>a::after {
+				content: none !important;
+				display: none !important;
+				width: 0 !important;
+				height: 0 !important;
+				mask: none !important;
+				-webkit-mask: none !important;
+			}
+		}
+
+		// Language options — match standard flyout link hover (desktop); color-only on mobile drawer.
+		>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+			.lang-item>a {
+				@include nav-flyout-link-type;
+				transition: background-color 0.15s ease, color 0.15s ease;
+
+				&:visited {
+					color: $color__text-headings;
+				}
+
+				&:hover,
+				&:focus,
+				&:focus-visible {
+					color: $color__cta_teal_hover;
+					opacity: 1;
+				}
+
+				@include media-breakpoint-up(nav) {
+
+					&:hover,
+					&:focus,
+					&:focus-visible {
+						background: $color__grey;
+					}
+				}
+			}
+		}
+	}
+
+	.jdpower-lang-switcher__icon {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		line-height: 0;
+		color: inherit;
+
+		svg {
+			display: block;
+			width: 23px;
+			height: 24px;
+		}
+	}
+
+	.jdpower-lang-switcher-label {
+		color: inherit;
+	}
+
+	.sub-menu li.menu-item-has-children>a,
+	.mega-menu-column-content li.menu-item-has-children>a {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		box-sizing: border-box;
+	}
+
+	#primary-menu>li.mega-menu-content-type-button.menu-item-has-children>a.nav-menu-button.btn,
+	.mega-menu-content-type-button.menu-item-has-children>a.nav-menu-button.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	// New tab (WordPress adds target="_blank"): external icon — mask matches arrow-link / submenu pattern.
+	// With submenu: ::before = external, ::after = chevron (flex order keeps label → icons).
+	// Without submenu: ::after = external only.
+	%nav-external-icon-pseudo {
+		content: '';
+		display: inline-block;
+		flex-shrink: 0;
+		vertical-align: middle;
+		width: 12px;
+		height: 12px;
+		background-color: currentColor;
+		-webkit-mask-image: $nav-external-icon;
+		mask-image: $nav-external-icon;
+		-webkit-mask-size: contain;
+		mask-size: contain;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center;
+	}
+
+	a[target="_blank"] {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	li.menu-item-has-children>a[target="_blank"]::before {
+		@extend %nav-external-icon-pseudo;
+		flex-shrink: 0;
+		order: 2;
+	}
+
+	li.menu-item-has-children>a::after {
+		order: 3;
+	}
+
+	li:not(.menu-item-has-children):not(.mega-menu-content-type-login_link)>a[target="_blank"]::after {
+		@extend %nav-external-icon-pseudo;
+		flex-shrink: 0;
+		order: 2;
+	}
+
+	// Full-width hit area in flyouts / mega columns (overrides `inline-flex` on a[target="_blank"]).
+	.sub-menu li:not(.mega-menu-content-type-login_link)>a[target="_blank"],
+	.mega-menu-column-content li:not(.mega-menu-content-type-login_link)>a[target="_blank"] {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 10px;
+		flex-wrap: nowrap;
+		box-sizing: border-box;
+	}
+
+	.sub-menu li.menu-item-has-children>a[target="_blank"],
+	.mega-menu-column-content li.menu-item-has-children>a[target="_blank"] {
+		justify-content: space-between;
+	}
+
+	// Content Type: Button — match/exceed `#primary-menu > li > a` specificity so padding isn’t overridden.
+	#primary-menu>li.mega-menu-content-type-button>a.nav-menu-button.btn,
+	.mega-menu-content-type-button>a.nav-menu-button.btn {
+		border-radius: 40px;
+		border-width: 2px;
+		font-size: 16px;
+		font-weight: 800;
+		line-height: 110%;
+		letter-spacing: normal;
+		padding: 10px 15px;
+		margin-left: 15px;
+		margin-right: 15px;
+		text-align: center;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.35rem;
+
+		&.nav-menu-button--primary {
+			transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+			background: $brand_color_1;
+			border-color: $brand_color_1;
+			color: $white;
+
+			&:visited {
+				color: $white;
+			}
+
+			&:hover {
+				background: $color__cta_teal_hover;
+				border-color: $color__cta_teal_hover;
+				color: $white;
+			}
+
+			&:focus {
+				background: $color__cta_teal_focus;
+				border-color: $color__cta_teal_focus;
+				color: $white;
+			}
+		}
+
+		&.nav-menu-button--secondary {
+			background: $brand_color_4;
+			border-color: $brand_color_4;
+			color: $background_dark;
+
+			&,
+			&:visited,
+			&:hover,
+			&:focus,
+			&:active {
+				color: $background_dark;
+			}
+
+			&:hover {
+				background: $color__cta_mint_hover;
+				border-color: $color__cta_mint_hover;
+			}
+
+			&:focus {
+				background: $color__cta_mint_focus;
+				border-color: $color__cta_mint_focus;
+			}
+		}
+
+	}
+
+	// New-tab icons need flex; `.nav-menu-button` above sets `inline-block` and would win otherwise.
+	#primary-menu>li.mega-menu-content-type-button>a.nav-menu-button.btn[target="_blank"],
+	.mega-menu-content-type-button>a.nav-menu-button.btn[target="_blank"] {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	// Content Type: Search icon — same path geometry as design SVG; `currentColor` matches nav link color.
+	#primary-menu>li.mega-menu-content-type-search_icon>a.nav-menu-search-icon,
+	.mega-menu-content-type-search_icon>a.nav-menu-search-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 0;
+		text-transform: none;
+		font-weight: 800;
+
+		&:hover,
+		&:focus-visible {
+			color: $brand_color_1;
+		}
+
+		.nav-menu-search-icon__svg {
+			display: block;
+			flex-shrink: 0;
+		}
+	}
+
+	#primary-menu>li.mega-menu-content-type-search_icon>a.nav-menu-search-icon[target="_blank"],
+	.mega-menu-content-type-search_icon>a.nav-menu-search-icon[target="_blank"] {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	#primary-menu>li.mega-menu-content-type-search_icon>span.nav-menu-search-icon--static,
+	.mega-menu-content-type-search_icon>span.nav-menu-search-icon--static {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 0;
+		opacity: 0.5;
+		pointer-events: none;
+
+		.nav-menu-search-icon__svg {
+			display: block;
+		}
+	}
+
+	#primary-menu {
+		>li {
+			&:last-child {
+
+				// Keep full button padding for Content Type "Button"; plain nav links stay flush right.
+				>a:not(.nav-menu-button) {
+					padding-right: 0;
+				}
+
+				&.mega-menu-content-type-button>a.nav-menu-button.btn {
+					margin-right: 0;
+				}
+
+				&.mega-menu-content-type-search_icon>a.nav-menu-search-icon {
+					padding-right: 0;
+				}
+
+				&.mega-menu-content-type-search_icon>form.nav-menu-search-form {
+					padding-right: 0;
+				}
+			}
+		}
+	}
+
+	&.toggled {
+
+		>ul,
+		#primary-menu {
+			display: flex;
+		}
+
+		.menu-toggle span {
+			&:first-child {
+				transform: translateY(8px) rotate(-45deg);
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+			}
+
+			&:nth-child(3) {
+				transform: translateY(-8px) rotate(45deg);
+			}
+		}
+	}
+
+	ul {
+		@extend %mega-list-plain;
+
+		li {
+			@extend %mega-list-plain;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		display: block;
+	}
+}
+
+.mega-menu-parent {
+	position: static;
+	overflow: visible;
+
+	>a {
+		position: relative;
+	}
+
+	// Shell for mega panel (desktop layout + animation live under media-breakpoint-up(nav)).
+	// Desktop: absolute + full-bleed under that block; no vw here so mobile/stacked layout stays predictable.
+	.mega-menu-dropdown-fluid {
+		box-sizing: border-box;
+		background: #fff;
+		z-index: 999;
+		overflow-x: hidden;
+		overflow-y: auto;
+
+		&::before,
+		&::after {
+			content: none;
+		}
+	}
+
+	.mega-menu-dropdown-container {
+		box-sizing: border-box;
+	}
+
+	.mega-menu-dropdown {
+		position: static;
+		width: 100%;
+		max-width: none;
+		margin: 0;
+		list-style: none;
+		box-sizing: border-box;
+		display: flex;
+		flex-wrap: wrap;
+
+		// Walker outputs `.row` + `col-md-*`; cancel row negative margins and Bootstrap’s left col padding only.
+		// Right spacing between columns comes from `li.mega-menu-column` + `--bs-gutter-x` (do not zero padding-right here).
+		&.row {
+			margin-left: 0;
+			margin-right: 0;
+
+			>[class*='col-'] {
+				padding-left: 0;
+			}
+		}
+
+		&::before,
+		&::after {
+			content: none;
+		}
+
+		li {
+			list-style: none;
+			margin: 0 0 15px;
+			padding: 0;
+
+			&::before,
+			&::after {
+				content: none;
+			}
+
+			&.mega-menu-column {
+				padding: 0 var(--bs-gutter-x);
+
+				// Same specificity as shorthand above so outer padding drops win over column padding shorthand.
+				&:first-child {
+					padding-left: 0;
+				}
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+		}
+
+		// First/last column when the row mixes non-column items (same inset as header `.container`).
+		>li:nth-child(1 of li.mega-menu-column) {
+			padding-left: 0;
+
+			.mega-menu-content-type-heading .mega-menu-heading {
+				margin-bottom: 0;
+			}
+		}
+
+		>li:nth-last-child(1 of li.mega-menu-column) {
+			padding-right: 0;
+		}
+	}
+}
+
+.mega-menu-column {
+	position: relative;
+	padding: 0 1.5rem;
+	flex: 0 0 auto;
+	@extend %mega-list-plain;
+
+	&.mega-menu-column--nested {
+		padding: 0 calc(var(--bs-gutter-x) * 0.5);
+	}
+
+	.mega-menu-column-title {
+		display: block;
+		font-weight: 600;
+		margin-bottom: 1.25rem;
+		font-size: 1.1rem;
+		color: inherit;
+		line-height: 1.4;
+	}
+
+	>a {
+		display: none;
+	}
+}
+
+.mega-menu-column-content {
+	@extend %mega-list-plain;
+
+	li {
+		list-style: none;
+		margin: 0 0 0.75rem 0;
+		padding: 0;
+
+		&::before,
+		&::after {
+			content: none;
+		}
+
+		&:first-child {
+			margin-top: 0px;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		a {
+			display: block;
+			padding: 0.5rem 0;
+			text-decoration: none;
+			transition: color 0.2s ease;
+			color: inherit;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 800;
+			line-height: 100%;
+			letter-spacing: -0.54px;
+
+			&:hover {
+				text-decoration: none;
+				opacity: 0.7;
+			}
+		}
+
+		// Pre-heading rows have no <a>; align vertical rhythm with links
+		&.mega-menu-content-type-pre_heading .mega-menu-pre-heading {
+			padding: 0.5rem 0;
+		}
+
+		&.mega-menu-content-type-pre_heading.mega-menu-pre-heading-align-right .mega-menu-pre-heading,
+		&.mega-menu-content-type-pre_heading .mega-menu-pre-heading--align-right {
+			text-align: right;
+		}
+
+		&.mega-menu-content-type-login_link a.mega-menu-login-link {
+			@include mega-menu-login-link-anchor;
+		}
+
+		&.mega-menu-content-type-image .mega-menu-image-link {
+			padding-bottom: 0;
+		}
+
+		&.mega-menu-content-type-heading .mega-menu-heading a.mega-menu-heading-link {
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+
+		&.mega-menu-content-type-link_with_arrow a.mega-menu-link-with-arrow {
+			padding-top: 0;
+		}
+
+		&.mega-menu-content-type-heading {
+			margin-bottom: 0;
+			padding-bottom: 15px;
+		}
+	}
+
+	// Nested column row inside a parent column (e.g. three 4/12 columns within a 4/5 column).
+	&.mega-menu-nested-columns.row {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+
+		&::before,
+		&::after {
+			content: none;
+		}
+
+		>li.mega-menu-column {
+			flex: 0 0 auto;
+			margin-bottom: 0;
+
+			&.mega-menu-column--nested {
+				padding-right: calc(var(--bs-gutter-x) * 0.5);
+				padding-left: calc(var(--bs-gutter-x) * 0.5);
+
+				&:first-child {
+					padding-left: 0;
+				}
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+		}
+	}
+}
+
+// Border sits on rows below pre_heading / spacer rows (walker keeps `--border` on the `ul` for targeting).
+// Desktop mega panel only — stacked mobile nav omits column dividers.
+// Vertical rule: `top` + `bottom` (not `height: %`) so the line matches the full `li` box for tall blocks
+// (e.g. link + description). Extend `bottom` into the next row’s collapsed margin so segments meet (same value as `li` margin-bottom).
+$mega-menu-column-row-gap: 0.75rem;
+
+@include media-breakpoint-up(nav) {
+
+	.mega-menu-column-content.mega-menu-column-content--border,
+	#primary-menu ul.mega-menu-column-content.mega-menu-column-content--border,
+	.main-navigation>ul ul.mega-menu-column-content.mega-menu-column-content--border {
+
+		// Keep vertical spacing identical to the ::before bridge below (avoid gaps if base `li` margin changes).
+		>li {
+			margin-bottom: $mega-menu-column-row-gap;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&.mega-menu-content-type-heading {
+				margin-bottom: 0;
+				padding-bottom: 15px;
+			}
+		}
+
+		>li:not(.mega-menu-content-type-pre_heading):not(.mega-menu-content-type-login_link):not(.mega-menu-column--nested) {
+			position: relative;
+			padding-left: 1.25rem;
+			box-sizing: border-box;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 1px;
+				background-color: $color__input-border;
+			}
+
+			// Bridge the margin gap into the next bordered row (must match `.mega-menu-column-content li` margin-bottom).
+			&:not(:last-child):has(+ li:not(.mega-menu-content-type-pre_heading):not(.mega-menu-content-type-login_link):not(.mega-menu-column--nested))::before {
+				bottom: -$mega-menu-column-row-gap;
+			}
+
+			// Last row in the column, or next row is pre_heading/spacer — do not extend past this block.
+			&:last-child::before,
+			&:not(:last-child):has(+ li.mega-menu-content-type-pre_heading)::before,
+			&:not(:last-child):has(+ li.mega-menu-content-type-login_link)::before,
+			&:not(:last-child):has(+ li.mega-menu-column--nested)::before {
+				bottom: 0;
+			}
+		}
+	}
+}
+
+.mega-menu-content-type-image {
+	@extend %mega-list-plain;
+
+	.mega-menu-image {
+		max-width: 100%;
+		height: auto;
+		display: block;
+		margin-bottom: 0;
+	}
+
+	.mega-menu-image-link {
+		display: block;
+		margin-bottom: 0;
+		padding-bottom: 0;
+		transition: opacity 0.3s ease;
+		text-decoration: none;
+
+		&:hover {
+			opacity: 0.8;
+			text-decoration: none;
+		}
+	}
+
+	// Mobile heading overlay markup is present in HTML but styled only below xl.
+	&.mega-menu-image--has-mobile-overlay {
+		@include media-breakpoint-up(nav) {
+			.mega-menu-image-card__overlay,
+			.mega-menu-image-card__caption {
+				display: none;
+			}
+
+			.mega-menu-image-card__media {
+				display: block;
+				overflow: visible;
+				border-radius: 0;
+				aspect-ratio: auto;
+			}
+		}
+	}
+}
+
+.mega-menu-content-type-heading {
+	@extend %mega-list-plain;
+	margin-bottom: 0;
+	padding-bottom: 15px;
+
+	.mega-menu-heading {
+		margin: 0 0 0.5rem 0;
+		padding: 0;
+		font-size: 24px;
+		font-weight: 800;
+		line-height: 100%;
+		letter-spacing: -0.72px;
+
+		a.mega-menu-heading-link {
+			color: inherit;
+			text-decoration: none;
+			transition: opacity 0.2s ease;
+			font-size: 24px;
+			font-weight: 800;
+			line-height: 100%;
+			letter-spacing: -0.72px;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding-top: 0;
+			padding-bottom: 0;
+
+			&:hover {
+				opacity: 0.7;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+// Same editorial role as .mega-menu-heading; label / eyebrow styling
+.mega-menu-content-type-pre_heading {
+	@extend %mega-list-plain;
+
+	.mega-menu-pre-heading {
+		display: block;
+		min-height: 30px;
+		margin: 0 0 0.5rem 0;
+		padding: 0;
+		color: #8D8D8D;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 80%;
+		letter-spacing: -0.24px;
+		text-transform: uppercase;
+
+		a.mega-menu-pre-heading-link {
+			display: block;
+			color: inherit;
+			text-decoration: none;
+			transition: opacity 0.2s ease;
+
+			&:hover {
+				opacity: 0.7;
+				text-decoration: none;
+			}
+		}
+	}
+
+	&.mega-menu-pre-heading-align-right .mega-menu-pre-heading,
+	.mega-menu-pre-heading--align-right {
+		text-align: right;
+	}
+}
+
+.mega-menu-content-type-login_link {
+	@extend %mega-list-plain;
+
+	a.mega-menu-login-link {
+		@include mega-menu-login-link-anchor;
+	}
+}
+
+.mega-menu-content-type-link_with_description {
+	@extend %mega-list-plain;
+
+	a {
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 100%;
+		letter-spacing: -0.54px;
+	}
+
+	.mega-menu-link-description {
+		display: block;
+		font-size: 13px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 120%;
+	}
+}
+
+.mega-menu-content-type-link_with_arrow {
+	@extend %mega-list-plain;
+
+	a.mega-menu-link-with-arrow {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding-top: 0;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 900;
+		line-height: 150%;
+		letter-spacing: -0.36px;
+		text-transform: uppercase;
+		color: $brand_color_2;
+
+		&::after {
+			content: '';
+			display: block;
+			flex-shrink: 0;
+			width: 0.45em;
+			height: 0.45em;
+			margin-top: 0.05em;
+			border: solid currentColor;
+			border-width: 0 2px 2px 0;
+			transform: rotate(-45deg);
+			opacity: 0.85;
+		}
+	}
+}
+
+.mega-menu-content-type-content {
+	@extend %mega-list-plain;
+
+	.mega-menu-content {
+		margin-bottom: 1rem;
+		padding: 0;
+
+		p {
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 150%;
+			margin: 0 0 0.5rem 0;
+			padding: 0;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul,
+		ol {
+			list-style: disc;
+			margin: 0.5rem 0;
+			padding-left: 1.5rem;
+
+			li {
+				list-style: inherit;
+				margin: 0.25rem 0;
+				padding: 0;
+				display: list-item;
+
+				&::before,
+				&::after {
+					content: none;
+				}
+			}
+
+			ul {
+				list-style: circle;
+				margin-top: 0.25rem;
+				margin-bottom: 0.25rem;
+			}
+
+			ol {
+				list-style: decimal;
+			}
+		}
+	}
+}
+
+.mega-menu-content-type-html {
+	@extend %mega-list-plain;
+
+	.mega-menu-html {
+		margin-bottom: 1rem;
+		padding: 0;
+
+		ul,
+		ol {
+			list-style: disc;
+			margin: 0.5rem 0;
+			padding-left: 1.5rem;
+
+			li {
+				list-style: inherit;
+				margin: 0.25rem 0;
+				padding: 0;
+				display: list-item;
+
+				&::before,
+				&::after {
+					content: none;
+				}
+			}
+
+			ul {
+				list-style: circle;
+				margin-top: 0.25rem;
+				margin-bottom: 0.25rem;
+			}
+
+			ol {
+				list-style: decimal;
+			}
+		}
+	}
+}
+
+.mega-menu-content-type-featured_products {
+	@extend %mega-list-plain;
+	width: 100%;
+	min-width: 0;
+
+	.mega-menu-featured-products {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.mega-menu-featured-products__grid {
+		display: grid;
+		gap: 1rem 1.25rem;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.mega-menu-featured-products__grid--cols-1 {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.mega-menu-featured-products__grid--cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.mega-menu-featured-products__grid--cols-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.mega-menu-featured-products__grid--cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@include media-breakpoint-down(nav) {
+
+		.mega-menu-featured-products__grid--cols-3,
+		.mega-menu-featured-products__grid--cols-4 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+
+		.mega-menu-featured-products__grid--cols-2,
+		.mega-menu-featured-products__grid--cols-3,
+		.mega-menu-featured-products__grid--cols-4 {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	a.mega-menu-featured-products__card {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 10px;
+		min-width: 0;
+		height: 100%;
+		padding: 16.5px 10px;
+		text-decoration: none;
+		color: inherit;
+		background-color: #f2f2f2;
+		border-radius: 5px;
+		overflow: hidden;
+		font-size: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		letter-spacing: normal;
+
+		&:hover,
+		&:focus-visible {
+			opacity: 1;
+			text-decoration: none;
+		}
+
+		&:focus-visible {
+			outline: 2px solid $brand_color_1;
+			outline-offset: 2px;
+		}
+	}
+
+	.mega-menu-featured-products__media {
+		flex: 0 0 auto;
+		width: 96px;
+		aspect-ratio: 1;
+		overflow: hidden;
+		background-color: #e5e5e5;
+	}
+
+	.mega-menu-featured-products__img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 1;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.mega-menu-featured-products__placeholder {
+		display: block;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 1;
+		background-color: #e5e5e5;
+	}
+
+	.mega-menu-featured-products__body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 0;
+	}
+
+	.mega-menu-featured-products__title {
+		display: block;
+		margin: 0 0 8px;
+		color: $brand_color_1;
+		font-weight: 800;
+		line-height: 1.1;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.mega-menu-featured-products__copy {
+		display: block;
+		min-width: 0;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.4;
+		color: $color__text-main;
+		@include jdpower-line-clamp(3);
+
+		p {
+			margin: 0 0 6px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	a.mega-menu-featured-products__card:hover .mega-menu-featured-products__title,
+	a.mega-menu-featured-products__card:focus-visible .mega-menu-featured-products__title {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+}
+
+.mega-menu-content-type-featured_insights {
+	@extend %mega-list-plain;
+	width: 100%;
+	min-width: 0;
+
+	.mega-menu-featured-insights {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.mega-menu-featured-insights__grid {
+		display: grid;
+		gap: 1rem 1.25rem;
+		width: 100%;
+		min-width: 0;
+		align-items: stretch;
+	}
+
+	.mega-menu-featured-insights__grid--cols-1 {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.mega-menu-featured-insights__grid--cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.mega-menu-featured-insights__grid--cols-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.mega-menu-featured-insights__grid--cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@include media-breakpoint-down(nav) {
+
+		.mega-menu-featured-insights__grid--cols-3,
+		.mega-menu-featured-insights__grid--cols-4 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+
+		.mega-menu-featured-insights__grid--cols-2,
+		.mega-menu-featured-insights__grid--cols-3,
+		.mega-menu-featured-insights__grid--cols-4 {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	a.featured-insights-block__card.featured-insights-block__card--insights-columns {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-width: 0;
+		padding: 0;
+		text-decoration: none;
+		color: inherit;
+		background-color: #f2f2f2;
+		border-radius: 5px;
+		overflow: hidden;
+		font-size: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		letter-spacing: normal;
+
+		&:hover,
+		&:focus-visible {
+			opacity: 1;
+			text-decoration: none;
+		}
+
+		&:focus-visible {
+			outline: 2px solid $brand_color_1;
+			outline-offset: 2px;
+		}
+	}
+
+	.featured-insights-block__body--insights-columns {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		min-height: 0;
+		width: 100%;
+		padding: 20px;
+	}
+
+	.featured-insights-block__card-type {
+		margin: 0 0 12px;
+		font-family: "Neulis Sans", $font__header;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 80%;
+		letter-spacing: -0.24px;
+		text-transform: uppercase;
+	}
+
+	h2.featured-insights-block__card-title,
+	h2.xxsmall.featured-insights-block__card-title {
+		margin: 0 0 12px;
+		font-family: "Neulis Sans", $font__header;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 110%;
+		letter-spacing: -0.48px;
+		text-transform: none;
+		color: $brand_color_1;
+	}
+
+	.featured-insights-block__card-copy {
+		flex: 1 1 auto;
+		min-height: 0;
+		min-width: 0;
+		font-size: 14px;
+		line-height: 1.5;
+		@include jdpower-line-clamp(4);
+	}
+
+	.featured-insights-block__card-date,
+	.featured-insights-columns-block__card-read-more {
+		display: none;
+	}
+
+	a.featured-insights-block__card--insights-columns:hover h2.featured-insights-block__card-title,
+	a.featured-insights-block__card--insights-columns:focus-visible h2.featured-insights-block__card-title {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+}
+
+@include media-breakpoint-down(nav) {
+	.main-navigation {
+		display: block;
+		flex-wrap: unset;
+		justify-content: unset;
+		align-items: unset;
+
+		>ul,
+		#primary-menu {
+			flex: none;
+			order: 0;
+			align-self: auto;
+			flex-direction: unset;
+			flex-wrap: unset;
+			align-items: unset;
+		}
+
+		// Drawer lists: every row spans the full bleed width (mega columns + flyouts).
+		#primary-menu li,
+		>ul li {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+
+		// Per-item: Mega Menu Settings → “Hide on mobile” (walker adds `.mega-menu-hide-on-mobile`).
+		#primary-menu li.mega-menu-hide-on-mobile,
+		>ul li.mega-menu-hide-on-mobile {
+			display: none !important;
+		}
+
+		// Pre-heading spacers (Hide label on front end): layout-only rows, not shown in the drawer.
+		#primary-menu li.mega-menu-content-type-pre_heading.mega-menu-pre-heading--spacer,
+		>ul li.mega-menu-content-type-pre_heading.mega-menu-pre-heading--spacer {
+			display: none !important;
+		}
+
+		// Flex column (not block) so top-level `li` participate in flex layout — e.g. `order` for search first.
+		&.toggled>ul,
+		&.toggled #primary-menu {
+			display: flex;
+			flex-direction: column;
+		}
+
+		&.toggled>ul>li.mega-menu-content-type-search_icon,
+		&.toggled #primary-menu>li.mega-menu-content-type-search_icon {
+			order: -1;
+			border-bottom: 1px solid $color__input-border;
+		}
+
+		// Mobile drawer: GET form to Search hub (?keyword=); desktop uses icon link (see media-breakpoint-up(nav)).
+		>ul>li.mega-menu-content-type-search_icon>a.nav-menu-search-item__link-desktop,
+		#primary-menu>li.mega-menu-content-type-search_icon>a.nav-menu-search-item__link-desktop {
+			display: none !important;
+		}
+
+		>ul>li.mega-menu-content-type-search_icon>form.nav-menu-search-form,
+		#primary-menu>li.mega-menu-content-type-search_icon>form.nav-menu-search-form {
+			display: block;
+			width: 100%;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 20px 0;
+		}
+
+		.nav-menu-search-form__field {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			box-sizing: border-box;
+			min-height: 48px;
+			padding: 0;
+			background: $color__grey;
+			border: 0;
+			border-radius: 8px;
+			overflow: hidden;
+			transition: box-shadow 0.15s ease;
+
+			&:focus-within {
+				box-shadow: 0 0 0 2px rgba($brand_color_1, 0.35);
+			}
+		}
+
+		.nav-menu-search-form__input {
+			flex: 1 1 auto;
+			min-width: 0;
+			width: 1%;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 14px 10px 14px 18px;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			font-family: $font__header;
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 1.25;
+			color: $black;
+			box-shadow: none;
+			appearance: none;
+
+			&::placeholder {
+				color: $color__text-input;
+				opacity: 1;
+			}
+
+			&:focus {
+				outline: 0;
+			}
+		}
+
+		.nav-menu-search-form__submit {
+			flex-shrink: 0;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			margin: 0;
+			padding: 10px 16px 10px 10px;
+			border: 0;
+			border-radius: 0;
+			background: transparent;
+			color: $black;
+			cursor: pointer;
+			line-height: 0;
+			transition: opacity 0.15s ease;
+
+			&:hover {
+				opacity: 0.75;
+			}
+
+			&:focus {
+				outline: 0;
+			}
+
+			&:focus-visible {
+				box-shadow: inset 0 0 0 2px rgba($brand_color_1, 0.5);
+			}
+
+			.nav-menu-search-form__submit-icon,
+			.nav-menu-search-icon__svg {
+				display: block;
+				width: 22px;
+				height: 22px;
+			}
+		}
+
+		>ul>li.mega-menu-content-type-search_icon>span.nav-menu-search-icon--static,
+		#primary-menu>li.mega-menu-content-type-search_icon>span.nav-menu-search-icon--static {
+			display: flex !important;
+			width: 100%;
+			box-sizing: border-box;
+			align-items: center;
+			justify-content: flex-start;
+			padding: 20px 0;
+			font-size: 24px;
+			font-weight: 800;
+			line-height: 110%;
+			text-transform: uppercase;
+			color: $black;
+			opacity: 1;
+
+			.screen-reader-text {
+				clip: auto !important;
+				clip-path: none !important;
+				height: auto !important;
+				width: auto !important;
+				margin: 0 !important;
+				margin-right: auto !important;
+				overflow: visible !important;
+				padding: 0 !important;
+				position: static !important;
+				border: 0;
+				word-wrap: normal !important;
+				color: inherit;
+				font-size: inherit;
+				font-weight: inherit;
+				line-height: inherit;
+				text-transform: inherit;
+			}
+
+			.nav-menu-search-icon__svg {
+				flex-shrink: 0;
+			}
+		}
+
+		// Mobile accordion: one top-level panel open at a time (see js/script.js `.is-submenu-open`).
+		&.toggled #primary-menu>li.menu-item-has-children:not(.mega-menu-parent):not(.is-submenu-open)>ul.sub-menu {
+			display: none !important;
+		}
+
+		&.toggled #primary-menu>li.mega-menu-parent:not(.is-submenu-open)>.mega-menu-dropdown-fluid {
+			display: none !important;
+		}
+
+		&.toggled #primary-menu>li.mega-menu-parent.is-submenu-open>.mega-menu-dropdown-fluid {
+			display: contents !important;
+		}
+
+		&.toggled #primary-menu>li.menu-item-has-children:not(.mega-menu-parent).is-submenu-open>ul.sub-menu {
+			display: block !important;
+		}
+
+		&.toggled #primary-menu>li:not(.mega-menu-content-type-button):not(.mega-menu-content-type-search_icon) {
+			border-bottom: 1px solid $color__input-border;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+
+		li.menu-item-has-children>a::after {
+			width: 16px;
+			height: 8px;
+			transition: transform 0.2s ease;
+		}
+
+		#primary-menu>li.menu-item-has-children.is-submenu-open>a::after {
+			transform: rotate(180deg);
+		}
+
+		#primary-menu>li.menu-item-has-children>a {
+			width: 100%;
+			justify-content: space-between;
+			box-sizing: border-box;
+		}
+
+		#primary-menu>li.pll-parent-menu-item.menu-item-has-children {
+			> ul.sub-menu {
+				padding-top: 0;
+			}
+
+			&.is-submenu-open > ul.sub-menu {
+				position: static;
+				opacity: 1 !important;
+				visibility: visible !important;
+				transform: none !important;
+				pointer-events: auto;
+			}
+
+			.lang-item > a {
+				padding: 12px 0;
+			}
+		}
+
+		#primary-menu>li.is-submenu-open>a:not(.nav-menu-button):not(.nav-menu-search-icon):not(.jdpower-lang-switcher-trigger) {
+			color: $brand_color_1;
+		}
+
+		>ul>li,
+		#primary-menu>li {
+			width: 100%;
+
+			>a {
+				padding: 20px 0;
+				font-size: 24px;
+				line-height: 110%;
+			}
+		}
+
+		// Mobile drawer: fluid/container use `display: contents` when open — same horizontal band as `#primary-menu` / `.nav-wrapper`.
+		.mega-menu-dropdown-container.container,
+		.mega-menu-dropdown-container {
+			padding-left: 0;
+			padding-right: 0;
+			max-width: 100%;
+		}
+
+		.mega-menu-dropdown .mega-menu-column,
+		.mega-menu-parent .mega-menu-dropdown li.mega-menu-column {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.mega-menu-column {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.mega-menu-column-content.mega-menu-nested-columns.row>li.mega-menu-column.mega-menu-column--nested {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+		.mega-menu-column-content {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+
+		.mega-menu-parent .mega-menu-dropdown li {
+			margin-bottom: 0;
+		}
+
+		.mega-menu-parent .mega-menu-dropdown li.mega-menu-content-type-image,
+		.mega-menu-column-content li.mega-menu-content-type-image {
+			margin-bottom: 10px;
+		}
+
+		// Image + Mobile Heading Overlay: card with bottom gradient caption (drawer only).
+		.mega-menu-content-type-image.mega-menu-image--has-mobile-overlay {
+			.mega-menu-image-card,
+			.mega-menu-image-link {
+				display: block;
+				width: 100%;
+				max-width: 100%;
+			}
+
+			.mega-menu-image-link--static {
+				text-decoration: none;
+			}
+
+			.mega-menu-image-card__media {
+				position: relative;
+				display: block;
+				width: 100%;
+				max-width: 500px;
+				overflow: hidden;
+				border-radius: 5px;
+				aspect-ratio: 16 / 10;
+			}
+
+			.mega-menu-image {
+				width: 100%;
+				height: 100%;
+				max-width: none;
+				object-fit: cover;
+				object-position: center;
+				display: block;
+			}
+
+			.mega-menu-image-card__overlay {
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(180deg, rgba(16, 35, 48, 0) 0%, $background_slate 100%);
+				pointer-events: none;
+			}
+
+			.mega-menu-image-card__caption {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 1;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				box-sizing: border-box;
+				padding: 20px;
+				color: $white;
+				pointer-events: none;
+			}
+
+			.mega-menu-image-card__heading {
+				font-family: $font__header;
+				font-size: 24px;
+				font-style: normal;
+				font-weight: 800;
+				line-height: 100%;
+				letter-spacing: -0.48px;
+				text-transform: capitalize;
+			}
+
+			.mega-menu-image-card__chevron {
+				display: block;
+				flex-shrink: 0;
+				width: 11px;
+				height: 19px;
+				background-color: currentColor;
+				-webkit-mask-image: $nav-image-arrow;
+				mask-image: $nav-image-arrow;
+				-webkit-mask-size: contain;
+				mask-size: contain;
+				-webkit-mask-repeat: no-repeat;
+				mask-repeat: no-repeat;
+				-webkit-mask-position: center;
+				mask-position: center;
+			}
+		}
+
+		#primary-menu>li.mega-menu-content-type-button>a.nav-menu-button.btn,
+		.mega-menu-content-type-button>a.nav-menu-button.btn,
+		#primary-menu>li.mega-menu-content-type-button>a.nav-menu-button.btn[target="_blank"],
+		.mega-menu-content-type-button>a.nav-menu-button.btn[target="_blank"] {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+			margin: 0.5rem 0;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			text-align: left;
+			gap: 10px;
+			border-radius: 5px;
+			font-size: 24px;
+			line-height: 110%;
+		}
+
+		// Label left; chevron / external icons grouped on the right.
+		#primary-menu>li.mega-menu-content-type-button.menu-item-has-children>a.nav-menu-button.btn[target="_blank"]::before,
+		>ul>li.mega-menu-content-type-button.menu-item-has-children>a.nav-menu-button.btn[target="_blank"]::before {
+			margin-left: auto;
+		}
+
+		#primary-menu>li.mega-menu-content-type-button.menu-item-has-children>a.nav-menu-button.btn:not([target="_blank"])::after,
+		>ul>li.mega-menu-content-type-button.menu-item-has-children>a.nav-menu-button.btn:not([target="_blank"])::after {
+			margin-left: auto;
+		}
+
+		#primary-menu>li.mega-menu-content-type-button:not(.menu-item-has-children)>a.nav-menu-button.btn[target="_blank"]::after,
+		>ul>li.mega-menu-content-type-button:not(.menu-item-has-children)>a.nav-menu-button.btn[target="_blank"]::after {
+			margin-left: auto;
+		}
+
+		// Language switcher: label left, chevron right (matches nav buttons).
+		#primary-menu>li.pll-parent-menu-item.menu-item-has-children>a.jdpower-lang-switcher-trigger,
+		>ul>li.pll-parent-menu-item.menu-item-has-children>a.jdpower-lang-switcher-trigger {
+			display: flex;
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+			justify-content: flex-start;
+			align-items: center;
+			gap: 10px;
+		}
+
+		#primary-menu>li.pll-parent-menu-item.menu-item-has-children>a.jdpower-lang-switcher-trigger::after,
+		>ul>li.pll-parent-menu-item.menu-item-has-children>a.jdpower-lang-switcher-trigger::after {
+			margin-left: auto;
+			flex-shrink: 0;
+		}
+
+		#primary-menu>li.menu-item-has-children>a {
+			width: 100%;
+			justify-content: space-between;
+			box-sizing: border-box;
+		}
+
+		// Undo global list indent (base _lists.scss li > ul { margin-left: 1.5em })
+		#primary-menu .sub-menu,
+		>ul .sub-menu {
+			margin-left: 0;
+			margin-bottom: 0;
+			padding-left: 0;
+		}
+
+		// Plain flyouts (not mega / not column inner lists): flat list in the drawer — no card chrome.
+		#primary-menu ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+		>ul ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+			background: transparent;
+			border-radius: 0;
+			box-shadow: none;
+			padding: 0.25rem 0 0.75rem;
+			margin-top: 0;
+			margin-bottom: 0;
+
+			a {
+				@include nav-flyout-link-type;
+				display: block;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0.5rem 0;
+
+				&:visited {
+					color: $color__text-headings;
+				}
+
+				&:hover,
+				&:focus {
+					background: transparent;
+					color: $color__cta_teal_hover;
+					opacity: 1;
+				}
+			}
+
+			a[target="_blank"]:not(.mega-menu-login-link) {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				gap: 10px;
+				flex-wrap: nowrap;
+			}
+
+			li.menu-item-has-children>a[target="_blank"] {
+				justify-content: space-between;
+			}
+
+			// Pre-heading (no <a> on the row): match flyout link inset.
+			li.mega-menu-content-type-pre_heading .mega-menu-pre-heading {
+				display: block;
+				box-sizing: border-box;
+				min-height: 0;
+				margin: 0;
+				padding: 0.5rem 0;
+
+				a.mega-menu-pre-heading-link {
+					padding: 0;
+					background: transparent;
+					color: inherit;
+
+					&:visited {
+						color: inherit;
+					}
+
+					&:hover,
+					&:focus {
+						background: transparent;
+						opacity: 0.85;
+					}
+				}
+			}
+
+			li.mega-menu-content-type-pre_heading.mega-menu-pre-heading-align-right .mega-menu-pre-heading,
+			li.mega-menu-content-type-pre_heading .mega-menu-pre-heading--align-right {
+				text-align: left;
+			}
+
+			li.mega-menu-content-type-login_link {
+				margin: 0 0 0.625rem;
+				padding: 0;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				a.mega-menu-login-link {
+					@include mega-menu-login-link-anchor;
+					justify-content: flex-start;
+					text-align: left;
+				}
+			}
+		}
+
+		// Mega menu logins: left-aligned region labels and spaced cards in the drawer.
+		.mega-menu-column-content li.mega-menu-content-type-pre_heading {
+			&.mega-menu-pre-heading-align-right .mega-menu-pre-heading,
+			.mega-menu-pre-heading--align-right {
+				text-align: left;
+			}
+
+			&:not(:first-child) {
+				margin-top: 0.75rem;
+			}
+		}
+
+		.mega-menu-parent .mega-menu-dropdown li.mega-menu-content-type-pre_heading {
+			&.mega-menu-pre-heading-align-right .mega-menu-pre-heading,
+			.mega-menu-pre-heading--align-right {
+				text-align: left;
+			}
+
+			&:not(:first-child) {
+				margin-top: 0.75rem;
+			}
+		}
+
+		.mega-menu-parent .mega-menu-dropdown li.mega-menu-content-type-login_link,
+		.mega-menu-column-content li.mega-menu-content-type-login_link,
+		.mega-menu-content-type-login_link {
+			margin: 0 0 0.625rem;
+			padding-left: 0;
+			padding-right: 0;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			a.mega-menu-login-link {
+				justify-content: flex-start;
+				text-align: left;
+			}
+		}
+
+		.mega-menu-dropdown-fluid,
+		.mega-menu-dropdown-container {
+			display: contents;
+		}
+
+		.mega-menu-dropdown-fluid {
+			opacity: 1 !important;
+			visibility: visible !important;
+			pointer-events: auto !important;
+			transform: none !important;
+			transition: none !important;
+		}
+
+		.mega-menu-dropdown {
+			position: static;
+			display: block !important;
+			box-shadow: none;
+			padding: 1rem 0;
+			width: 100%;
+			max-width: 100%;
+			border-top: none;
+			margin-top: 0;
+			flex-wrap: unset;
+
+			.mega-menu-column {
+				width: 100% !important;
+				margin-bottom: 0;
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+	}
+}
+
+@include media-breakpoint-up(nav) {
+	.main-navigation {
+		position: relative;
+		display: block;
+		width: auto;
+		margin-left: auto;
+		align-items: center;
+
+		.menu-toggle {
+			display: none;
+		}
+
+		// Mobile-only inline search form is not used in the horizontal bar.
+		.nav-menu-search-item__form-mobile {
+			display: none !important;
+		}
+
+		>ul,
+		#primary-menu {
+			display: flex !important;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: flex-end;
+			flex: none;
+			order: 0;
+			width: auto;
+			max-width: none;
+			align-self: auto;
+		}
+
+		// Desktop bar: single-line flex rows (no per-icon transforms — font metrics tuned in _typography.scss).
+		#primary-menu>li>a {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35rem;
+			padding: 0.75rem 1rem;
+		}
+
+		#primary-menu>li.pll-parent-menu-item>a.jdpower-lang-switcher-trigger {
+			gap: 0.5rem;
+		}
+
+		#primary-menu>li.mega-menu-content-type-button>a.nav-menu-button.btn {
+			padding: 10px 15px;
+		}
+
+		// Standard flyout sub-menus (Link / Button with children, etc.) — not mega markup.
+		ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+			position: absolute;
+			top: 0;
+			left: 100%;
+			z-index: 1001;
+			box-sizing: border-box;
+			// Stay within the viewport when the bar is crowded or the last items sit at the right edge.
+			min-width: min(14rem, calc(100vw - 1.5rem));
+			max-width: min(22rem, calc(100vw - 1.5rem));
+			margin: 0;
+			padding: 0.375rem 0;
+			list-style: none;
+			background: $white;
+			border-radius: 8px;
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transform: translateY(-0.375rem);
+			transition:
+				opacity 0.22s ease,
+				transform 0.22s cubic-bezier(0.2, 0.85, 0.35, 1),
+				visibility 0s linear 0.22s;
+
+			li {
+				position: relative;
+				margin: 0;
+				padding: 0;
+			}
+
+			a {
+				@include nav-flyout-link-type;
+				display: block;
+				padding: 0.5rem 1.125rem;
+				overflow-wrap: break-word;
+				hyphens: auto;
+				transition: background-color 0.15s ease, color 0.15s ease;
+
+				&:visited {
+					color: $color__text-headings;
+				}
+
+				&:hover,
+				&:focus {
+					background: $color__grey;
+					color: $color__cta_teal_hover;
+				}
+			}
+
+			// Full-width row + inline label/icons (overrides `display: block` on `a` above).
+			a[target="_blank"]:not(.mega-menu-login-link) {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				justify-content: flex-start;
+				gap: 10px;
+				flex-wrap: nowrap;
+				box-sizing: border-box;
+			}
+
+			li.menu-item-has-children>a[target="_blank"] {
+				justify-content: space-between;
+			}
+
+			li.mega-menu-content-type-pre_heading .mega-menu-pre-heading {
+				display: block;
+				box-sizing: border-box;
+				min-height: 0;
+				margin: 0;
+				padding: 0.5rem 1.125rem;
+
+				a.mega-menu-pre-heading-link {
+					padding: 0;
+					background: transparent;
+					color: inherit;
+
+					&:visited {
+						color: $black;
+					}
+
+					&:hover,
+					&:focus {
+						background: transparent;
+						color: $brand_color_1;
+						opacity: 1;
+					}
+				}
+			}
+
+			li.mega-menu-content-type-pre_heading.mega-menu-pre-heading-align-right .mega-menu-pre-heading,
+			li.mega-menu-content-type-pre_heading .mega-menu-pre-heading--align-right {
+				text-align: right;
+			}
+
+			li.mega-menu-content-type-pre_heading:hover .mega-menu-pre-heading,
+			li.mega-menu-content-type-pre_heading:focus-within .mega-menu-pre-heading {
+				background: $color__grey;
+			}
+
+			li.mega-menu-content-type-login_link {
+				margin: 0 0 0.375rem;
+				padding: 0 0.625rem;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				a.mega-menu-login-link {
+					@include mega-menu-login-link-anchor;
+				}
+			}
+		}
+
+		// Login flyouts: keep card labels and chevrons right-aligned (overrides generic flyout link rules).
+		ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content):has(> li.mega-menu-content-type-login_link) {
+			text-align: right;
+
+			>li.mega-menu-content-type-login_link>a.mega-menu-login-link {
+				justify-content: flex-end;
+				text-align: right;
+			}
+		}
+
+		#primary-menu>li>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+		>ul>li>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+			top: 100%;
+			left: 0;
+			margin-left: 0;
+		}
+
+		// Last top-level flyout: right-align link labels and pre-headings inside the panel.
+		$flyout-end-panel: 'ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content)';
+		$flyout-end-parent: 'li.menu-item-has-children:not(.mega-menu-parent)';
+
+		#primary-menu>#{$flyout-end-parent}:last-child>#{$flyout-end-panel},
+		>ul>#{$flyout-end-parent}:last-child>#{$flyout-end-panel},
+		#primary-menu:has(> li:last-child.mega-menu-content-type-search_icon)>#{$flyout-end-parent}:nth-last-child(2)>#{$flyout-end-panel},
+		>ul:has(> li:last-child.mega-menu-content-type-search_icon)>#{$flyout-end-parent}:nth-last-child(2)>#{$flyout-end-panel} {
+			text-align: right;
+
+			a {
+				text-align: right;
+			}
+
+			a[target="_blank"] {
+				justify-content: flex-end;
+			}
+
+			li.menu-item-has-children>a[target="_blank"] {
+				justify-content: flex-end;
+			}
+
+			li.mega-menu-content-type-pre_heading .mega-menu-pre-heading {
+				text-align: right;
+			}
+		}
+
+		// Anchor to the right so the last top-level items’ flyouts don’t overflow the viewport.
+		#primary-menu>li:last-child>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+		>ul>li:last-child>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+			left: auto;
+			right: 0;
+		}
+
+		// On narrower desktop widths, the last two items often sit near the right edge.
+		@media (max-width: 1799.98px) {
+
+			#primary-menu>li:nth-last-child(-n + 2)>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+			>ul>li:nth-last-child(-n + 2)>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+				left: auto;
+				right: 0;
+			}
+		}
+
+		// Nested flyout would extend past the right edge when the parent is already right-aligned.
+		#primary-menu>li:last-child li>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+		>ul>li:last-child li>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+			left: auto;
+			right: 100%;
+			margin-left: 0;
+			margin-right: 0.25rem;
+		}
+
+		#primary-menu li:hover>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+		#primary-menu li:focus-within>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+		>ul li:hover>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+		>ul li:focus-within>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			transform: translateY(0);
+			transition:
+				opacity 0.22s ease,
+				transform 0.22s cubic-bezier(0.2, 0.85, 0.35, 1),
+				visibility 0s linear 0s;
+		}
+
+		// Above mega ::after hover bridge (z-index: 1) so other top-level links stay reachable while mega is open.
+		#primary-menu>li:not(.mega-menu-parent),
+		>ul>li:not(.mega-menu-parent) {
+			z-index: 2;
+		}
+
+		#primary-menu>li.mega-menu-parent>a,
+		>ul>li.mega-menu-parent>a {
+			z-index: 2;
+		}
+
+		// Mega panel: absolute to #site-navigation (.main-navigation). `li` is static so `top: 100%` is the
+		// nav bar bottom; add `--header-mega-pad-bridge` (site header bottom padding) to sit flush with masthead.
+		>ul>li.mega-menu-parent,
+		#primary-menu>li.mega-menu-parent {
+			position: static;
+
+			// Hover bridge on <li>::after (never the anchor’s ::after — chevron). A bridge on the panel fails
+			// while the panel has visibility:hidden / pointer-events:none; this strip stays hoverable with :hover.
+			&::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100vw;
+				// From mid-nav through slack + header padding + path to mega (CB = .main-navigation).
+				top: 25%;
+				height: calc(75% + var(--header-mega-pad-bridge, 27px) + 8rem);
+				pointer-events: none;
+				// Below logo / primary links (2–3); mega panel shell stays 999.
+				z-index: 1;
+			}
+
+			&:hover::after,
+			&:focus-within::after {
+				pointer-events: auto;
+			}
+		}
+
+		.mega-menu-parent .mega-menu-dropdown-fluid {
+			display: block !important;
+			position: absolute;
+			left: 50%;
+			right: auto;
+			width: 100vw;
+			max-width: none;
+			margin-left: 0;
+			margin-right: 0;
+			// Slight overlap kills subpixel seams; mega bg meets masthead without a visible body gap.
+			top: calc(100% + var(--header-mega-pad-bridge, 27px) - 1px);
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transform: translate(-50%, -0.625rem);
+			// Closing: do not transition opacity — while it fades, the panel goes semi-transparent and
+			// the dark strip between header and mega (body behind) reads as an “opacity bar”.
+			transition:
+				transform 0.28s cubic-bezier(0.2, 0.85, 0.35, 1),
+				visibility 0s linear 0.28s;
+			// Shell must not clip absolutely positioned children; scroll lives on the inner container.
+			overflow: visible;
+			// Visible bottom shadow on the panel; clip-path trims bleed into the header gap above.
+			box-shadow: 0 10px 32px -12px rgba(0, 0, 0, 0.16);
+			clip-path: inset(0 -100vw -80px -100vw);
+
+			.mega-menu-dropdown-container {
+				position: relative;
+				max-height: calc(100vh - 8rem);
+				// Match `.container.nav-wrapper` inset (same as page content below the header).
+				padding-left: var(--bs-gutter-x);
+				padding-right: var(--bs-gutter-x);
+				padding-bottom: 20px;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+
+			>.mega-menu-dropdown.row>li.mega-menu-column {
+				padding-right: var(--bs-gutter-x);
+
+				&:last-child,
+				&:only-child {
+					padding-right: 0;
+				}
+			}
+		}
+
+		.mega-menu-parent:hover .mega-menu-dropdown-fluid,
+		.mega-menu-parent:focus-within .mega-menu-dropdown-fluid {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			transform: translate(-50%, 0);
+			// Opening: fade + slide; closing uses base rule (opacity snaps off, no see-through gap).
+			transition:
+				opacity 0.28s ease,
+				transform 0.28s cubic-bezier(0.2, 0.85, 0.35, 1),
+				visibility 0s linear 0s;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+
+			.mega-menu-parent .mega-menu-dropdown-fluid,
+			.mega-menu-parent:hover .mega-menu-dropdown-fluid,
+			.mega-menu-parent:focus-within .mega-menu-dropdown-fluid {
+				transition: none !important;
+				transform: translate(-50%, 0) !important;
+			}
+
+			ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+			#primary-menu li:hover>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content),
+			#primary-menu li:focus-within>ul.sub-menu:not(.mega-menu-dropdown):not(.mega-menu-column-content) {
+				transition: none !important;
+				transform: none !important;
+			}
+		}
+	}
+}
+
+// Dim + blur page content while mega menus, flyouts, or the mobile drawer are open.
+// Sits above main content, below `.site-header` (z-index 1000) and open panels.
+$nav-page-backdrop-z: 900;
+
+#page::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: $nav-page-backdrop-z;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.22s ease,
+		visibility 0s linear 0.22s;
+}
+
+@mixin nav-page-backdrop-visible {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition:
+		opacity 0.22s ease,
+		visibility 0s linear 0s;
+}
+
+// Mobile nav drawer: fixed logo bar + fixed scroll panel (`--jdp-mobile-nav-scroll-top` from js/script.js).
+@include media-breakpoint-down(nav) {
+
+	body:has(#site-navigation.toggled),
+	body.nav-drawer-open {
+		overflow: hidden;
+		height: 100%;
+
+		html {
+			overflow: hidden;
+			height: 100%;
+		}
+
+		.site-header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			z-index: $nav-page-backdrop-z + 1;
+			background: $color__background-header;
+			// Fallback until JS measures `.site-branding` bottom edge.
+			--jdp-mobile-nav-scroll-top: 4.5rem;
+		}
+
+		.site-header .container.nav-wrapper {
+			position: relative;
+		}
+
+		// Scroll panel is fixed to the viewport (not a flex child) so overflow-y works on iOS/Android.
+		#site-navigation.toggled>ul,
+		#site-navigation.toggled #primary-menu {
+			position: fixed;
+			z-index: $nav-page-backdrop-z + 2;
+			top: var(--jdp-mobile-nav-scroll-top, 4.5rem);
+			left: 0;
+			right: 0;
+			bottom: 0;
+			box-sizing: border-box;
+			width: 100%;
+			max-width: none;
+			margin: 0;
+			padding-left: var(--bs-gutter-x, #{$container-padding-x-below-md});
+			padding-right: var(--bs-gutter-x, #{$container-padding-x-below-md});
+			padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+			overflow-x: hidden;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			overscroll-behavior-y: contain;
+			touch-action: pan-y;
+			background: $color__background-header;
+			display: flex !important;
+			flex-direction: column;
+		}
+
+		// Search field pinned to top of drawer (requires flex on #primary-menu above).
+		#site-navigation.toggled>ul>li.mega-menu-content-type-search_icon,
+		#site-navigation.toggled #primary-menu>li.mega-menu-content-type-search_icon {
+			order: -1;
+			flex-shrink: 0;
+		}
+
+		.main-navigation .menu-toggle {
+			z-index: $nav-page-backdrop-z + 3;
+		}
+	}
+
+	body.admin-bar:has(#site-navigation.toggled) .site-header,
+	body.admin-bar.nav-drawer-open .site-header {
+		top: 32px;
+	}
+
+	@media screen and (max-width: 782px) {
+
+		body.admin-bar:has(#site-navigation.toggled) .site-header,
+		body.admin-bar.nav-drawer-open .site-header {
+			top: 46px;
+		}
+	}
+
+	body:has(#site-navigation.toggled) #page::after,
+	body.nav-drawer-open #page::after {
+		@include nav-page-backdrop-visible;
+	}
+}
+
+@include media-breakpoint-up(nav) {
+
+	body:has(#site-navigation #primary-menu > li.mega-menu-parent:hover) #page::after,
+	body:has(#site-navigation #primary-menu > li.mega-menu-parent:focus-within) #page::after,
+	body:has(#site-navigation #primary-menu > li.menu-item-has-children:not(.mega-menu-parent):hover) #page::after,
+	body:has(#site-navigation #primary-menu > li.menu-item-has-children:not(.mega-menu-parent):focus-within) #page::after {
+		@include nav-page-backdrop-visible;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#page::after {
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+		transition: none;
+	}
+}

@@ -1,0 +1,40 @@
+section.faqs-block {
+	.accordion-block__summary-main {
+		flex-direction: row;
+		align-items: baseline;
+		gap: 1rem;
+	}
+
+	.accordion-block__item-heading {
+		margin: 0;
+	}
+
+	.accordion-block__item-intro {
+		margin-left: auto;
+		text-align: right;
+	}
+
+	.faqs-block__group {
+		&:not(:first-child) {
+			margin-top: 30px;
+		}
+	}
+
+	.faqs-block__group-heading {
+		margin: 0 0 15px;
+	}
+
+	&.accordion-block--tone-dark {
+		.faqs-block__group-heading {
+			color: $white;
+		}
+	}
+
+	&.accordion-block--tone-medium,
+	&.accordion-block--tone-light {
+		.faqs-block__group-heading {
+			color: $background_dark;
+		}
+	}
+}
+

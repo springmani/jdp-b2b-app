@@ -1,0 +1,54 @@
+{
+    "key": "group_77regional_product_region",
+    "title": "Product Region — Region Modal",
+    "fields": [
+        {
+            "key": "field_77regional_pr_modal_img",
+            "label": "Region Modal Image",
+            "name": "region_modal_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Region-specific map for the right card (“View Products Available In My Region”) when this region is geo-detected.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "product_region"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

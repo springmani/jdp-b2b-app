@@ -1,0 +1,119 @@
+{
+    "key": "group_70fe01a1b0601",
+    "title": "[Industry] - Card Details",
+    "fields": [
+        {
+            "key": "field_70fe01a1b0601",
+            "label": "Heading Override",
+            "name": "industry_card_heading_override",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Replaces the industry title on Featured Industries cards when set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fe01a1b0602",
+            "label": "Sub Heading",
+            "name": "industry_card_sub_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Bold line below the primary card title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fe01a1b0603",
+            "label": "Short Description",
+            "name": "industry_card_short_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Summary for cards. Falls back to the manual excerpt or trimmed content when empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_70fe01a1b0604",
+            "label": "CTA text Override",
+            "name": "industry_card_cta_text_override",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Label after “Explore” on Featured Industries cards; defaults to the industry title when empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "industries"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Feeds Featured Industries cards.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1781481600,
+    "pll_display_field_instructions": 0
+}

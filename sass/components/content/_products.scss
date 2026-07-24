@@ -1,0 +1,22 @@
+.single-product {
+    main {
+        padding: 0px;
+
+        .entry-content {
+            padding: 0px;
+        }
+    }
+}
+
+// Industries, segments, solution singles — full-bleed content (override .single main / .entry-content padding).
+.single-industries,
+.single-segments,
+.single-solution {
+    main {
+        padding: 0;
+    }
+
+    .entry-content {
+        padding-bottom: 0;
+    }
+}

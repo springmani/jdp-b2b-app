@@ -1,0 +1,217 @@
+@mixin jdpower-product-region-combobox {
+	.featured-solutions-block__region-bar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1.25rem 2rem;
+		margin-bottom: 28px;
+		max-width: 100%;
+		overflow: visible;
+	}
+
+	.featured-solutions-block__region-combobox {
+		position: relative;
+		display: inline-block;
+		max-width: 100%;
+		flex: 0 1 auto;
+		vertical-align: middle;
+
+		&.is-open {
+			z-index: 1000;
+		}
+	}
+
+	.featured-solutions-block__region-select-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.featured-solutions-block__region-dropdown {
+		position: relative;
+	}
+
+	.featured-solutions-block__region-trigger-wrap {
+		display: inline-grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		vertical-align: middle;
+		min-width: 180px;
+		max-width: 100%;
+	}
+
+	.featured-solutions-block__region-trigger {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		max-width: 100%;
+		padding: 10px 14px;
+		font-family: $font__header;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.48px;
+		text-transform: capitalize;
+		color: $background_dark;
+		background-color: $background_medium;
+		border: 0;
+		border-radius: 6px;
+		text-align: left;
+	}
+
+	.featured-solutions-block__region-trigger--sizer {
+		grid-area: 1 / 1;
+		visibility: hidden;
+		pointer-events: none;
+		user-select: none;
+		cursor: default;
+	}
+
+	button.featured-solutions-block__region-trigger {
+		grid-area: 1 / 1;
+		position: relative;
+		z-index: 1;
+		cursor: pointer;
+	}
+
+	.featured-solutions-block__region-icon {
+		display: flex;
+		flex-shrink: 0;
+		line-height: 0;
+
+		img {
+			display: block;
+			width: 16px;
+			height: auto;
+		}
+	}
+
+	.featured-solutions-block__region-value {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.featured-solutions-block__region-trigger--sizer .featured-solutions-block__region-value {
+		flex: 0 0 auto;
+		min-width: 0;
+		white-space: nowrap;
+	}
+
+	.featured-solutions-block__region-chevron {
+		flex-shrink: 0;
+		width: 0;
+		height: 0;
+		margin-left: 2px;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 6px solid $background_dark;
+		opacity: 0.75;
+		transition: transform 0.15s ease;
+	}
+
+	.featured-solutions-block__region-combobox.is-open .featured-solutions-block__region-chevron {
+		transform: rotate(180deg);
+	}
+
+	.featured-solutions-block__region-list {
+		position: absolute;
+		z-index: 1;
+		top: calc(100% + 4px);
+		left: 0;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		min-width: 100%;
+		width: max-content;
+		max-width: min(100vw - 2rem, 960px);
+		max-height: min(520px, 85vh);
+		overflow-y: auto;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: $font__header;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.48px;
+		text-transform: capitalize;
+		color: $background_dark;
+		background-color: $white;
+		border: 0;
+		border-radius: 6px;
+		box-shadow: 0 12px 40px rgba($black, 0.14);
+	}
+
+	.featured-solutions-block__region-list[hidden] {
+		display: none !important;
+	}
+
+	.featured-solutions-block__region-option {
+		display: block;
+		flex: 0 0 auto;
+		align-self: stretch;
+		margin: 0;
+		padding: 11px 16px;
+		border: 0;
+		border-radius: 0;
+		white-space: nowrap;
+		background: transparent;
+		font-family: inherit;
+		font-size: inherit;
+		font-style: inherit;
+		font-weight: inherit;
+		line-height: inherit;
+		letter-spacing: inherit;
+		text-transform: inherit;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+		transition: background-color 0.12s ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: rgba($black, 0.04);
+		}
+	}
+
+	.featured-solutions-block__region-note {
+		flex: 1 1 280px;
+		margin: 0;
+		font-family: $font__main;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.5;
+		color: $color__text-main;
+
+		p {
+			margin: 0 0 0.5em;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&.featured-solutions-block__copy {
+			p {
+				margin: 0 0 12px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,246 @@
+section.qa-sandbox {
+	position: relative;
+
+	// Same grid pattern as section.feature-columns-block .feature-columns-block__row (gap + split tracks).
+	.qa-sandbox__row,
+	.qa-sandbox__body,
+	.qa-sandbox__media {
+		min-width: 0;
+	}
+
+	.qa-sandbox__row {
+		display: grid;
+		gap: 1.5rem 40px;
+
+		// Content width / image width — applied via --image-left vs --image-right column order (see template).
+		--cwi-content-fr: 1fr;
+		--cwi-image-fr: 1fr;
+
+		&--split-image-wide {
+			--cwi-content-fr: 3fr;
+			--cwi-image-fr: 2fr;
+		}
+
+		&--split-image-narrow {
+			--cwi-content-fr: 2fr;
+			--cwi-image-fr: 3fr;
+		}
+
+		&--split-image-two-thirds {
+			--cwi-content-fr: 1fr;
+			--cwi-image-fr: 2fr;
+		}
+
+		&--split-image-third {
+			--cwi-content-fr: 2fr;
+			--cwi-image-fr: 1fr;
+		}
+
+		&--text-only {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		&--image-left:not(.qa-sandbox__row--text-only) {
+			grid-template-columns: minmax(0, var(--cwi-image-fr)) minmax(0, var(--cwi-content-fr));
+		}
+
+		&--image-right:not(.qa-sandbox__row--text-only) {
+			grid-template-columns: minmax(0, var(--cwi-content-fr)) minmax(0, var(--cwi-image-fr));
+		}
+
+		&--valign-top {
+			align-items: start;
+		}
+
+		&--valign-middle {
+			align-items: center;
+		}
+
+		&--valign-bottom {
+			align-items: end;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.qa-sandbox__row:not(.qa-sandbox__row--text-only) {
+			grid-template-columns: 1fr;
+		}
+
+		&.qa-sandbox--mobile-content-first .qa-sandbox__body {
+			order: -1;
+		}
+
+		&.qa-sandbox--mobile-image-first .qa-sandbox__media {
+			order: -1;
+		}
+	}
+
+	.qa-sandbox__pre-row {
+		margin-bottom: 25px;
+	}
+
+	.qa-sandbox__pre--above.preheading {
+		margin-bottom: 0;
+	}
+
+	.qa-sandbox__embed {
+		width: 100%;
+		min-width: 0;
+		line-height: 0;
+		border-radius: 4px;
+		overflow: hidden;
+
+		iframe {
+			display: block;
+			width: 100%;
+			max-width: 100%;
+			min-height: 200px;
+			border: 0;
+		}
+	}
+
+	.qa-sandbox__figure {
+		border-radius: 4px;
+		overflow: hidden;
+	}
+
+	.qa-sandbox__figure--aspect-square,
+	.qa-sandbox__figure--aspect-16-9 {
+		display: block;
+		position: relative;
+		width: 100%;
+
+		.qa-sandbox__img {
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+
+	.qa-sandbox__figure--aspect-square {
+		aspect-ratio: 1 / 1;
+	}
+
+	.qa-sandbox__figure--aspect-16-9 {
+		aspect-ratio: 16 / 9;
+	}
+
+	.qa-sandbox__img {
+		display: block;
+		width: 100%;
+	}
+
+	.qa-sandbox__caption {
+		margin: 12px 0 0;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 150%;
+		color: $color__text-screen;
+	}
+
+	.qa-sandbox__heading {
+		margin: 0;
+		color: $color__text-main;
+	}
+
+	.qa-sandbox__copy {
+		margin-top: 25px;
+		color: $color__text-main;
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+
+		p {
+			margin: 0 0 12px;
+			line-height: 1.5;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		ul,
+		ol {
+			margin: 0 0 12px;
+			padding-left: 1.25em;
+		}
+
+		ul {
+			list-style-type: disc;
+		}
+
+		li {
+			margin: 0;
+			line-height: 150%;
+		}
+	}
+
+	.qa-sandbox__heading + .qa-sandbox__copy,
+	.qa-sandbox__heading + .qa-sandbox__copy-rows {
+		margin-top: 25px;
+	}
+
+	.qa-sandbox__copy-rows {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+		margin-top: 25px;
+	}
+
+	.qa-sandbox__copy-row-heading {
+		margin: 0 0 12px;
+		font-weight: 800;
+		color: $background_dark;
+	}
+
+	.qa-sandbox__copy-row {
+		.qa-sandbox__copy {
+			margin-top: 0;
+		}
+
+		.qa-sandbox__copy-row-heading + .qa-sandbox__copy {
+			margin-top: 0;
+		}
+	}
+
+	.qa-sandbox__copy-row--list-columns {
+		.qa-sandbox__copy {
+			ul,
+			ol {
+				@include media-breakpoint-up(md) {
+					column-count: 2;
+					column-gap: 2rem;
+				}
+			}
+
+			li {
+				@include media-breakpoint-up(md) {
+					break-inside: avoid;
+				}
+			}
+		}
+	}
+
+	&.qa-sandbox--tone-dark {
+
+		.qa-sandbox__heading,
+		.qa-sandbox__copy,
+		.qa-sandbox__copy-row-heading {
+			color: $white;
+		}
+
+		.qa-sandbox__copy a {
+			color: $white;
+		}
+
+		.qa-sandbox__caption {
+			color: rgba($white, 0.75);
+		}
+	}
+}

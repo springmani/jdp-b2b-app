@@ -1,0 +1,124 @@
+{
+    "key": "group_70fe10a1b0701",
+    "title": "[Insight] - Card Details",
+    "fields": [
+        {
+            "key": "field_70fe10a1b0702",
+            "label": "Heading Override",
+            "name": "page_card_heading_override",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Replaces the title on Insight cards when set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fe10a1b0703",
+            "label": "Sub Heading",
+            "name": "page_card_sub_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional bold line below the primary card title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fe10a1b0704",
+            "label": "Short Description",
+            "name": "page_card_short_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Summary for cards. Falls back to the manual excerpt or trimmed content when empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "press_release"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "podcast"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event_webinar"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "resource"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Overrides title\/copy shown on Insight cards (Featured Insights, Insight Center grid, etc.).",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

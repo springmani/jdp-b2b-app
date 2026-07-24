@@ -1,0 +1,144 @@
+section.key-features-block {
+	position: relative;
+
+	.key-features-block__grid,
+	.key-features-block__column {
+		min-width: 0;
+	}
+
+	.key-features-block__grid {
+		display: grid;
+		gap: 1.5rem 1.25rem;
+		width: 100%;
+	}
+
+	&.key-features-block--cols-2 .key-features-block__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	&.key-features-block--cols-3 .key-features-block__grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	@include media-breakpoint-down(md) {
+		&.key-features-block--cols-3 .key-features-block__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		.key-features-block__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.key-features-block__figure {
+		width: 100%;
+		border-radius: 4px;
+		overflow: hidden;
+	}
+
+	.key-features-block__figure--photo {
+		aspect-ratio: 460 / 240;
+	}
+
+	// Icon row: same as section.icon-columns-block .icon-columns-block__icon (inline SVG in span or <img>).
+	.key-features-block__figure--icon {
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		width: auto;
+		max-width: 100%;
+		border-radius: 0;
+		overflow: visible;
+	}
+
+	.key-features-block__img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.key-features-block__figure--icon .key-features-block__icon {
+		display: block;
+		max-width: 45px;
+		width: auto;
+		height: auto;
+		max-height: 45px;
+		object-fit: contain;
+		object-position: left center;
+
+		svg {
+			display: block;
+			max-width: 45px;
+			width: auto;
+			height: auto;
+			max-height: 45px;
+		}
+	}
+
+	.key-features-block__heading {
+		margin: 0;
+		color: $background_dark;
+	}
+
+	.key-features-block__figure + .key-features-block__heading {
+		margin-top: 25px;
+	}
+
+	.key-features-block__copy {
+		color: $color__text-main;
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		> *:last-child {
+			margin-bottom: 0;
+		}
+
+		p {
+			margin: 0 0 12px;
+			line-height: 1.5;
+		}
+
+		ul,
+		ol {
+			margin: 0 0 12px;
+			padding-left: 1.25em;
+		}
+
+		ul {
+			list-style-type: disc;
+		}
+
+		li {
+			margin: 0;
+			font-size: 14px;
+			line-height: 150%;
+		}
+	}
+
+	.key-features-block__heading + .key-features-block__copy,
+	.key-features-block__figure + .key-features-block__copy {
+		margin-top: 25px;
+	}
+
+	&.key-features-block--tone-dark {
+
+		.key-features-block__heading {
+			color: $white;
+		}
+
+		.key-features-block__copy {
+			color: $white;
+
+			a {
+				color: $white;
+			}
+		}
+	}
+
+}

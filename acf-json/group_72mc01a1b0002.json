@@ -1,0 +1,72 @@
+{
+    "key": "group_72mc01a1b0002",
+    "title": "Media Contact",
+    "fields": [
+        {
+            "key": "field_72mc_mc_phone01",
+            "label": "Phone",
+            "name": "media_contact_phone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shown on Media Contacts block cards.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_72mc_mc_email01",
+            "label": "Email",
+            "name": "media_contact_email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "Shown as a mailto link on Media Contacts block cards.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "media_contact"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1781760000,
+    "pll_display_field_instructions": 0
+}

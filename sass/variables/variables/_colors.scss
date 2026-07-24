@@ -1,0 +1,145 @@
+$black: #000;
+$white: #fff;
+
+$brand_color_1: #00838F;
+$brand_color_2: #D74F1F;
+$brand_color_3: #C24519;
+$brand_color_4: #76ce8d;
+$brand_color_5: #00838F;
+
+$color__hero_preheading: #05B49C;
+
+$background_dark: #1a1a1a;
+$background_slate: #102330;
+$background_medium: #ececec;
+$background_light: #fff;
+
+$color__grey: #EFEFEF;
+
+$color__background-body: $white;
+$color__background-screen: #f1f1f1;
+$color__background-hr: #ccc;
+$color__background-pre: #eee;
+$color__background-ins: #fff9c0;
+$color__background-header: $white;
+$color__background-footer: $black;
+
+$color__text-main: $black;
+$color__text-headings: $brand_color_1;
+$color__text-screen: #3A3A3B;
+$color__text-input: #666;
+$color__text-input-focus: #111;
+$color__text-header-links: $white;
+$color__text-footer: $white;
+
+$color__link: $brand_color_2;
+$color__link-visited: $brand_color_3;
+$color__link-hover: $brand_color_3;
+
+$color__input-border: #C7C7C7;
+
+$color__button_background: $brand_color_2;
+$color__button_text: $white;
+$color__button_border: $brand_color_2;
+$color__button_border_hover: $brand_color_2;
+$color__button_border_focus: $brand_color_2;
+
+$color__button_hover_background: $brand_color_3;
+$color__button_hover_text: $white;
+$color__button_hover_border: $brand_color_3;
+
+$color__button_focus_background: $brand_color_3;
+$color__button_focus_text: $white;
+$color__button_focus_border: $brand_color_3;
+
+// CTA block: .cta-button__link--teal / --mint
+$color__cta_teal_hover: #006a73;
+$color__cta_teal_focus: #005a62;
+$color__cta_mint_hover: #5fb87a;
+$color__cta_mint_focus: #52a86a;
+
+// Text color utilities
+.t-light {
+    color: $white;
+}
+
+.t-dark {
+    color: $black;
+}
+
+.t-brand-color-1 {
+    color: $brand_color_1;
+}
+
+.t-brand-color-2 {
+    color: $brand_color_2;
+}
+
+.t-brand-color-3 {
+    color: $brand_color_3;
+}
+
+.t-brand-color-4 {
+    color: $brand_color_4;
+}
+
+.t-brand-color-5 {
+    color: $brand_color_5;
+}
+
+// Background color utilities
+.bg-brand-1 {
+    background-color: $brand_color_1;
+}
+
+.bg-brand-2 {
+    background-color: $brand_color_2;
+}
+
+.bg-brand-3 {
+    background-color: $brand_color_3;
+}
+
+.bg-brand-4 {
+    background-color: $brand_color_4;
+}
+
+.bg-brand-5 {
+    background-color: $brand_color_5;
+}
+
+.bg-dark {
+    background-color: $background_dark;
+}
+
+.bg-medium {
+    background-color: $background_medium;
+}
+
+.bg-light {
+    background-color: $background_light;
+}
+
+// t-* = text utilities, b-* = background utilities (pairs with .t-* / .bg-* classes)
+:root {
+    --t-light: #{$white};
+    --t-dark: #{$black};
+
+    --t-brand-color-1: #{$brand_color_1};
+    --t-brand-color-2: #{$brand_color_2};
+    --t-brand-color-3: #{$brand_color_3};
+    --t-brand-color-4: #{$brand_color_4};
+    --t-brand-color-5: #{$brand_color_5};
+
+    --b-brand-1: #{$brand_color_1};
+    --b-brand-2: #{$brand_color_2};
+    --b-brand-3: #{$brand_color_3};
+    --b-brand-4: #{$brand_color_4};
+    --b-brand-5: #{$brand_color_5};
+
+    --b-dark: #{$background_dark};
+    --b-medium: #{$background_medium};
+    --b-light: #{$background_light};
+
+    --Slate-Blue: #{$background_slate};
+}

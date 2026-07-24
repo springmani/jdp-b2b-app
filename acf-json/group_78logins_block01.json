@@ -1,0 +1,196 @@
+{
+    "key": "group_78logins_block01",
+    "title": "[Block] - Logins",
+    "fields": [
+        {
+            "key": "field_78logins_tab_setup",
+            "label": "Setup",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_78logins_padding_top",
+            "label": "Padding Top",
+            "name": "logins_padding_top",
+            "type": "select",
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78logins_padding_bottom",
+            "label": "Padding Bottom",
+            "name": "logins_padding_bottom",
+            "type": "select",
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78logins_tab_background",
+            "label": "Background",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_78logins_background_tone",
+            "label": "Background",
+            "name": "logins_background_tone",
+            "type": "select",
+            "choices": {
+                "light": "Light",
+                "medium": "Medium",
+                "dark": "Dark"
+            },
+            "default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0
+        },
+        {
+            "key": "field_78logins_tab_content",
+            "label": "Content",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_78logins_search_placeholder",
+            "label": "Search Placeholder",
+            "name": "logins_search_placeholder",
+            "type": "text",
+            "instructions": "Placeholder text for the client-side search field.",
+            "default_value": "Search Logins",
+            "placeholder": "Search Logins"
+        },
+        {
+            "key": "field_78logins_regions",
+            "label": "Regions",
+            "name": "logins_regions",
+            "type": "repeater",
+            "instructions": "Add one row per region. The selected region is used as the section heading and for the region filter.",
+            "layout": "block",
+            "button_label": "Add Region",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_78logins_region",
+                    "label": "Region",
+                    "name": "logins_region",
+                    "type": "taxonomy",
+                    "instructions": "Product region for this group of logins.",
+                    "taxonomy": "product_region",
+                    "field_type": "select",
+                    "allow_null": 0,
+                    "add_term": 0,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "object",
+                    "multiple": 0,
+                    "parent": "field_78logins_regions"
+                },
+                {
+                    "key": "field_78logins_items",
+                    "label": "Logins",
+                    "name": "logins_items",
+                    "type": "repeater",
+                    "instructions": "Login cards shown under this region.",
+                    "layout": "block",
+                    "button_label": "Add Login",
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_78logins_regions",
+                    "sub_fields": [
+                        {
+                            "key": "field_78logins_item_image",
+                            "label": "Image",
+                            "name": "logins_item_image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "parent_repeater": "field_78logins_items"
+                        },
+                        {
+                            "key": "field_78logins_item_country",
+                            "label": "Country",
+                            "name": "logins_item_country",
+                            "type": "text",
+                            "instructions": "Optional. Shown above the name in smaller text when filled in.",
+                            "parent_repeater": "field_78logins_items"
+                        },
+                        {
+                            "key": "field_78logins_item_name",
+                            "label": "Name",
+                            "name": "logins_item_name",
+                            "type": "text",
+                            "required": 1,
+                            "parent_repeater": "field_78logins_items"
+                        },
+                        {
+                            "key": "field_78logins_item_copy",
+                            "label": "Copy",
+                            "name": "logins_item_copy",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": "br",
+                            "parent_repeater": "field_78logins_items"
+                        },
+                        {
+                            "key": "field_78logins_item_link",
+                            "label": "Login URL",
+                            "name": "logins_item_link",
+                            "type": "url",
+                            "instructions": "Optional. When set, the card links to this URL.",
+                            "parent_repeater": "field_78logins_items"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf/jdpower-logins"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "show_in_rest": 0,
+    "modified": 1780365200
+}

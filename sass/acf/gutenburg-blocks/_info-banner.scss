@@ -1,0 +1,79 @@
+section.info-banner {
+	background-color: $background_slate;
+	color: $white;
+	padding-top: 45px;
+	padding-bottom: 45px;
+
+	.info-banner__inner {
+		display: flex;
+		align-items: center;
+		gap: 1rem 1.25rem;
+		min-width: 0;
+	}
+
+	.info-banner__icon {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 0;
+	}
+
+	.info-banner__icon-img {
+		display: block;
+		width: auto;
+		height: auto;
+		max-width: 48px;
+		max-height: 53px;
+		object-fit: contain;
+	}
+
+	.info-banner__text {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	// Typography from h2.xsmaller; color + label casing for this strip.
+	h2.xsmaller.info-banner__heading {
+		margin: 0 0 0.35rem;
+		color: $color__hero_preheading;
+		text-transform: uppercase;
+
+		span {
+			color: inherit;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.info-banner__copy {
+		margin: 0;
+		font-family: $font__main;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1.5;
+		color: $white;
+
+		p {
+			margin: 0;
+			font-weight: 700;
+
+			&:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		.info-banner__inner {
+			align-items: flex-start;
+		}
+
+		.info-banner__icon {
+			padding-top: 0.15rem;
+		}
+	}
+}
