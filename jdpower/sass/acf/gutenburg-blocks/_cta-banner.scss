@@ -1,0 +1,194 @@
+section.cta-banner {
+	position: relative;
+	text-align: center;
+
+	.cta-banner__inner {
+		max-width: 100%;
+
+		>*+* {
+			margin-top: 25px;
+		}
+	}
+
+	.cta-banner__heading {
+		margin: 0;
+		color: $color__text-main;
+	}
+
+	.cta-banner__copy {
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+		color: $color__text-main;
+
+		p {
+			margin: 0 0 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.cta-banner__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+
+		@include media-breakpoint-down(sm) {
+			flex-direction: column;
+		}
+	}
+
+	.cta-banner__form {
+		max-width: 720px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: left;
+
+		iframe {
+			max-width: 100%;
+		}
+	}
+
+	dialog.cta-banner__dialog {
+		max-width: min(92vw, 780px);
+		width: 100%;
+		padding: 0;
+		border: none;
+		border-radius: 5px;
+		background: #ececec;
+		color: $color__text-main;
+		box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+
+		&::backdrop {
+			background: rgba(0, 0, 0, 0.45);
+		}
+	}
+
+	.cta-banner__dialog-surface {
+		padding: 20px;
+		position: relative;
+	}
+
+	.cta-banner__dialog-head {
+		margin-bottom: 0.25rem;
+
+		&--has-heading {
+			margin-bottom: 0.75rem;
+			padding-right: 0;
+		}
+	}
+
+	// Typography: global `h2.large` (see base/typography/_headings.scss); overrides `h2.large` transforms/color for modal.
+	.cta-banner__dialog-heading {
+		margin: 20px 0 0;
+		padding-left: 20px;
+		padding-right: 20px;
+		font-weight: 900;
+		text-align: center;
+		text-transform: uppercase;
+		color: $background_dark;
+	}
+
+	.cta-banner__dialog-close {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 1;
+		appearance: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
+		padding: 0.5rem;
+		border: 0;
+		background: transparent;
+		line-height: 0;
+		cursor: pointer;
+		color: $color__text-main;
+		opacity: 0.75;
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 2px;
+		}
+	}
+
+	.cta-banner__dialog-close-icon {
+		display: block;
+		line-height: 0;
+
+		svg {
+			display: block;
+			width: 25px;
+			height: 25px;
+		}
+	}
+
+	.cta-banner__form--modal {
+		max-width: none;
+		margin: 0;
+	}
+
+	&.cta-banner--form-embed {
+		text-align: left;
+
+		.cta-banner__inner {
+			>*+* {
+				margin-top: 0;
+			}
+		}
+
+		.cta-banner__columns {
+			align-items: flex-start;
+			row-gap: 2rem;
+		}
+
+		.cta-banner__content {
+			text-align: left;
+
+			>*+* {
+				margin-top: 25px;
+			}
+		}
+
+		.cta-banner__heading {
+			text-align: left;
+		}
+
+		.cta-banner__copy {
+			max-width: none;
+			margin-left: 0;
+			margin-right: 0;
+			text-align: left;
+		}
+
+		.cta-banner__form {
+			max-width: none;
+			margin-left: 0;
+			margin-right: 0;
+			align-self: flex-start;
+			text-align: left;
+		}
+	}
+
+	&.cta-banner--tone-dark {
+
+		.cta-banner__heading,
+		.cta-banner__copy {
+			color: $white;
+		}
+
+		.cta-banner__copy a {
+			color: $white;
+		}
+	}
+}

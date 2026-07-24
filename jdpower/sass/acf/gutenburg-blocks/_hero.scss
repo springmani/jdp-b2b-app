@@ -1,0 +1,565 @@
+@keyframes hero-block-ken-burns {
+    from {
+        transform: scale(1.1);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+section.hero-block {
+    position: relative;
+    display: flex;
+
+    // Vertical alignment field: positions the container within the hero (all layouts).
+    &.hero-block--valign-top {
+        align-items: flex-start;
+    }
+
+    &.hero-block--valign-center {
+        align-items: center;
+    }
+
+    &.hero-block--valign-bottom {
+        align-items: flex-end;
+    }
+
+    &.hero-block--size-small {
+        min-height: auto;
+        padding: 60px 0;
+    }
+
+    &.hero-block--size-medium {
+        min-height: 700px;
+        padding: 100px 0;
+    }
+
+    &.hero-block--size-large {
+        min-height: 85vh;
+        padding: 120px 0;
+    }
+
+    // 404 template only (`404.php`): compact hero vs block Hero sizes.
+    &.hero-block--404 {
+        min-height: 400px;
+        padding: 60px 0;
+    }
+
+    &>.container {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+
+        &>.row {
+            position: relative;
+        }
+    }
+
+    .hero-block__backdrop {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .hero-block__bg-img {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+        object-fit: cover;
+    }
+
+    &.hero-block--ken-burns .hero-block__bg-img {
+        animation-name: hero-block-ken-burns;
+        animation-duration: 7s;
+        animation-fill-mode: forwards;
+    }
+
+    &.hero-block--ken-burns .hero-block__bg-img--center {
+        transform-origin: center center;
+    }
+
+    &.hero-block--ken-burns .hero-block__bg-img--top {
+        transform-origin: center top;
+    }
+
+    &.hero-block--ken-burns .hero-block__bg-img--bottom {
+        transform-origin: center bottom;
+    }
+
+    .hero-block__bg-img--center {
+        object-position: center center;
+    }
+
+    .hero-block__bg-img--top {
+        object-position: top center;
+    }
+
+    .hero-block__bg-img--bottom {
+        object-position: bottom center;
+    }
+
+    .hero-block__overlay {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .hero-block__overlay--dark {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    }
+
+    .hero-block__overlay--medium {
+        background: linear-gradient(90deg, #102330 0%, rgba(0, 131, 143, 0.25) 100%);
+    }
+
+    .hero-block__overlay--light {
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #102330 100%);
+    }
+
+    video {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        inset: 0;
+    }
+
+    h1,
+    .hero-block__subheading,
+    .hero-block__copy {
+        color: $black;
+    }
+
+    .hero-block__copy {
+        color: $color__text-main;
+
+        p {
+            margin: 0 0 12px;
+            font-size: 20px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .hero-block__heading {
+        margin: 0;
+    }
+
+    .hero-block__pre.preheading {
+        margin-bottom: 25px;
+        color: $brand_color_1;
+    }
+
+    &.hero-block--has-bg-image .hero-block__pre.preheading {
+        color: $color__hero_preheading;
+    }
+
+    .hero-block__pre+h1,
+    .hero-block__pre+.hero-block__heading {
+        margin-top: 25px;
+    }
+
+    .hero-block__pre+.hero-block__subheading {
+        margin-top: 25px;
+    }
+
+    .hero-block__heading+.hero-block__subheading {
+        margin-top: 25px;
+        margin-bottom: 0px;
+        text-transform: initial;
+    }
+
+    .hero-block__heading+.hero-block__copy {
+        margin-top: 25px;
+    }
+
+    .hero-block__subheading+.hero-block__copy {
+        margin-top: 25px;
+    }
+
+    .hero-block__subheading+.hero-block__btn {
+        margin-top: 25px;
+    }
+
+    .hero-block__btn {
+        margin-top: 25px;
+    }
+
+    .hero-block__single-row .hero-content>.hero-block__btn:first-child {
+        margin-top: 0;
+    }
+
+    @include media-breakpoint-up(lg) {
+        .hero-content.hero-block__headline-col {
+            padding-right: 30px;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        .hero-content.hero-block__headline-col {
+            padding-right: 100px;
+        }
+    }
+
+    .hero-block__figure {
+        display: block;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .hero-block__img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &.text-light {
+
+        h1,
+        .hero-block__subheading,
+        .hero-block__copy {
+            color: $white;
+        }
+    }
+
+    &.text-dark {
+
+        h1,
+        .hero-block__subheading,
+        .hero-block__copy {
+            color: $black;
+        }
+    }
+
+    &.hero-block--tone-dark {
+
+        h1,
+        .hero-block__subheading,
+        .hero-block__copy {
+            color: $white;
+        }
+
+        .hero-block__copy a {
+            color: $white;
+        }
+    }
+
+    &.hero-block--tone-light {
+
+        h1,
+        .hero-block__subheading,
+        .hero-block__copy {
+            color: $color__text-main;
+        }
+    }
+
+    // Content max width (Stats scale; left-aligned in container).
+    &.hero-block--content-max-large {
+
+        .hero-block__single-row,
+        .hero-block__copy-right-row,
+        .hero-block__row--column-image {
+            max-width: 1200px;
+        }
+    }
+
+    &.hero-block--content-max-medium {
+
+        .hero-block__single-row,
+        .hero-block__copy-right-row,
+        .hero-block__row--column-image {
+            max-width: 960px;
+        }
+    }
+
+    &.hero-block--content-max-small {
+
+        .hero-block__single-row,
+        .hero-block__copy-right-row,
+        .hero-block__row--column-image {
+            max-width: 720px;
+        }
+    }
+
+    // Copy right: pre row → Bootstrap row (7/5) for headline + copy → CTA row.
+    &.hero-block--copy-right {
+
+        .hero-block__copy-right-row {
+            align-items: stretch;
+        }
+
+        @include media-breakpoint-down(xl) {
+            .hero-block__headline-copy-row .hero-block__copy-col {
+                margin-top: 25px;
+            }
+        }
+
+        .hero-block__headline-copy-wrap {
+            min-width: 0;
+        }
+
+        .hero-block__headline-copy-row {
+            min-width: 0;
+        }
+
+        .hero-block__headline-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-width: 0;
+        }
+
+        .hero-block__copy-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-width: 0;
+
+            &.hero-block__copy-valign--top {
+                justify-content: flex-start;
+            }
+
+            &.hero-block__copy-valign--center {
+                justify-content: center;
+            }
+
+            &.hero-block__copy-valign--bottom {
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    // Column image: desktop = 2-column grid (text stack + media); mobile = pre / media / body stack.
+    &.hero-block--column-image {
+
+        .hero-block__row--column-image--center-pre {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+
+            @include media-breakpoint-down(lg) {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-areas:
+                    "pre"
+                    "media"
+                    "body";
+
+                .hero-block__column-image-stack {
+                    display: contents;
+                }
+
+                .hero-block__col-image-pre {
+                    grid-area: pre;
+                }
+
+                .hero-block__col-image-body {
+                    grid-area: body;
+                }
+
+                .hero-block__media-col {
+                    grid-area: media;
+                }
+
+                .hero-block__col-image-body .hero-block__heading {
+                    margin-top: 25px;
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                display: grid;
+                grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+                column-gap: 40px;
+                grid-template-areas: "stack media";
+
+                .hero-block__column-image-stack {
+                    grid-area: stack;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    min-width: 0;
+                }
+
+                .hero-block__media-col {
+                    grid-area: media;
+                    min-width: 0;
+                }
+            }
+        }
+
+        &.hero-block--column-image-valign-center .hero-block__row--column-image--center-pre {
+            @include media-breakpoint-up(lg) {
+                align-items: center;
+            }
+        }
+
+        &.hero-block--column-image-valign-top .hero-block__row--column-image--center-pre {
+            @include media-breakpoint-up(lg) {
+                align-items: start;
+            }
+        }
+
+        &.hero-block--column-image-valign-bottom .hero-block__row--column-image--center-pre {
+            @include media-breakpoint-up(lg) {
+                align-items: stretch;
+
+                .hero-block__column-image-stack {
+                    justify-content: flex-end;
+                }
+
+                .hero-block__media-col--align-bottom {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                }
+
+                .hero-block__col-image-body .hero-block__btn {
+                    align-self: flex-start;
+                }
+            }
+        }
+
+        .hero-block__row--column-image {
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 0;
+            min-width: 0;
+
+            @include media-breakpoint-up(lg) {
+                column-gap: 40px;
+            }
+
+            // Horizontal gap only at lg+; zero Bootstrap column padding on this row.
+            >* {
+                margin-top: 0;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        .hero-block__media-col {
+            min-width: 0;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    section.hero-block.hero-block--ken-burns .hero-block__bg-img {
+        animation: none;
+        transform: scale(1);
+    }
+}
+
+// Transparent header over hero (nav+ only — matches desktop nav in _navigation.scss / 1440px).
+// Below nav, keep default header / logo / hamburger colors.
+// Solid bar when menu open, hover/focus, scroll, or .site-header--nav-solid.
+// body.has-transparent-nav = leading hero only.
+@include media-breakpoint-up(nav) {
+    body.has-transparent-nav .site-header:not(:has(.main-navigation.toggled)):not(:hover):not(:focus-within):not(.site-header--nav-solid) {
+        background: linear-gradient(0deg, rgba(16, 35, 48, 0.00) 0%, rgba(16, 35, 48, 0.75) 100%);
+        box-shadow: none;
+    }
+
+    // Same duration/easing for bar background, padding, and mega offset (hero `transition` replaces
+    // .site-header’s from _site.scss; include `--header-mega-pad-bridge`).
+    body.has-transparent-nav .site-header {
+        transition:
+            background $site-header-layout-timing,
+            padding-top $site-header-layout-timing,
+            padding-bottom $site-header-layout-timing,
+            --header-mega-pad-bridge $site-header-layout-timing,
+            box-shadow $site-header-layout-timing;
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
+
+        .main-navigation #primary-menu>li>a {
+            transition: color $site-header-layout-timing;
+        }
+
+        .main-navigation .menu-toggle span {
+            transition: background-color $site-header-layout-timing;
+        }
+
+        .site-branding .logo svg path:nth-of-type(n+3) {
+            transition: fill $site-header-layout-timing;
+        }
+    }
+
+    // Dark hero: light nav links, hamburger, logo paths 3–7 (paths as siblings in one SVG group).
+    body.has-transparent-nav .site-header:not(:has(.main-navigation.toggled)):not(:hover):not(:focus-within):not(.site-header--nav-solid) {
+
+        // Plain nav links and search icon (SVG uses currentColor) — not the language switcher trigger.
+        .main-navigation #primary-menu>li>a:not(.nav-menu-button):not(.jdpower-lang-switcher-trigger) {
+            color: $white;
+
+            &:hover,
+            &:focus {
+                color: $brand_color_1;
+            }
+        }
+
+        .main-navigation #primary-menu>li.mega-menu-parent:hover>a:not(.nav-menu-button),
+        .main-navigation #primary-menu>li.mega-menu-parent:focus-within>a:not(.nav-menu-button) {
+            color: $brand_color_1;
+        }
+
+        .main-navigation #primary-menu>li.pll-parent-menu-item>a.jdpower-lang-switcher-trigger {
+            color: $white;
+
+            &:hover,
+            &:focus,
+            &:focus-visible {
+                color: $white;
+            }
+        }
+
+        // Primary nav buttons: white border on transparent header (solid teal when bar is solid / scrolled).
+        .main-navigation #primary-menu>li.mega-menu-content-type-button>a.nav-menu-button--primary.btn,
+        .main-navigation .mega-menu-content-type-button>a.nav-menu-button--primary.btn {
+            background: transparent;
+            border-color: $white;
+            color: $white;
+
+            &:visited {
+                color: $white;
+            }
+
+            &:hover {
+                background: $white;
+                border-color: $white;
+                color: $black;
+            }
+
+            &:focus {
+                background: $white;
+                border-color: $white;
+                color: $black;
+            }
+        }
+
+        .main-navigation .menu-toggle span {
+            background-color: $white;
+        }
+
+        // Last five of seven paths when all paths share one parent (equivalent to :nth-of-type(n+3)).
+        .site-branding .logo svg path:nth-of-type(n+3) {
+            fill: $white;
+        }
+    }
+}

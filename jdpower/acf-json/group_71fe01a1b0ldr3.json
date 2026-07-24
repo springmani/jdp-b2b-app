@@ -1,0 +1,164 @@
+{
+    "key": "group_71fe01a1b0ldr3",
+    "title": "Leader profile",
+    "fields": [
+        {
+            "key": "field_71fe_ld_cpt01",
+            "label": "First Name",
+            "name": "leader_first_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_71fe_ld_cpt02",
+            "label": "Last Name",
+            "name": "leader_last_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_71fe_ld_cpt03",
+            "label": "Title",
+            "name": "leader_job_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Job title or role (shown on cards and in the bio popup).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_71fe_ld_cpt06",
+            "label": "Featured",
+            "name": "leader_featured",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Featured leaders are listed first in the Leaders block and use a larger card that spans the height of two standard rows.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Mark as featured",
+            "default_value": 0,
+            "translations": "copy_once",
+            "pll_default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Yes",
+            "ui_off_text": "No",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_71fe_ld_cpt04",
+            "label": "Bio",
+            "name": "leader_bio",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Shown in the popup when a visitor opens this leader’s biography.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_71fe_ld_cpt05",
+            "label": "Bio File",
+            "name": "leader_bio_file",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "Optional downloadable file (PDF, etc.) linked as “Download Bio” in the popup.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "pdf,doc,docx",
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "leader"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

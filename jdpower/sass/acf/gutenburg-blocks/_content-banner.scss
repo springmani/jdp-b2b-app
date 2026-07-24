@@ -1,0 +1,85 @@
+section.content-banner {
+	position: relative;
+	text-align: center;
+
+	&.bg-dark {
+		background-color: #0a1f26;
+		background-image: radial-gradient(ellipse 120% 80% at 50% 100%,
+				rgba(0, 131, 143, 0.18) 0%,
+				transparent 55%);
+	}
+
+	&.content-banner--bg-gradient {
+		background: radial-gradient(50% 50% at 50% 100%, $brand_color_1 0%, var(--Slate-Blue, #102330) 100%);
+	}
+
+	.content-banner__inner {
+		max-width: 100%;
+	}
+
+	.content-banner__heading {
+		margin: 0 auto;
+		max-width: 1220px;
+		color: $color__text-headings;
+	}
+
+	.content-banner__heading + .content-banner__copy {
+		margin-top: 25px;
+	}
+
+	.content-banner__inner > .content-banner__btn:not(:first-child),
+	.content-banner__inner > .content-banner__link:not(:first-child) {
+		margin-top: 25px;
+	}
+
+	.content-banner__copy {
+		max-width: 1220px;
+		margin-left: auto;
+		margin-right: auto;
+		color: $color__text-main;
+
+		p {
+			margin: 0 0 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&.content-banner--tone-dark {
+
+		.content-banner__heading {
+			color: $white;
+		}
+
+		.content-banner__copy {
+			color: $white;
+			opacity: 0.9;
+		}
+
+		.content-banner__copy a {
+			color: $white;
+		}
+
+		.content-banner__link {
+			color: $white;
+		}
+	}
+
+	&.content-banner--tone-medium,
+	&.content-banner--tone-light {
+
+		.content-banner__heading {
+			color: $background_dark;
+		}
+
+		.content-banner__copy a {
+			color: inherit;
+		}
+
+		.content-banner__link {
+			color: $color__link;
+		}
+	}
+}

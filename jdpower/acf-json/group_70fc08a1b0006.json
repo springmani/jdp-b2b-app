@@ -1,0 +1,696 @@
+{
+    "key": "group_70fc08a1b0006",
+    "title": "[Block] - Featured Segments",
+    "fields": [
+        {
+            "key": "field_70fc08a1b0601",
+            "label": "Setup",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc08a1b0602",
+            "label": "Padding Top",
+            "name": "featured_segments_padding_top",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0603",
+            "label": "Padding Bottom",
+            "name": "featured_segments_padding_bottom",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0604",
+            "label": "Background",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc08a1b0605",
+            "label": "Background",
+            "name": "featured_segments_background_tone",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "medium": "Medium",
+                "light": "Light"
+            },
+            "default_value": "light",
+            "translations": "copy_once",
+            "pll_default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0606",
+            "label": "Content",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc08a1b0618",
+            "label": "Intro Column Ratio",
+            "name": "featured_segments_intro_column_ratio",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Width split for the heading and copy columns when both are set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "50_50": "50\/50",
+                "60_40": "60\/40",
+                "70_30": "70\/30"
+            },
+            "default_value": "50_50",
+            "translations": "copy_once",
+            "pll_default_value": "50_50",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0607",
+            "label": "Pre-Heading",
+            "name": "featured_segments_pre_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0608",
+            "label": "Heading",
+            "name": "featured_segments_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Wrap text in span tags to highlight it. Example: <code>&lt;span&gt;highlighted text&lt;\/span&gt;<\/code>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_77fs_heading_size01",
+            "label": "Heading Size",
+            "name": "featured_segments_heading_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "large": "Large",
+                "medium": "Medium",
+                "small": "Small",
+                "xsmall": "X Small",
+                "xxsmall": "XX Small"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0609",
+            "label": "Copy",
+            "name": "featured_segments_copy",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "When set, appears in the column beside the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_70fc08a1b0619",
+            "label": "CTA Link",
+            "name": "featured_segments_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Optional arrow link shown below the card grid.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_77fca01b0seg1",
+            "label": "Animate cards",
+            "name": "featured_segments_animate_cards",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Animate cards when they come into view. Turn off to show cards immediately.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "translations": "copy_once",
+            "pll_default_value": 1,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off"
+        },
+        {
+            "key": "field_70fc08a1b0610",
+            "label": "Source",
+            "name": "featured_segments_source",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "manual_selection": "Manual Selection",
+                "custom": "Custom",
+                "dynamic_by_industry": "Dynamic by Industry"
+            },
+            "default_value": "manual_selection",
+            "translations": "copy_once",
+            "pll_default_value": "manual_selection",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0617",
+            "label": "Column Size",
+            "name": "featured_segments_column_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Number of columns per row in the card grid on large screens. Cards wrap to additional rows as needed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "3": "3",
+                "4": "4"
+            },
+            "default_value": "3",
+            "translations": "copy_once",
+            "pll_default_value": "3",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0620",
+            "label": "Industry",
+            "name": "featured_segments_industry",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Published segments linked to this industry, in menu order then title. Use Number to Show to cap how many appear. Optionally add Fallback segments when the industry query is sparse.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0610",
+                        "operator": "==",
+                        "value": "dynamic_by_industry"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "post_type": [
+                "industries"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "return_format": "id",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_70fc08a1b0622",
+            "label": "Fallback segments",
+            "name": "featured_segments_fallback_segments",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Optional. Manually chosen Segment posts shown in addition to the industry query. Useful when an industry has few or no matching segments to display.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0610",
+                        "operator": "==",
+                        "value": "dynamic_by_industry"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "post_type": [
+                "segments"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_70fc08a1b0621",
+            "label": "Number to Show",
+            "name": "featured_segments_count",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Maximum segment cards from the selected industry (1–12). Fallback segments are added in addition to this limit. Manual Selection and Custom ignore this limit. Leave unset on older blocks to show all matching segments.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0610",
+                        "operator": "==",
+                        "value": "dynamic_by_industry"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 12,
+            "translations": "copy_once",
+            "pll_default_value": 12,
+            "min": 1,
+            "max": 12,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0611",
+            "label": "Segments",
+            "name": "featured_segments_selected_segments",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Select segments in display order. Card text comes from each segment Card Details fields.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0610",
+                        "operator": "==",
+                        "value": "manual_selection"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "post_type": [
+                "segments"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_70fc08a1b0612",
+            "label": "Cards",
+            "name": "featured_segments_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0610",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 12,
+            "collapsed": "field_70fc08a1b0614",
+            "button_label": "Add Card",
+            "rows_per_page": 20,
+            "allow_in_bindings": 0,
+            "sub_fields": [
+                {
+                    "key": "field_70fc08a1b0613",
+                    "label": "Image",
+                    "name": "featured_segments_card_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_70fc08a1b0614",
+                    "label": "Heading",
+                    "name": "featured_segments_card_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_70fc08a1b0615",
+                    "label": "Sub Heading",
+                    "name": "featured_segments_card_sub_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_70fc08a1b0616",
+                    "label": "Copy",
+                    "name": "featured_segments_card_copy",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-featured-segments"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1781744400,
+    "pll_display_field_instructions": 0
+}

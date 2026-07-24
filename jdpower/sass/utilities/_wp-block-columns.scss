@@ -1,0 +1,6 @@
+/* Core Columns: optional block style "Reverse stack on mobile" (781px matches core breakpoint). */
+@media (max-width: 781px) {
+	.wp-block-columns.is-style-reverse-stack-mobile:not(.is-not-stacked-on-mobile) {
+		flex-direction: column-reverse;
+	}
+}

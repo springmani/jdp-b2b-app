@@ -1,0 +1,45 @@
+/*
+ * Editor-only styles (Gutenberg block editor).
+ * Adjust max-width to match your theme or preferred editing width.
+ */
+
+/* Main column width in the block editor */
+.wp-block-post-title{
+	font-size: 48px;
+	font-weight: 700;
+    line-height: 1;
+    text-transform: inherit;
+    color: inherit;
+}
+
+.wp-block-post-title span {
+	color: inherit;
+}
+
+.editor-styles-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.editor-styles-wrapper .wp-block-embed .wp-block-embed__wrapper  {
+	padding: unset;
+}
+.editor-styles-wrapper .wp-block .components-button{
+	border: unset;
+	border-radius: unset;
+	font-size: unset;
+	font-weight: unset;
+	letter-spacing: unset;
+	text-transform: unset;
+	text-decoration: unset;
+	cursor: unset;	
+}
+
+/* Disable content links in the canvas; keep ACF field actions (add/edit/remove) clickable. */
+.editor-styles-wrapper .wp-block a:not([data-name]) {
+    pointer-events: none;
+}
+
+/* Block Overrides */
+.editor-styles-wrapper .wp-block section.featured-insights-block.featured-insights-block--layout-carousel .featured-insights-block__carousel-shell {
+    margin-left: unset;
+}

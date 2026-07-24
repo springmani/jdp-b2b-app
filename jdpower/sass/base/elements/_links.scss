@@ -1,0 +1,79 @@
+// Arrow for .arrow-link — see images/arrow-link.svg (white stroke for mask; icon fill is always brand)
+$arrow-link-icon-mask: url("images/arrow-link.svg");
+
+a {
+	color: $brand_color_1;
+	transition: all .3s;
+
+	&:visited {
+		color: $color__cta_teal_hover;
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: $color__cta_teal_hover;
+	}
+
+	&:focus {
+		outline: thin dotted;
+	}
+
+	&:hover,
+	&:active {
+		outline: 0;
+	}
+}
+
+a.arrow-link,
+.arrow-link {
+	font-family: $font__header;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 900;
+	line-height: 150%;
+	letter-spacing: -0.36px;
+	text-transform: uppercase;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.75rem;
+	color: $brand_color_2;
+
+	&::after {
+		content: '';
+		display: block;
+		flex-shrink: 0;
+		width: 7px;
+		height: 11px;
+		margin-top: 0.05em;
+		background-color: $brand_color_2;
+		-webkit-mask-image: $arrow-link-icon-mask;
+		mask-image: $arrow-link-icon-mask;
+		-webkit-mask-size: contain;
+		mask-size: contain;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center;
+	}
+}
+
+a.arrow-link {
+	transition: all .3s;
+	color: $brand_color_2;
+
+	&:visited,
+	&:hover,
+	&:focus,
+	&:active {
+		color: $brand_color_2;
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+}

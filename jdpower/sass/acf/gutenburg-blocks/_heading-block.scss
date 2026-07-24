@@ -1,0 +1,128 @@
+.heading-block {
+	// Max width (matches Stats intro: full / 1200 / 960 / 720).
+	.heading-block__inner {
+		width: 100%;
+	}
+
+	// Max-width box placement follows Text align: left/right hug column edges; center stays centered.
+	&.text-start {
+		&.heading-block--max-large .heading-block__inner {
+			max-width: 1200px;
+			margin-left: 0;
+			margin-right: auto;
+		}
+
+		&.heading-block--max-medium .heading-block__inner {
+			max-width: 960px;
+			margin-left: 0;
+			margin-right: auto;
+		}
+
+		&.heading-block--max-small .heading-block__inner {
+			max-width: 720px;
+			margin-left: 0;
+			margin-right: auto;
+		}
+	}
+
+	&.text-center {
+		&.heading-block--max-large .heading-block__inner {
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		&.heading-block--max-medium .heading-block__inner {
+			max-width: 960px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		&.heading-block--max-small .heading-block__inner {
+			max-width: 720px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	&.text-end {
+		&.heading-block--max-large .heading-block__inner {
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: 0;
+		}
+
+		&.heading-block--max-medium .heading-block__inner {
+			max-width: 960px;
+			margin-left: auto;
+			margin-right: 0;
+		}
+
+		&.heading-block--max-small .heading-block__inner {
+			max-width: 720px;
+			margin-left: auto;
+			margin-right: 0;
+		}
+	}
+
+	.heading-block__pre {
+		&--small {
+			font-size: 18px;
+			line-height: 120%;
+			letter-spacing: -0.36px;
+
+			@include media-breakpoint-down(sm) {
+				font-size: 16px;
+				letter-spacing: -0.32px;
+			}
+		}
+
+		&--large {
+			font-size: 30px;
+			line-height: 115%;
+			letter-spacing: -0.6px;
+
+			@include media-breakpoint-down(sm) {
+				font-size: 24px;
+				letter-spacing: -0.48px;
+			}
+		}
+	}
+
+	.heading-block__title:not(.preheading) {
+		margin: 0;
+		color: $color__text-main;
+	}
+
+	// Dark (default): theme body/heading text colors on titles above — for light backgrounds.
+
+	// Light: white text for dark section backgrounds.
+	&--light {
+		.heading-block__title:not(.preheading) {
+			color: $white;
+
+			span {
+				color: $brand_color_1;
+			}
+		}
+
+		.heading-block__title.preheading {
+			color: $white;
+		}
+	}
+
+	// Teal: brand primary for headings; highlights use secondary brand for contrast.
+	&--teal {
+		.heading-block__title:not(.preheading) {
+			color: $brand_color_1;
+
+			span {
+				color: $brand_color_2;
+			}
+		}
+
+		.heading-block__title.preheading {
+			color: $brand_color_1;
+		}
+	}
+}

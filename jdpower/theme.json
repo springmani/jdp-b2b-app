@@ -1,0 +1,383 @@
+{
+  "version": 3,
+  "settings": {
+    "appearanceTools": false,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "1600px",
+      "wideSize": "1600px",
+      "allowCustomContentAndWideSize": false
+    },
+    "border": {
+      "color": false,
+      "radius": false,
+      "style": false,
+      "width": false
+    },
+    "dimensions": {
+      "aspectRatio": false,
+      "defaultAspectRatios": false,
+      "height": false,
+      "minHeight": false,
+      "width": false
+    },
+    "background": {
+      "backgroundImage": false,
+      "backgroundSize": false
+    },
+    "position": {
+      "sticky": false
+    },
+    "color": {
+      "custom": false,
+      "customGradient": false,
+      "customDuotone": false,
+      "defaultDuotone": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "gradients": [],
+      "palette": [
+        { "slug": "white", "color": "#ffffff", "name": "White" },
+        { "slug": "black", "color": "#000000", "name": "Black" },
+        { "slug": "grey", "color": "#ECECEC", "name": "Grey" },
+        { "slug": "teal", "color": "#00838F", "name": "Teal" }
+      ]
+    },
+    "typography": {
+      "customFontSize": false,
+      "defaultFontSizes": false,
+      "fontSizes": [
+        {
+          "name": "Medium",
+          "slug": "medium",
+          "size": "36px"
+        }
+      ],
+      "fluid": false,
+      "lineHeight": false,
+      "dropCap": false,
+      "fontStyle": false,
+      "fontWeight": false,
+      "letterSpacing": false,
+      "textDecoration": false,
+      "textTransform": false,
+      "textIndent": false
+    },
+    "spacing": {
+      "blockGap": false,
+      "margin": false,
+      "padding": false,
+      "customSpacingSize": false,
+      "defaultSpacingSizes": false,
+      "units": ["px"],
+      "spacingSizes": [
+        { "name": "Small", "slug": "section-small", "size": "30px" },
+        { "name": "Medium", "slug": "section-medium", "size": "60px" },
+        { "name": "Default", "slug": "section-default", "size": "100px" },
+        { "name": "Large", "slug": "section-large", "size": "120px" }
+      ]
+    },
+    "shadow": {
+      "presets": [],
+      "defaultPresets": false
+    },
+    "blocks": {
+      "core/heading": {
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        },
+        "dimensions": {
+          "aspectRatio": false,
+          "height": false,
+          "minHeight": false,
+          "width": false
+        },
+        "shadow": false,
+        "typography": {
+          "customFontSize": false,
+          "defaultFontSizes": false,
+          "fontSizes": [],
+          "lineHeight": false,
+          "dropCap": false,
+          "fontStyle": false,
+          "fontWeight": false,
+          "letterSpacing": false,
+          "textDecoration": false,
+          "textTransform": false,
+          "textIndent": false
+        },
+        "spacing": {
+          "margin": false,
+          "padding": false,
+          "blockGap": false
+        }
+      },
+      "core/paragraph": {
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        },
+        "dimensions": {
+          "aspectRatio": false,
+          "height": false,
+          "minHeight": false,
+          "width": false
+        },
+        "shadow": false,
+        "typography": {
+          "customFontSize": false,
+          "defaultFontSizes": false,
+          "fontSizes": [],
+          "lineHeight": false,
+          "dropCap": false,
+          "fontStyle": false,
+          "fontWeight": false,
+          "letterSpacing": false,
+          "textDecoration": false,
+          "textTransform": false,
+          "textIndent": false
+        },
+        "spacing": {
+          "margin": false,
+          "padding": false,
+          "blockGap": false
+        }
+      },
+      "core/group": {
+        "layout": {
+          "allowEditing": false
+        },
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        },
+        "dimensions": {
+          "aspectRatio": false,
+          "height": false,
+          "minHeight": false,
+          "width": false
+        },
+        "shadow": false,
+        "typography": {
+          "customFontSize": false,
+          "defaultFontSizes": false,
+          "fontSizes": [],
+          "lineHeight": false,
+          "dropCap": false,
+          "fontStyle": false,
+          "fontWeight": false,
+          "letterSpacing": false,
+          "textDecoration": false,
+          "textTransform": false,
+          "textIndent": false
+        },
+        "spacing": {
+          "margin": false,
+          "padding": true,
+          "blockGap": false
+        }
+      },
+      "core/list": {
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        },
+        "dimensions": {
+          "aspectRatio": false,
+          "height": false,
+          "minHeight": false,
+          "width": false
+        },
+        "shadow": false,
+        "typography": {
+          "customFontSize": false,
+          "defaultFontSizes": false,
+          "fontSizes": [],
+          "lineHeight": false,
+          "dropCap": false,
+          "fontStyle": false,
+          "fontWeight": false,
+          "letterSpacing": false,
+          "textDecoration": false,
+          "textTransform": false,
+          "textIndent": false
+        },
+        "spacing": {
+          "margin": false,
+          "padding": false,
+          "blockGap": false
+        }
+      },
+      "core/buttons": {
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        },
+        "dimensions": {
+          "aspectRatio": false,
+          "height": false,
+          "minHeight": false,
+          "width": false
+        },
+        "shadow": false,
+        "typography": {
+          "customFontSize": false,
+          "defaultFontSizes": false,
+          "fontSizes": [],
+          "lineHeight": false,
+          "dropCap": false,
+          "fontStyle": false,
+          "fontWeight": false,
+          "letterSpacing": false,
+          "textDecoration": false,
+          "textTransform": false,
+          "textIndent": false
+        },
+        "spacing": {
+          "margin": false,
+          "padding": false,
+          "blockGap": false
+        }
+      },
+      "core/separator": {
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        },
+        "dimensions": {
+          "aspectRatio": false,
+          "height": false,
+          "minHeight": false,
+          "width": false
+        },
+        "shadow": false,
+        "spacing": {
+          "margin": false,
+          "padding": false,
+          "blockGap": false
+        }
+      },
+      "core/columns": {
+        "layout": {
+          "allowEditing": false
+        },
+        "shadow": false,
+        "typography": {
+          "customFontSize": false,
+          "defaultFontSizes": false,
+          "fontSizes": [],
+          "lineHeight": false,
+          "dropCap": false,
+          "fontStyle": false,
+          "fontWeight": false,
+          "letterSpacing": false,
+          "textDecoration": false,
+          "textTransform": false,
+          "textIndent": false
+        },
+        "spacing": {
+          "margin": false,
+          "padding": false,
+          "blockGap": false
+        },
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        },
+        "dimensions": {
+          "aspectRatio": false,
+          "height": false,
+          "minHeight": false,
+          "width": false
+        }
+      }
+    }
+  },
+  "styles": {
+    "elements": {
+      "h1": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "1.5rem",
+            "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "h2": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "1.25rem",
+            "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "h3": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "1rem",
+            "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "h4": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "0.875rem",
+            "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "h5": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "0.75rem",
+            "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "h6": {
+        "spacing": {
+          "margin": {
+            "top": "0",
+            "bottom": "0.75rem",
+            "left": "0",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "blocks": {
+      "core/columns": {
+        "spacing": {
+          "blockGap": "1.25rem",
+          "margin": { "top": "0", "bottom": "0" }
+        }
+      }
+    }
+  }
+}

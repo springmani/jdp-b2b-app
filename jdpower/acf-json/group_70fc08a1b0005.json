@@ -1,0 +1,691 @@
+{
+    "key": "group_70fc08a1b0005",
+    "title": "[Block] - Featured Solutions",
+    "fields": [
+        {
+            "key": "field_70fc08a1b0501",
+            "label": "Setup",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc08a1b0502",
+            "label": "Padding Top",
+            "name": "featured_solutions_padding_top",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0503",
+            "label": "Padding Bottom",
+            "name": "featured_solutions_padding_bottom",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0504",
+            "label": "Background",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc08a1b0505",
+            "label": "Background",
+            "name": "featured_solutions_background_tone",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "medium": "Medium",
+                "light": "Light"
+            },
+            "default_value": "light",
+            "translations": "copy_once",
+            "pll_default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0506",
+            "label": "Content",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_70fc08a1b0507",
+            "label": "Pre-Heading",
+            "name": "featured_solutions_pre_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0508",
+            "label": "Heading",
+            "name": "featured_solutions_heading",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Wrap text in span tags to highlight it. Example: <code>&lt;span&gt;highlighted text&lt;\/span&gt;<\/code>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_77fsol_heading_size01",
+            "label": "Heading Size",
+            "name": "featured_solutions_heading_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "large": "Large",
+                "medium": "Medium",
+                "small": "Small",
+                "xsmall": "X Small",
+                "xxsmall": "XX Small"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b051a",
+            "label": "Show region selector",
+            "name": "featured_solutions_show_region_selector",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "When enabled, visitors can filter solution cards by product region. Turn off to hide the dropdown; optional copy below still shows when filled in.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "translations": "copy_once",
+            "pll_default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_70fc08a1b0509",
+            "label": "Copy",
+            "name": "featured_solutions_copy",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Optional body copy beside the region selector (when shown), directly below the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_70fc08a1b0519",
+            "label": "CTA Link",
+            "name": "featured_solutions_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Optional arrow link shown below the card grid.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_77fca01b0sol1",
+            "label": "Animate cards",
+            "name": "featured_solutions_animate_cards",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Animate cards when they come into view. Turn off to show cards immediately.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "translations": "copy_once",
+            "pll_default_value": 1,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off"
+        },
+        {
+            "key": "field_70fc08a1b0510",
+            "label": "Source",
+            "name": "featured_solutions_source",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Manual: choose Solution posts in order. By segment: Solution CPT posts for the selected segment (optionally supplemented by fallback solutions). Custom: hand-built cards (no region filter).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "manual_selection": "Manual Selection",
+                "segment_solutions": "By segment (dynamic)",
+                "custom": "Custom"
+            },
+            "default_value": "manual_selection",
+            "translations": "copy_once",
+            "pll_default_value": "manual_selection",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b051c",
+            "label": "Segment",
+            "name": "featured_solutions_segment",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Only Solution posts associated with this segment are shown (Solution CPT, hierarchical permalink). Use Number to Show to cap how many appear. Optionally add Fallback solutions for regions with no matching solutions.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0510",
+                        "operator": "==",
+                        "value": "segment_solutions"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "post_type": [
+                "segments"
+            ],
+            "post_status": [
+                "publish",
+                "draft",
+                "pending",
+                "private",
+                "future"
+            ],
+            "taxonomy": "",
+            "return_format": "id",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_70fc08a1b051e",
+            "label": "Fallback solutions",
+            "name": "featured_solutions_fallback_solutions",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Optional. Manually chosen Solution posts shown in addition to the segment query. Useful when a region has no solutions for the selected segment—the region filter will still show these when available.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0510",
+                        "operator": "==",
+                        "value": "segment_solutions"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "post_type": [
+                "solution"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_70fc08a1b051d",
+            "label": "Number to Show",
+            "name": "featured_solutions_count",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Maximum solution cards from the selected segment (1–12). Fallback solutions are added in addition to this limit. Manual Selection and Custom ignore this limit. Leave unset on older blocks to show all matching solutions.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0510",
+                        "operator": "==",
+                        "value": "segment_solutions"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 12,
+            "translations": "copy_once",
+            "pll_default_value": 12,
+            "min": 1,
+            "max": 12,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0517",
+            "label": "Column Size",
+            "name": "featured_solutions_column_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Number of columns per row in the card grid on large screens. Cards wrap to additional rows as needed.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "3": "3",
+                "4": "4"
+            },
+            "default_value": "3",
+            "translations": "copy_once",
+            "pll_default_value": "3",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_70fc08a1b0511",
+            "label": "Solutions",
+            "name": "featured_solutions_selected_pages",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Select Solution posts in display order. Card text uses page Card Detail fields when present; otherwise title and excerpt.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0510",
+                        "operator": "==",
+                        "value": "manual_selection"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "post_type": [
+                "solution"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": "",
+            "min": "",
+            "max": "",
+            "return_format": "id",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_70fc08a1b0512",
+            "label": "Cards",
+            "name": "featured_solutions_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_70fc08a1b0510",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 12,
+            "collapsed": "field_70fc08a1b0514",
+            "button_label": "Add Card",
+            "rows_per_page": 20,
+            "allow_in_bindings": 0,
+            "sub_fields": [
+                {
+                    "key": "field_70fc08a1b0513",
+                    "label": "Image",
+                    "name": "featured_solutions_card_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_70fc08a1b0514",
+                    "label": "Heading",
+                    "name": "featured_solutions_card_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_70fc08a1b0515",
+                    "label": "Sub Heading",
+                    "name": "featured_solutions_card_sub_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_70fc08a1b0516",
+                    "label": "Copy",
+                    "name": "featured_solutions_card_copy",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-featured-solutions"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1781740800,
+    "pll_display_field_instructions": 0
+}

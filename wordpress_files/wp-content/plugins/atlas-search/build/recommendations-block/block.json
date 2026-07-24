@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wpengine-smart-search/recommendations",
+  "version": "0.1.0",
+  "title": "AI-Powered Recommendations",
+  "category": "wpengine-smart-search",
+  "icon": "archive",
+  "description": "WP Engine AI Toolkit block for AI-powered content recommendations",
+  "textdomain": "wpengine-smart-search",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

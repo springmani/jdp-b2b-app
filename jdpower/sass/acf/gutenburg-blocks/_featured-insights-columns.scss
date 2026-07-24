@@ -1,0 +1,109 @@
+section.featured-insights-columns-block {
+	// Columns-per-row lives on this row (not on each repeater cell): CSS Grid + gx/gy spacing.
+	.featured-insights-columns-block__row {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		column-gap: var(--bs-gutter-x, 1.5rem);
+		row-gap: var(--bs-gutter-y, 3rem);
+		// Match Featured Insights grid rows: cells share one row height so cards can stretch.
+		align-items: stretch;
+		min-width: 0;
+
+		@include media-breakpoint-up(lg) {
+			&.featured-insights-columns-block__row--cols-2 {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			&.featured-insights-columns-block__row--cols-3 {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			&.featured-insights-columns-block__row--cols-4 {
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+			}
+		}
+
+		.featured-insights-columns-block__column {
+			display: flex;
+			flex-direction: column;
+			min-width: 0;
+			min-height: 0;
+			height: 100%;
+
+			> .featured-insights-block__pre {
+				flex-shrink: 0;
+			}
+		}
+
+		.featured-insights-columns-block__card-slot {
+			display: flex;
+			flex-direction: column;
+			flex: 1 1 auto;
+			width: 100%;
+			min-width: 0;
+			min-height: 0;
+
+			.featured-insights-block__card {
+				flex: 1 1 auto;
+				width: 100%;
+				max-width: 100%;
+				min-height: 0;
+				height: auto;
+			}
+		}
+	}
+
+	// No image: date directly under title; copy grows; Read More at bottom (arrow-link pattern).
+	.featured-insights-block__card--insights-columns {
+		.featured-insights-block__body--insights-columns {
+			flex: 1 1 auto;
+			min-height: 0;
+			width: 100%;
+		}
+
+		h2.featured-insights-block__card-title,
+		h2.xxsmall.featured-insights-block__card-title {
+			margin-bottom: 8px;
+			color: $background_dark;
+		}
+
+		.featured-insights-block__card-date {
+			margin-top: 0;
+			padding-top: 0;
+			margin-bottom: 12px;
+		}
+
+		.featured-insights-block__card-copy {
+			flex: 1 1 auto;
+			min-height: 0;
+		}
+
+		.featured-insights-columns-block__card-read-more {
+			margin-top: auto;
+			padding-top: 16px;
+			align-self: flex-start;
+		}
+	}
+
+	// Whole card is the link: underline the mock Read More (arrow-link) on card hover/focus, like a.arrow-link.
+	a.featured-insights-block__card--insights-columns:hover .featured-insights-columns-block__card-read-more,
+	a.featured-insights-block__card--insights-columns:focus-visible .featured-insights-columns-block__card-read-more {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	&.featured-insights-block--tone-dark {
+		.featured-insights-block__card--insights-columns h2.featured-insights-block__card-title {
+			color: $white;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.jdp-animate-view-fade-in-up {
+			opacity: 1;
+			transform: none;
+			transition: none;
+			transition-delay: 0s !important;
+		}
+	}
+}

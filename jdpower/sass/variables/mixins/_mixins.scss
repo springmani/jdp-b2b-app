@@ -1,0 +1,60 @@
+// Multi-line ellipsis. Still uses WebKit box model; `line-clamp` is the standard companion for newer engines.
+// Works best when inner markup is mostly inline; nested block elements can make the ellipsis unreliable.
+// Pair with unitless line-height (e.g. 1.5) on the same rule — % line-height + clamp often clips the last line halfway.
+// `max-height: N * 1lh` ties the box to whole line boxes where `lh` is supported.
+@mixin jdpower-line-clamp($lines: 4) {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lines;
+	line-clamp: $lines;
+	word-break: break-word;
+
+	@supports (height: 1lh) {
+		max-height: calc(#{$lines} * 1lh);
+	}
+}
+
+// Card title underline on link hover/focus (Product Finder, Insight Center, site search).
+@mixin jdpower-card-title-hover-underline {
+	text-decoration: underline;
+	text-underline-offset: 0.15em;
+}
+
+// Insight / featured card media when there is no featured image.
+@mixin jdpower-card-placeholder-mock {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	min-height: 0;
+	box-sizing: border-box;
+	padding: 1rem;
+	text-align: center;
+	background: linear-gradient(180deg, #102330 0%, #00838f 100%);
+}
+
+@mixin jdpower-card-placeholder-mock-label {
+	margin: 0;
+	font-family: $font__header;
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 900;
+	line-height: 110%;
+	letter-spacing: -0.6px;
+	text-transform: uppercase;
+	color: $white;
+}
+
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Column width with margin
+@mixin column-width($numberColumns: 3) {
+	width: map-get($columns, $numberColumns) - (($columns__margin * ($numberColumns - 1)) / $numberColumns);
+}

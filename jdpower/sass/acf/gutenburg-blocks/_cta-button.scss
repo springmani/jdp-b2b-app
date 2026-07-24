@@ -1,0 +1,59 @@
+.cta-button {
+	.cta-button__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 1rem;
+
+		@include media-breakpoint-down(sm) {
+			flex-direction: column;
+		}
+	}
+
+	// Button variants: primary = default .btn styles (no modifier).
+	a.btn.cta-button__link {
+		&.cta-button__link--teal {
+			background: $brand_color_1;
+			border-color: $brand_color_1;
+			color: $white;
+
+			&:visited {
+				color: $white;
+			}
+
+			&:hover {
+				background: $color__cta_teal_hover;
+				border-color: $color__cta_teal_hover;
+				color: $white;
+			}
+
+			&:focus {
+				background: $color__cta_teal_focus;
+				border-color: $color__cta_teal_focus;
+				color: $white;
+			}
+		}
+
+		&.cta-button__link--mint {
+			background: $brand_color_4;
+			border-color: $brand_color_4;
+			color: $black;
+
+			&:visited {
+				color: $black;
+			}
+
+			&:hover {
+				background: $color__cta_mint_hover;
+				border-color: $color__cta_mint_hover;
+				color: $black;
+			}
+
+			&:focus {
+				background: $color__cta_mint_focus;
+				border-color: $color__cta_mint_focus;
+				color: $black;
+			}
+		}
+	}
+}

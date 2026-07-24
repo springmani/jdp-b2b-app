@@ -1,0 +1,14 @@
+{
+    "name": "soflyy/addon-installer-sdk",
+    "description": "SDK for Soflyy Pro plugins to auto-install free companion plugins from WordPress.org",
+    "type": "library",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Soflyy\\AddonInstaller\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.4"
+    }
+}

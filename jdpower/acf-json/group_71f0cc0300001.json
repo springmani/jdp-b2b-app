@@ -1,0 +1,659 @@
+{
+    "key": "group_71f0cc0300001",
+    "title": "[Block] - Featured Insights Columns",
+    "fields": [
+        {
+            "key": "field_71f0cc03a001",
+            "label": "Setup",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_71f0cc03a002",
+            "label": "Padding Top",
+            "name": "featured_insights_columns_padding_top",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_71f0cc03a003",
+            "label": "Padding Bottom",
+            "name": "featured_insights_columns_padding_bottom",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large",
+                "none": "None"
+            },
+            "default_value": "default",
+            "translations": "copy_once",
+            "pll_default_value": "default",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_71f0cc03a004",
+            "label": "Background",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_71f0cc03a005",
+            "label": "Background",
+            "name": "featured_insights_columns_background_tone",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "dark": "Dark",
+                "medium": "Medium",
+                "light": "Light"
+            },
+            "default_value": "light",
+            "translations": "copy_once",
+            "pll_default_value": "light",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_71f0cc03a008",
+            "label": "Content",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_71f0cc03a007",
+            "label": "Columns per row",
+            "name": "featured_insights_columns_grid_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "At large breakpoints, how many repeater columns fit on one row before wrapping (e.g. 4 repeater items + 2 here → two rows of two). This only affects the outer layout—not the card inside each column.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "2",
+                "3": "3",
+                "4": "4"
+            },
+            "default_value": "3",
+            "translations": "copy_once",
+            "pll_default_value": "3",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_77fca01b0fcol1",
+            "label": "Animate cards",
+            "name": "featured_insights_columns_animate_cards",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Animate cards when they come into view. Turn off to show cards immediately.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "translations": "copy_once",
+            "pll_default_value": 1,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "On",
+            "ui_off_text": "Off"
+        },
+        {
+            "key": "field_71f0cc03a009",
+            "label": "Insight Columns",
+            "name": "featured_insights_columns_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Each row is one column showing a single insight card (pre-heading plus one dynamic, manual, or custom card).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 6,
+            "collapsed": "field_71f0cc03a010",
+            "button_label": "Add Column",
+            "rows_per_page": 20,
+            "allow_in_bindings": 0,
+            "sub_fields": [
+                {
+                    "key": "field_71f0cc03a010",
+                    "label": "Pre-Heading",
+                    "name": "featured_insights_columns_item_pre_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "translations": "translate_once",
+                    "pll_default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_71f0cc03a011",
+                    "label": "Source",
+                    "name": "featured_insights_columns_item_source",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "dynamic_by_type": "Dynamic By Type",
+                        "manual_selection": "Manual Selection",
+                        "custom": "Custom"
+                    },
+                    "default_value": "manual_selection",
+                    "translations": "copy_once",
+                    "pll_default_value": "manual_selection",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "allow_in_bindings": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
+                },
+                {
+                    "key": "field_71f0cc03a012",
+                    "label": "Content Type",
+                    "name": "featured_insights_columns_item_type",
+                    "aria-label": "",
+                    "type": "checkbox",
+                    "instructions": "Loads one card for this column. When Industries, Segments, or Topics are selected, uses tiered taxonomy matching (same as Related Insights); otherwise newest first (or featured-first when enabled).",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_71f0cc03a011",
+                                "operator": "==",
+                                "value": "dynamic_by_type"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {},
+                    "allow_custom": 0,
+                    "default_value": "",
+                    "translations": "copy_once",
+                    "pll_default_value": "",
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value",
+                    "allow_in_bindings": 0,
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_71f0cc03a017",
+                    "label": "Industries",
+                    "name": "featured_insights_columns_item_industry",
+                    "aria-label": "",
+                    "type": "taxonomy",
+                    "instructions": "Optional. Tiered match with Segments and Topics when set.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_71f0cc03a011",
+                                "operator": "==",
+                                "value": "dynamic_by_type"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "taxonomy": "post_industry",
+                    "add_term": 0,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "id",
+                    "field_type": "checkbox",
+                    "allow_null": 0,
+                    "bidirectional": 0,
+                    "multiple": 0,
+                    "bidirectional_target": [],
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_71f0cc03a018",
+                    "label": "Segments",
+                    "name": "featured_insights_columns_item_segment",
+                    "aria-label": "",
+                    "type": "taxonomy",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_71f0cc03a011",
+                                "operator": "==",
+                                "value": "dynamic_by_type"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "taxonomy": "post_segment",
+                    "add_term": 0,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "id",
+                    "field_type": "checkbox",
+                    "allow_null": 0,
+                    "bidirectional": 0,
+                    "multiple": 0,
+                    "bidirectional_target": [],
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_71f0cc03a019",
+                    "label": "Topics",
+                    "name": "featured_insights_columns_item_topic",
+                    "aria-label": "",
+                    "type": "taxonomy",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_71f0cc03a011",
+                                "operator": "==",
+                                "value": "dynamic_by_type"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "taxonomy": "post_topic",
+                    "add_term": 0,
+                    "save_terms": 0,
+                    "load_terms": 0,
+                    "return_format": "id",
+                    "field_type": "checkbox",
+                    "allow_null": 0,
+                    "bidirectional": 0,
+                    "multiple": 0,
+                    "bidirectional_target": [],
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_71f0cc03a013",
+                    "label": "Include Featured",
+                    "name": "featured_insights_columns_item_include_featured",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "When enabled, items marked Featured in the editor are listed first; remaining cards follow publish date (newest first).",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_71f0cc03a011",
+                                "operator": "==",
+                                "value": "dynamic_by_type"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "translations": "copy_once",
+                    "pll_default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "Yes",
+                    "ui_off_text": "No",
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_71f0cc03a015",
+                    "label": "Posts",
+                    "name": "featured_insights_columns_item_selected_posts",
+                    "aria-label": "",
+                    "type": "relationship",
+                    "instructions": "Select one post. Card text comes from the post's Card Details fields when set.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_71f0cc03a011",
+                                "operator": "==",
+                                "value": "manual_selection"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "post_type": [
+                        "post",
+                        "press_release",
+                        "podcast",
+                        "event_webinar",
+                        "resource"
+                    ],
+                    "taxonomy": "",
+                    "filters": [
+                        "search"
+                    ],
+                    "elements": "",
+                    "min": "",
+                    "max": 1,
+                    "return_format": "id",
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_71f0cc03a016",
+                    "label": "Cards",
+                    "name": "featured_insights_columns_item_cards",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "One card for this column.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_71f0cc03a011",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "translations": "copy_once",
+                    "layout": "block",
+                    "pagination": 0,
+                    "min": 0,
+                    "max": 1,
+                    "collapsed": "field_71f0cc03a018",
+                    "button_label": "Add Card",
+                    "rows_per_page": 20,
+                    "allow_in_bindings": 0,
+                    "sub_fields": [
+                        {
+                            "key": "field_71f0cc03a017",
+                            "label": "Image",
+                            "name": "featured_insights_columns_item_card_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "translations": "copy_once",
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_71f0cc03a018",
+                            "label": "Heading",
+                            "name": "featured_insights_columns_item_card_heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "translations": "translate_once",
+                            "pll_default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_71f0cc03a019",
+                            "label": "Sub Heading",
+                            "name": "featured_insights_columns_item_card_sub_heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "translations": "translate_once",
+                            "pll_default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_71f0cc03a020",
+                            "label": "Copy",
+                            "name": "featured_insights_columns_item_card_copy",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "translations": "translate_once",
+                            "pll_default_value": "",
+                            "allow_in_bindings": 0,
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-featured-insights-columns"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780454400,
+    "pll_display_field_instructions": 0
+}

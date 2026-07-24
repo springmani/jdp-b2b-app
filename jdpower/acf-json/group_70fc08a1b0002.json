@@ -1,0 +1,119 @@
+{
+    "key": "group_70fc08a1b0002",
+    "title": "[Page] - Card Details",
+    "fields": [
+        {
+            "key": "field_70fc08a1b0201",
+            "label": "Heading Override",
+            "name": "page_card_heading_override",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Replaces the page title on featured page cards when set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0202",
+            "label": "Sub Heading",
+            "name": "page_card_sub_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Bold line below the primary card title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_70fc08a1b0203",
+            "label": "Short Description",
+            "name": "page_card_short_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Summary for cards. Falls back to the manual excerpt or trimmed content when empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_70fc08a1b0204",
+            "label": "CTA text Override",
+            "name": "page_card_cta_text_override",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Label after “Explore” on Featured Pages cards; defaults to the page title when empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Feeds the Featured Pages block when Source is Manual Selection.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1780364907,
+    "pll_display_field_instructions": 0
+}

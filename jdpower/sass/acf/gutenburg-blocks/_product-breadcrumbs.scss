@@ -1,0 +1,43 @@
+section.product-breadcrumbs-block {
+	.product-breadcrumbs-block__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: $font__main;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 150%;
+	}
+
+	.product-breadcrumbs-block__item {
+		display: flex;
+		align-items: center;
+		margin: 0;
+
+		&:not(:first-child)::before {
+			content: '/';
+			margin: 0 0.5rem;
+			color: $brand_color_1;
+		}
+	}
+
+	.product-breadcrumbs-block__link {
+		color: $brand_color_1;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: $color__cta_teal_hover;
+			text-decoration: underline;
+		}
+	}
+
+	.product-breadcrumbs-block__current {
+		color: $color__text-main;
+	}
+}

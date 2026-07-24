@@ -1,0 +1,38 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/soflyy/pmxi-addon-installer-sdk.git"
+        }
+    ],
+    "require": {
+        "soflyy/addon-installer-sdk": "^1.1"
+    },
+    "require-dev": {
+        "brianhenryie/strauss": "^0.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "soflyy\\wpae_acf_add_on\\": "classes/"
+        },
+        "classmap": [
+            "vendor-prefixed/"
+        ]
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "vendor-prefixed/",
+            "namespace_prefix": "PMAE_Vendor\\",
+            "classmap_prefix": "PMAE_Vendor_",
+            "packages": [
+                "soflyy/addon-installer-sdk"
+            ]
+        }
+    },
+    "scripts": {
+        "strauss": "[ -f vendor/bin/strauss ] && vendor/bin/strauss || true",
+        "build": "composer update && composer install --no-dev",
+        "post-install-cmd": "@strauss",
+        "post-update-cmd": "@strauss"
+    }
+}

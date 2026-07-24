@@ -1,0 +1,35 @@
+/*--------------------------------------------------------------
+# Custom grid columns (fifth-width utilities)
+# Loaded after Bootstrap grid so mixins are available.
+# Pairs with mega menu column_size values 1-5 … 4-5.
+--------------------------------------------------------------*/
+
+@include media-breakpoint-up(md) {
+	.col-md-1-5 {
+		@include make-col-ready();
+		flex: 0 0 auto;
+		width: 20%;
+		max-width: 20%;
+	}
+
+	.col-md-2-5 {
+		@include make-col-ready();
+		flex: 0 0 auto;
+		width: 40%;
+		max-width: 40%;
+	}
+
+	.col-md-3-5 {
+		@include make-col-ready();
+		flex: 0 0 auto;
+		width: 60%;
+		max-width: 60%;
+	}
+
+	.col-md-4-5 {
+		@include make-col-ready();
+		flex: 0 0 auto;
+		width: 80%;
+		max-width: 80%;
+	}
+}

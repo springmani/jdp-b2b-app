@@ -1,0 +1,80 @@
+{
+    "key": "group_72mc01a1b0003",
+    "title": "[Block] - Media Contacts",
+    "fields": [
+        {
+            "key": "field_72mc_bl_heading01",
+            "label": "Heading",
+            "name": "media_contacts_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Media Contacts",
+            "translations": "translate_once",
+            "pll_default_value": "Media Contacts",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_72mc_bl_contacts01",
+            "label": "Media Contacts",
+            "name": "media_contacts_selected",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "Select contacts in display order.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "post_type": [
+                "media_contact"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": "",
+            "return_format": "id",
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/jdpower-media-contacts"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1781846400,
+    "pll_display_field_instructions": 0
+}

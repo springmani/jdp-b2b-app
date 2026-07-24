@@ -1,0 +1,355 @@
+.sticky {
+	display: block;
+}
+
+.post,
+.page {
+	margin: 0 0 1.5em;
+}
+
+.updated:not(.published) {
+	display: none;
+}
+
+.post-thumbnail img {
+	width: 100%;
+}
+
+.page-content,
+.entry-content,
+.entry-summary,
+.error-404__below-hero-copy {
+	margin: 0;
+}
+
+.page-links {
+	clear: both;
+	margin: 0 0 1.5em;
+}
+
+.blog {
+	.entry-title {
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+	}
+}
+
+.single {
+	main {
+		padding: 60px 0px 100px;
+
+		.entry-meta {
+			display: flex;
+			flex-wrap: nowrap;
+			flex-direction: column;
+
+			span.cat-links,
+			span.tags-links {
+				margin-bottom: 5px;
+			}
+		}
+
+		.date {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 20px 0px;
+		}
+	}
+
+	.entry-content {
+		padding-top: 0;
+		padding-bottom: 60px;
+
+		.core-block {
+			.container {
+				padding: 0px;
+			}
+		}
+	}
+
+	.post-thumbnail {
+		margin: 20px 0px;
+
+		img {
+			border-radius: 5px;
+		}
+	}
+
+	nav.navigation.post-navigation {
+		margin: 20px 0px 60px;
+
+		.nav-links {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+
+			div {
+				flex: 0 0 auto;
+				width: auto;
+			}
+		}
+	}
+
+	footer.entry-footer {
+		.container {
+			max-width: map-get($container-max-widths, xl);
+		}
+	}
+
+	section.podcast-block,
+	section.media-contacts-block {
+		padding: 20px 0;
+	}
+
+	section.podcast-block .container,
+	section.media-contacts-block .container {
+		max-width: 100%;
+		padding: 0;
+	}
+}
+
+// Singular insight content (News + CPTs): reading column from lg up; below lg, main .container follows theme .container steps (sm/md).
+.single-post main .container,
+.single-press_release main .container,
+.single-podcast main .container,
+.single-resource main .container {
+	@include media-breakpoint-up(lg) {
+		max-width: 960px;
+	}
+}
+
+.single-press_release {
+	.entry-header__subheading {
+		margin: 0 0 15px;
+		font-family: $font__main;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 150%;
+		letter-spacing: -0.36px;
+		color: $background_dark;
+		text-transform: initial;
+
+		@include media-breakpoint-down(md) {
+			font-size: 16px;
+			letter-spacing: -0.32px;
+		}
+	}
+}
+
+.single-post,
+.single-press_release,
+.single-podcast,
+.single-event_webinar,
+.single-resource {
+	main .entry-meta .posted-on {
+		font-family: $font__main;
+		font-size: 13px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 150%;
+		letter-spacing: -0.26px;
+		text-transform: uppercase;
+	}
+
+	.entry-header .container,
+	.event-webinar__intro {
+		@include media-breakpoint-up(lg) {
+			overflow: visible;
+		}
+	}
+
+	.insight-single-layout {
+		overflow: visible;
+	}
+
+	header.entry-header {
+		overflow: visible;
+		margin-bottom: 20px;
+	}
+
+	.container > .entry-meta,
+	.event-webinar__intro > .entry-meta {
+		margin-bottom: 50px;
+	}
+
+	.post-thumbnail {
+		margin-top: 0;
+	}
+
+	// Full-width band (Related Insights uses footer.entry-footer; CTA banner is a sibling section).
+	.cta-banner--insight-single .container {
+		max-width: map-get($container-max-widths, xl);
+	}
+}
+
+.insight-industry-tags {
+	padding: 0 0 40px;
+
+	.container {
+		@include media-breakpoint-up(lg) {
+			max-width: 960px;
+		}
+	}
+
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__tag {
+		display: inline-flex;
+		align-items: center;
+		padding: 8px 14px;
+		background: $color__grey;
+		border-radius: 5px;
+		color: $background_dark;
+		font-family: $font__main;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 150%;
+		text-decoration: none;
+		text-transform: capitalize;
+
+		&:visited,
+		&:hover,
+		&:focus-visible {
+			color: $background_dark;
+		}
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
+}
+
+.insight-entry-meta {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+	margin-top: 20px;
+
+	@include media-breakpoint-up(lg) {
+		margin-top: 0;
+	}
+
+	&__details {
+		min-width: 0;
+	}
+}
+
+.insight-single-layout {
+	overflow: visible;
+
+	@include media-breakpoint-up(lg) {
+		position: relative;
+		max-width: 960px;
+		margin-left: auto;
+		margin-right: auto;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		align-items: start;
+	}
+
+	&__main {
+		grid-column: 1;
+		grid-row: 1;
+		min-width: 0;
+	}
+}
+
+.insight-social-share {
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px;
+
+		@include media-breakpoint-up(lg) {
+			flex-direction: column;
+			align-items: center;
+			gap: 16px;
+		}
+	}
+
+	&__item {
+		flex: 0 0 auto;
+	}
+
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		color: #b8c0c6;
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:visited {
+			color: #b8c0c6;
+		}
+
+		&:hover {
+			color: $brand_color_1;
+		}
+
+		&:focus,
+		&:focus-visible,
+		&:active {
+			color: #b8c0c6;
+			outline: none;
+		}
+	}
+
+	&__icon {
+		display: block;
+		width: 32px;
+		height: 32px;
+		flex-shrink: 0;
+	}
+
+	&--inline {
+		@include media-breakpoint-up(lg) {
+			display: none;
+		}
+	}
+
+	&--sticky {
+		display: none;
+
+		@include media-breakpoint-up(lg) {
+			display: block;
+			grid-column: 1;
+			grid-row: 1;
+			position: sticky;
+			top: 120px;
+			align-self: start;
+			justify-self: start;
+			width: 60px;
+			margin-left: calc(var(--bs-gutter-x, 0.75rem) - 60px);
+			z-index: 2;
+		}
+	}
+}
+
+body.admin-bar .insight-social-share--sticky {
+	@include media-breakpoint-up(lg) {
+		top: calc(120px + 32px);
+	}
+}
