@@ -23,3 +23,9 @@ jobs:
         DEV_BRANCH: master
         #DEV_ENV: dcjdptestdev
         DEV_ENV: jdpbusines1dev
+        
+        STG_BRANCH: none
+        STG_ENV: none
+
+        PRD_BRANCH: none
+        PRD_ENV: none
