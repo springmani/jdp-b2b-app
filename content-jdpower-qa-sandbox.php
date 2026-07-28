@@ -66,14 +66,14 @@ if ( empty( $pre_heading_placement ) || ! in_array( $pre_heading_placement, arra
 	$pre_heading_placement = 'with_content';
 }
 
-$pre_heading = get_field( 'qa_sandbox_pre_heading' );
-$heading     = get_field( 'qa_sandbox_heading' );
-$heading_size = get_field( 'qa_sandbox_heading_size' );
-$copy        = get_field( 'qa_sandbox_copy' );
-$copy_rows   = get_field( 'qa_sandbox_copy_rows' );
-$image       = get_field( 'qa_sandbox_image' );
-$image_aspect_ratio = get_field( 'qa_sandbox_image_aspect_ratio' );
-$image_caption = get_field( 'qa_sandbox_image_caption' );
+$pre_heading         = get_field( 'qa_sandbox_pre_heading' );
+$heading             = get_field( 'qa_sandbox_heading' );
+$heading_size        = get_field( 'qa_sandbox_heading_size' );
+$copy                = get_field( 'qa_sandbox_copy' );
+$copy_rows           = get_field( 'qa_sandbox_copy_rows' );
+$image               = get_field( 'qa_sandbox_image' );
+$image_aspect_ratio  = get_field( 'qa_sandbox_image_aspect_ratio' );
+$image_caption       = get_field( 'qa_sandbox_image_caption' );
 
 $valid_heading_sizes = array( 'default', 'large', 'medium', 'small', 'xsmall', 'xxsmall' );
 if ( empty( $heading_size ) || ! in_array( $heading_size, $valid_heading_sizes, true ) ) {
@@ -85,8 +85,10 @@ if ( 'default' !== $heading_size ) {
 	$heading_classes[] = $heading_size;
 }
 $heading_class_attr = esc_attr( implode( ' ', $heading_classes ) );
-$cta_extra   = get_field( 'qa_sandbox_ctas' );
-$cta_style   = get_field( 'qa_sandbox_cta_style' );
+
+$cta       = get_field( 'qa_sandbox_cta' );
+$cta_extra = get_field( 'qa_sandbox_ctas' );
+$cta_style = get_field( 'qa_sandbox_cta_style' );
 
 if ( empty( $cta_style ) || ! in_array( $cta_style, array( 'button', 'arrow' ), true ) ) {
 	$cta_style = 'button';
@@ -122,7 +124,7 @@ $has_ctas = count( $cta_links ) > 0;
 $image_id  = is_array( $image ) && ! empty( $image['ID'] ) ? (int) $image['ID'] : 0;
 $has_image = $image_id > 0;
 
-$has_media   = $has_image;
+$has_media = $has_image;
 
 $figure_aspect_class = 'qa-sandbox__figure--aspect-square';
 if ( $has_image ) {
@@ -138,7 +140,7 @@ if ( $has_image ) {
 
 $has_caption = is_string( $image_caption ) && '' !== trim( $image_caption );
 
-$has_pre = is_string( $pre_heading ) && '' !== trim( $pre_heading );
+$has_pre           = is_string( $pre_heading ) && '' !== trim( $pre_heading );
 $pre_above_columns = $has_pre && 'top' === $vertical_align && 'above' === $pre_heading_placement;
 
 $copy_rows_render = array();
@@ -159,13 +161,13 @@ if ( is_array( $copy_rows ) ) {
 		}
 
 		$copy_rows_render[] = array(
-			'sub_heading'   => is_string( $row_sub ) ? $row_sub : '',
-			'copy'          => is_string( $row_copy ) ? $row_copy : '',
-			'list_columns'  => $list_cols,
+			'sub_heading'  => is_string( $row_sub ) ? $row_sub : '',
+			'copy'         => is_string( $row_copy ) ? $row_copy : '',
+			'list_columns' => $list_cols,
 		);
 	}
 }
-$use_copy_rows = count( $copy_rows_render ) > 0;
+$use_copy_rows   = count( $copy_rows_render ) > 0;
 $has_legacy_copy = ! $use_copy_rows && is_string( $copy ) && '' !== trim( wp_strip_all_tags( $copy ) );
 
 $layout_row_classes = array( 'qa-sandbox__row' );
@@ -374,9 +376,6 @@ $media_markup = ob_get_clean();
 						<div class="qa-sandbox__copy">
 							<?php echo wp_kses_post( $copy ); ?>
 						</div>
-					<?php endif; ?>
-
-					
 					<?php endif; ?>
 				</div>
 			<?php endif; ?>
