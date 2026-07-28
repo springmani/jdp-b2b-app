@@ -18,16 +18,15 @@ jobs:
       # Deploy vars
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
         PHP_LINT: TRUE
-        FLAGS: -azvr --inplace --exclude=".*" --exclude-from=.deployignore
-        CACHE_CLEAR: TRUE
-        TPO_PATH: "wp-content/themes/"
-
-      # Branches & Environments
-        DEV_BRANCH: master
-        #DEV_ENV: dcjdptestdev
-        DEV_ENV: jdpbusines1dev
-        
-        STG_BRANCH: none
-        STG_ENV: none
-        PRD_BRANCH: none
-        PRD_ENV: none
+        flags: '-azvr --inplace --exclude=".*" --exclude-from=.deployignore'
+        cache_clear: 'true'
+        tpo_path: 'wp-content/themes/'
+    
+        dev_branch: 'master'
+        dev_env: 'jdpbusines1dev'
+    
+        stg_branch: 'none'
+        stg_env: 'none'
+    
+        prd_branch: 'none'
+        prd_env: 'none'
