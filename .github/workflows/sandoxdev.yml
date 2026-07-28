@@ -2,7 +2,7 @@ name: 🚀 Dev Auto Deploy to WP Engine
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
           TPO_PATH: "wp-content/themes/"
 
           # Branches & Environments
-          DEV_BRANCH: master
+          DEV_BRANCH: main
           #DEV_ENV: dcjdptestdev
           DEV_ENV: jdpbusines1dev
 
