@@ -1,5 +1,8 @@
 name: 🚀 Dev Auto Deploy to WP Engine
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -26,6 +29,5 @@ jobs:
         
         STG_BRANCH: none
         STG_ENV: none
-
         PRD_BRANCH: none
         PRD_ENV: none
