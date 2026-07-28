@@ -8,32 +8,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Getting latest code
-      uses: actions/checkout@v2
+      - name: 🚚 Getting latest code
+        uses: actions/checkout@v2
+    
+      - name: Debug — show branch & inputs
+        run: |
+          echo "GITHUB_REF=$GITHUB_REF"
+          echo "GITHUB_SHA=$GITHUB_SHA"
+          echo "GITHUB_EVENT_NAME=$GITHUB_EVENT_NAME"
+          env | grep ^INPUT_ || true
 
-    - name: Debug — show branch & inputs
-      run: |
-        echo "GITHUB_REF=$GITHUB_REF"
-        echo "GITHUB_SHA=$GITHUB_SHA"
-        echo "GITHUB_EVENT_NAME=$GITHUB_EVENT_NAME"
-        env | grep ^INPUT_ || true
+      - name: 🎉 Starting deployment
+        uses: wpengine/github-action-wpe-site-deploy@v2.3.3
+        with:
+          # Deploy vars
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
+          PHP_LINT: TRUE
+          FLAGS: -azvr --inplace --exclude=".*" --exclude-from=.deployignore
+          CACHE_CLEAR: TRUE
+          TPO_PATH: "wp-content/themes/"
 
-    - name: 🎉 Starting deployment
-      uses: wpengine/github-action-wpe-site-deploy@v2.3.3
-      with:
-        # Deploy vars
-        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
-        PHP_LINT: TRUE
-        FLAGS: -azvr --inplace --exclude=".*" --exclude-from=.deployignore
-        CACHE_CLEAR: TRUE
-        TPO_PATH: "wp-content/themes/"
+          # Branches & Environments
+          DEV_BRANCH: master
+          #DEV_ENV: dcjdptestdev
+          DEV_ENV: jdpbusines1dev
 
-        # Branches & Environments (Uppercase is required)
-        DEV_BRANCH: master
-        DEV_ENV: jdpbusines1dev
+          STG_BRANCH: none
+          STG_ENV: none
 
-        STG_BRANCH: none
-        STG_ENV: none
-
-        PRD_BRANCH: none
-        PRD_ENV: none
+          PRD_BRANCH: none
+          PRD_ENV: none
