@@ -21,7 +21,16 @@ jobs:
         flags: '-azvr --inplace --exclude=".*" --exclude-from=.deployignore'
         cache_clear: 'true'
         tpo_path: 'wp-content/themes/'
-    
+        
+        - name: Debug — show branch & inputs
+        run: |
+        echo "GITHUB_REF=$GITHUB_REF"
+        echo "GITHUB_SHA=$GITHUB_SHA"
+        echo "GITHUB_EVENT_NAME=$GITHUB_EVENT_NAME"
+        # show any INPUT_* variables (secrets will be masked)
+        env | grep ^INPUT_ || true
+        
+        branch: 'master'          # add this in case action expects 'branch' (lowercase)
         dev_branch: 'master'
         dev_env: 'jdpbusines1dev'
     
