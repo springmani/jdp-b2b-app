@@ -7,3 +7,6 @@ build/
 *.map
 FORMAT.md
 *issues.md
+# Ignores local Podman runtime/WordPress core directories
+wordpress_files/
+db_data/
