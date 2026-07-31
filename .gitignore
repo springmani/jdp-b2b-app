@@ -1,7 +1,5 @@
 process_acf_polylang.py
-# OS/System clutter
-.DS_Store
-Thumbs.dbnode_modules/
+node_modules/
 .DS_Store
 *.log
 dist/
@@ -12,4 +10,3 @@ FORMAT.md
 # Ignores local Podman runtime/WordPress core directories
 wordpress_files/
 db_data/
-node_modules/
