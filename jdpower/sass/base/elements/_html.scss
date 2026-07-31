@@ -7,7 +7,7 @@ html {
 		scroll-behavior: auto;
 	}
 
-	// Clear fixed .site-header on desktop (matches #page padding-top in sass/site/_site.scss; nav = 1440px nav breakpoint).
+	// Clear fixed .site-header on desktop (matches #page padding-top in sass/site/_site.scss; nav = 1200px nav breakpoint).
 	@include media-breakpoint-up(nav) {
 		scroll-padding-top: 120px;
 	}

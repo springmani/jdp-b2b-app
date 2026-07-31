@@ -1,0 +1,77 @@
+{
+    "key": "group_73user01a1b0001",
+    "title": "User Profile",
+    "fields": [
+        {
+            "key": "field_73user_profile_image01",
+            "label": "Profile Image",
+            "name": "user_profile_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Used by the Author block (and other author displays) instead of Gravatar. Square images work best.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "translations": "copy_once",
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_73user_profile_title01",
+            "label": "Profile Title",
+            "name": "user_profile_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional job title or role shown under the author name in the Author block.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "translate_once",
+            "pll_default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "Journalist",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "user_form",
+                "operator": "==",
+                "value": "all"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Custom profile fields for WordPress users.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1784834400,
+    "pll_display_field_instructions": 0
+}

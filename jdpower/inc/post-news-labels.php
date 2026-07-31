@@ -1,7 +1,7 @@
 <?php
 /**
- * Relabel core Post type to "News" (admin + front-end labels from get_post_type_object()).
- * Unregister core category and post_tag from post (News); use Insight taxonomies only.
+ * Relabel core Post type to "Insights" (admin + front-end labels from get_post_type_object()).
+ * Unregister core category and post_tag from post (Insights); use Insight taxonomies only.
  *
  * @package jdpower
  */
@@ -14,48 +14,48 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string       $post_type Post type slug.
  * @param WP_Post_Type $wp_post_type Post type object.
  */
-function jdpower_rename_post_labels_to_news( $post_type, $wp_post_type ) {
+function jdpower_rename_post_labels_to_insights( $post_type, $wp_post_type ) {
 	if ( 'post' !== $post_type || ! isset( $wp_post_type->labels ) ) {
 		return;
 	}
 
 	$labels = $wp_post_type->labels;
 
-	$labels->name                     = __( 'News', 'jdpower' );
-	$labels->singular_name              = __( 'News', 'jdpower' );
-	$labels->menu_name                  = __( 'News', 'jdpower' );
-	$labels->name_admin_bar             = __( 'News', 'jdpower' );
-	$labels->add_new                    = __( 'Add New', 'jdpower' );
-	$labels->add_new_item               = __( 'Add New News', 'jdpower' );
-	$labels->edit_item                  = __( 'Edit News', 'jdpower' );
-	$labels->new_item                   = __( 'New News', 'jdpower' );
-	$labels->view_item                  = __( 'View News', 'jdpower' );
-	$labels->view_items               = __( 'View News', 'jdpower' );
-	$labels->all_items                  = __( 'All News', 'jdpower' );
-	$labels->search_items               = __( 'Search News', 'jdpower' );
-	$labels->not_found                  = __( 'No news found', 'jdpower' );
-	$labels->not_found_in_trash         = __( 'No news found in Trash', 'jdpower' );
-	$labels->parent_item_colon          = __( 'Parent News:', 'jdpower' );
-	$labels->archives                   = __( 'News Archives', 'jdpower' );
-	$labels->attributes               = __( 'News Attributes', 'jdpower' );
-	$labels->insert_into_item          = __( 'Insert into news', 'jdpower' );
-	$labels->uploaded_to_this_item     = __( 'Uploaded to this news item', 'jdpower' );
-	$labels->filter_items_list         = __( 'Filter news list', 'jdpower' );
-	$labels->filter_by_date            = __( 'Filter news by date', 'jdpower' );
-	$labels->items_list_navigation     = __( 'News list navigation', 'jdpower' );
-	$labels->items_list                = __( 'News list', 'jdpower' );
-	$labels->item_published            = __( 'News published.', 'jdpower' );
-	$labels->item_published_privately  = __( 'News published privately.', 'jdpower' );
-	$labels->item_reverted_to_draft    = __( 'News reverted to draft.', 'jdpower' );
-	$labels->item_scheduled            = __( 'News scheduled.', 'jdpower' );
-	$labels->item_updated              = __( 'News updated.', 'jdpower' );
-	$labels->item_link                 = __( 'News Link', 'jdpower' );
-	$labels->item_link_description     = __( 'A link to a news item.', 'jdpower' );
+	$labels->name                      = __( 'Insights', 'jdpower' );
+	$labels->singular_name             = __( 'Insights', 'jdpower' );
+	$labels->menu_name                 = __( 'Insights', 'jdpower' );
+	$labels->name_admin_bar            = __( 'Insights', 'jdpower' );
+	$labels->add_new                   = __( 'Add New', 'jdpower' );
+	$labels->add_new_item              = __( 'Add New Insight', 'jdpower' );
+	$labels->edit_item                 = __( 'Edit Insight', 'jdpower' );
+	$labels->new_item                  = __( 'New Insight', 'jdpower' );
+	$labels->view_item                 = __( 'View Insight', 'jdpower' );
+	$labels->view_items                = __( 'View Insights', 'jdpower' );
+	$labels->all_items                 = __( 'All Insights', 'jdpower' );
+	$labels->search_items              = __( 'Search Insights', 'jdpower' );
+	$labels->not_found                 = __( 'No insights found', 'jdpower' );
+	$labels->not_found_in_trash        = __( 'No insights found in Trash', 'jdpower' );
+	$labels->parent_item_colon         = __( 'Parent Insight:', 'jdpower' );
+	$labels->archives                  = __( 'Insights Archives', 'jdpower' );
+	$labels->attributes                = __( 'Insight Attributes', 'jdpower' );
+	$labels->insert_into_item          = __( 'Insert into insight', 'jdpower' );
+	$labels->uploaded_to_this_item     = __( 'Uploaded to this insight', 'jdpower' );
+	$labels->filter_items_list         = __( 'Filter insights list', 'jdpower' );
+	$labels->filter_by_date            = __( 'Filter insights by date', 'jdpower' );
+	$labels->items_list_navigation     = __( 'Insights list navigation', 'jdpower' );
+	$labels->items_list                = __( 'Insights list', 'jdpower' );
+	$labels->item_published            = __( 'Insight published.', 'jdpower' );
+	$labels->item_published_privately  = __( 'Insight published privately.', 'jdpower' );
+	$labels->item_reverted_to_draft    = __( 'Insight reverted to draft.', 'jdpower' );
+	$labels->item_scheduled            = __( 'Insight scheduled.', 'jdpower' );
+	$labels->item_updated              = __( 'Insight updated.', 'jdpower' );
+	$labels->item_link                 = __( 'Insight Link', 'jdpower' );
+	$labels->item_link_description     = __( 'A link to an insight.', 'jdpower' );
 }
-add_action( 'registered_post_type', 'jdpower_rename_post_labels_to_news', 10, 2 );
+add_action( 'registered_post_type', 'jdpower_rename_post_labels_to_insights', 10, 2 );
 
 /**
- * Remove default Categories and Tags from the post (News) editor; topics/industries remain via ACF taxonomies.
+ * Remove default Categories and Tags from the post (Insights) editor; topics/industries remain via ACF taxonomies.
  */
 function jdpower_unregister_default_taxonomies_from_post() {
 	unregister_taxonomy_for_object_type( 'category', 'post' );
@@ -77,7 +77,7 @@ function jdpower_insight_card_post_type_label( $post_id ) {
 	}
 
 	if ( 'resource' === $post_type ) {
-		return __( 'News', 'jdpower' );
+		return __( 'Insights', 'jdpower' );
 	}
 
 	$pto = get_post_type_object( $post_type );

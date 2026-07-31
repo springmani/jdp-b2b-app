@@ -79,8 +79,10 @@ if ( is_array( $items_raw ) ) {
 $has_pre     = is_string( $pre_heading ) && '' !== trim( $pre_heading );
 $has_heading = is_string( $heading ) && '' !== trim( wp_strip_all_tags( $heading ) );
 $has_items   = count( $items ) > 0;
+$has_content = $has_pre || $has_heading || $has_items;
 
-if ( ! $has_items ) {
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
 	return;
 }
 ?>
@@ -134,6 +136,13 @@ if ( ! $has_items ) {
 					</details>
 				<?php endforeach; ?>
 			</div>
+		<?php elseif ( ! $has_content ) : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, or accordion items in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
 		<?php endif; ?>
 	</div>
 </section>

@@ -9,7 +9,7 @@
 
 if ( ! defined( 'THEME_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'THEME_VERSION', '1.0.150' );
+	define( 'THEME_VERSION', '1.0.177' );
 }
 
 /**
@@ -101,7 +101,7 @@ add_action( 'wp_enqueue_scripts', 'jdpower_scripts' );
 require get_template_directory() . '/inc/disable-features.php';
 
 /**
- * Core Posts → "News" labels (admin menu, insight cards).
+ * Core Posts → "Insights" labels (admin menu, insight cards).
  */
 require get_template_directory() . '/inc/post-news-labels.php';
 

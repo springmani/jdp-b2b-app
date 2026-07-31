@@ -6,10 +6,15 @@
  */
 
 /**
- * Hide core Buttons in favor of the theme CTA block.
+ * Hide core blocks replaced by theme equivalents.
  */
 function jdpower_disallowed_blocks_remove_core_buttons( $allowed_block_types, $editor_context ) {
-	$remove = array( 'core/buttons', 'core/button' );
+	$remove = array(
+		'core/buttons',
+		'core/button',
+		'core/post-author-name',
+		'core/post-author-biography',
+	);
 
 	if ( true === $allowed_block_types ) {
 		$registry            = WP_Block_Type_Registry::get_instance();

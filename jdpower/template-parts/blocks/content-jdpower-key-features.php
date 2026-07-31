@@ -48,70 +48,104 @@ if ( empty( $columns ) || ! in_array( (string) $columns, array( '2', '3' ), true
 $classes .= ' key-features-block--cols-' . $columns;
 
 $has_pre = is_string( $pre_heading ) && '' !== trim( $pre_heading );
-$has_items = is_array( $items_raw ) && ! empty( $items_raw );
 
+$items_rows = array();
+if ( is_array( $items_raw ) ) {
+	foreach ( $items_raw as $row ) {
+		if ( ! is_array( $row ) ) {
+			continue;
+		}
+		$icon    = isset( $row['key_features_icon'] ) ? $row['key_features_icon'] : null;
+		$image   = isset( $row['key_features_image'] ) ? $row['key_features_image'] : null;
+		$heading = isset( $row['key_features_heading'] ) ? $row['key_features_heading'] : '';
+		$copy    = isset( $row['key_features_copy'] ) ? $row['key_features_copy'] : '';
+
+		$icon_id     = is_array( $icon ) && ! empty( $icon['ID'] ) ? (int) $icon['ID'] : 0;
+		$image_id    = is_array( $image ) && ! empty( $image['ID'] ) ? (int) $image['ID'] : 0;
+		$has_image   = $image_id > 0;
+		$has_icon    = $icon_id > 0 && ! $has_image;
+		$has_heading = is_string( $heading ) && '' !== trim( $heading );
+		$has_copy    = is_string( $copy ) && '' !== trim( wp_strip_all_tags( $copy ) );
+
+		if ( ! $has_image && ! $has_icon && ! $has_heading && ! $has_copy ) {
+			continue;
+		}
+
+		$items_rows[] = array(
+			'icon_id'     => $icon_id,
+			'image_id'    => $image_id,
+			'has_image'   => $has_image,
+			'has_icon'    => $has_icon,
+			'heading'     => $heading,
+			'copy'        => $copy,
+			'has_heading' => $has_heading,
+			'has_copy'    => $has_copy,
+		);
+	}
+}
+
+$has_items   = count( $items_rows ) > 0;
+$has_content = $has_pre || $has_items;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
 ?>
 
-<?php if ( $has_pre || $has_items ) : ?>
 <section class="<?php echo esc_attr( $classes ); ?>">
 	<div class="container">
-		<?php if ( $has_pre ) : ?>
-			<p class="key-features-block__pre preheading"><?php echo esc_html( trim( $pre_heading ) ); ?></p>
-		<?php endif; ?>
+		<?php if ( $has_content ) : ?>
+			<?php if ( $has_pre ) : ?>
+				<p class="key-features-block__pre preheading"><?php echo esc_html( trim( $pre_heading ) ); ?></p>
+			<?php endif; ?>
 
-		<?php if ( $has_items && have_rows( 'key_features_items' ) ) : ?>
-			<div class="key-features-block__grid">
-				<?php
-				while ( have_rows( 'key_features_items' ) ) :
-					the_row();
-					$icon    = get_sub_field( 'key_features_icon' );
-					$image   = get_sub_field( 'key_features_image' );
-					$heading = get_sub_field( 'key_features_heading' );
-					$copy    = get_sub_field( 'key_features_copy' );
+			<?php if ( $has_items ) : ?>
+				<div class="key-features-block__grid">
+					<?php foreach ( $items_rows as $item ) : ?>
+						<div class="key-features-block__column">
+							<?php if ( $item['has_image'] ) : ?>
+								<div class="key-features-block__figure key-features-block__figure--photo">
+									<?php echo wp_get_attachment_image( $item['image_id'], 'large', false, array( 'class' => 'key-features-block__img' ) ); ?>
+								</div>
+							<?php elseif ( $item['has_icon'] ) : ?>
+								<div class="key-features-block__figure key-features-block__figure--icon">
+									<?php
+									$icon_path = get_attached_file( $item['icon_id'] );
+									$icon_svg  = '';
+									if ( $icon_path && is_readable( $icon_path ) && 'svg' === strtolower( pathinfo( $icon_path, PATHINFO_EXTENSION ) ) ) {
+										$icon_svg = file_get_contents( $icon_path );
+										$icon_svg = ( false !== $icon_svg ) ? $icon_svg : '';
+									}
+									if ( $icon_svg ) {
+										echo '<span class="key-features-block__icon">' . $icon_svg . '</span>';
+									} else {
+										echo wp_get_attachment_image( $item['icon_id'], 'medium', false, array( 'class' => 'key-features-block__icon' ) );
+									}
+									?>
+								</div>
+							<?php endif; ?>
 
-					$icon_id     = is_array( $icon ) && ! empty( $icon['ID'] ) ? (int) $icon['ID'] : 0;
-					$image_id    = is_array( $image ) && ! empty( $image['ID'] ) ? (int) $image['ID'] : 0;
-					$has_image   = $image_id > 0;
-					$has_icon    = $icon_id > 0 && ! $has_image;
-					$has_heading = is_string( $heading ) && '' !== trim( $heading );
-					$has_copy    = is_string( $copy ) && '' !== trim( wp_strip_all_tags( $copy ) );
-					?>
-					<div class="key-features-block__column">
-						<?php if ( $has_image ) : ?>
-							<div class="key-features-block__figure key-features-block__figure--photo">
-								<?php echo wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'key-features-block__img' ) ); ?>
-							</div>
-						<?php elseif ( $has_icon ) : ?>
-							<div class="key-features-block__figure key-features-block__figure--icon">
-								<?php
-								$icon_path = get_attached_file( $icon_id );
-								$icon_svg    = '';
-								if ( $icon_path && is_readable( $icon_path ) && 'svg' === strtolower( pathinfo( $icon_path, PATHINFO_EXTENSION ) ) ) {
-									$icon_svg = file_get_contents( $icon_path );
-									$icon_svg = ( false !== $icon_svg ) ? $icon_svg : '';
-								}
-								if ( $icon_svg ) {
-									echo '<span class="key-features-block__icon">' . $icon_svg . '</span>';
-								} else {
-									echo wp_get_attachment_image( $icon_id, 'medium', false, array( 'class' => 'key-features-block__icon' ) );
-								}
-								?>
-							</div>
-						<?php endif; ?>
+							<?php if ( $item['has_heading'] ) : ?>
+								<h2 class="key-features-block__heading small"><?php echo nl2br( esc_html( trim( $item['heading'] ) ) ); ?></h2>
+							<?php endif; ?>
 
-						<?php if ( $has_heading ) : ?>
-							<h2 class="key-features-block__heading small"><?php echo nl2br( esc_html( trim( $heading ) ) ); ?></h2>
-						<?php endif; ?>
-
-						<?php if ( $has_copy ) : ?>
-							<div class="key-features-block__copy">
-								<?php echo wp_kses_post( $copy ); ?>
-							</div>
-						<?php endif; ?>
-					</div>
-				<?php endwhile; ?>
-			</div>
+							<?php if ( $item['has_copy'] ) : ?>
+								<div class="key-features-block__copy">
+									<?php echo wp_kses_post( $item['copy'] ); ?>
+								</div>
+							<?php endif; ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+		<?php else : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading or features in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
 		<?php endif; ?>
 	</div>
 </section>
-<?php endif; ?>

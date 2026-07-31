@@ -1,0 +1,24 @@
+name: 🚀 JD Dev Deploy to WP Engine
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Getting latest code
+      uses: actions/checkout@v2
+
+    - name: 🎉 Starting deployment
+      uses: wpengine/github-action-wpe-site-deploy@v2.3.3
+      with:
+
+      # Deploy vars
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
+        PHP_LINT: TRUE
+        FLAGS: -azvr --inplace --exclude=".*" --exclude-from=.deployignore
+        CACHE_CLEAR: TRUE
+        TPO_PATH: "wp-content/themes/"
+
+      # Branches & Environments
+        DEV_BRANCH: master
+        DEV_ENV: jdpbusinessdev

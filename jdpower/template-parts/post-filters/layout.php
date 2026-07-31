@@ -73,7 +73,8 @@ if ( ! empty( $config['sidebar_taxonomies'] ) && is_array( $config['sidebar_taxo
 	}
 }
 
-$has_sidebar_filters = ! empty( $sidebar_filter_groups );
+$has_sidebar_filters = ! empty( $sidebar_filter_groups )
+	|| ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === $context );
 $mobile_filters_icon = get_template_directory_uri() . '/images/insights-mobile-filter.svg';
 
 set_query_var( 'jdpower_pf_sidebar_groups', $sidebar_filter_groups );
@@ -135,6 +136,7 @@ set_query_var( 'jdpower_pf_sidebar_groups', $sidebar_filter_groups );
 				<?php
 				// Preserve taxonomy filters in form when submitting search only.
 				if ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === $context ) {
+					echo '<input type="hidden" name="pf_pt" value="' . esc_attr( (string) ( $request['pf_pt'] ?? '' ) ) . '" />';
 					if ( ! empty( $request['post_industry'] ) ) {
 						echo '<input type="hidden" name="post_industry" value="' . esc_attr( implode( ',', $request['post_industry'] ) ) . '" />';
 					}

@@ -137,68 +137,81 @@ if ( 'manual' === $source ) {
 	}
 }
 
-if ( ! $has_pre && ! $has_heading && count( $groups ) <= 0 ) {
+$has_groups  = count( $groups ) > 0;
+$has_content = $has_pre || $has_heading || $has_groups;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
 	return;
 }
 ?>
 
 <section class="<?php echo esc_attr( $classes ); ?>">
 	<div class="container">
-		<?php if ( $has_pre || $has_heading ) : ?>
-			<header class="accordion-block__header">
-				<?php if ( $has_pre ) : ?>
-					<p class="accordion-block__pre preheading"><?php echo esc_html( trim( $pre_heading ) ); ?></p>
-				<?php endif; ?>
-				<?php if ( $has_heading ) : ?>
-					<h2 class="accordion-block__heading"><?php echo wp_kses_post( $heading ); ?></h2>
-				<?php endif; ?>
-			</header>
-		<?php endif; ?>
+		<?php if ( $has_content ) : ?>
+			<?php if ( $has_pre || $has_heading ) : ?>
+				<header class="accordion-block__header">
+					<?php if ( $has_pre ) : ?>
+						<p class="accordion-block__pre preheading"><?php echo esc_html( trim( $pre_heading ) ); ?></p>
+					<?php endif; ?>
+					<?php if ( $has_heading ) : ?>
+						<h2 class="accordion-block__heading"><?php echo wp_kses_post( $heading ); ?></h2>
+					<?php endif; ?>
+				</header>
+			<?php endif; ?>
 
-		<?php foreach ( $groups as $group ) : ?>
-			<?php
-			$group_heading = isset( $group['group_heading'] ) ? (string) $group['group_heading'] : '';
-			$q             = $group['query'];
-			?>
-			<div class="faqs-block__group">
-				<?php if ( '' !== trim( $group_heading ) ) : ?>
-					<h3 class="faqs-block__group-heading"><?php echo esc_html( trim( $group_heading ) ); ?></h3>
-				<?php endif; ?>
-				<div class="accordion-block__items">
-					<?php while ( $q->have_posts() ) : ?>
-						<?php
-						$q->the_post();
-						$item_heading = get_the_title();
-						$item_intro   = get_field( 'faq_short_description', get_the_ID() );
-						$item_body    = apply_filters( 'the_content', get_the_content() );
-						$has_body     = '' !== trim( wp_strip_all_tags( $item_body ) );
-						$has_intro    = is_string( $item_intro ) && '' !== trim( $item_intro );
-						?>
-						<details class="accordion-block__item">
-							<summary class="accordion-block__summary">
-								<span class="accordion-block__summary-main">
-									<?php if ( is_string( $item_heading ) && '' !== trim( $item_heading ) ) : ?>
-										<h4 class="accordion-block__item-heading"><?php echo esc_html( trim( $item_heading ) ); ?></h4>
-									<?php endif; ?>
-									<?php if ( $has_intro ) : ?>
-										<span class="accordion-block__item-intro"><?php echo esc_html( trim( $item_intro ) ); ?></span>
-									<?php endif; ?>
-								</span>
-								<span class="accordion-block__toggle" aria-hidden="true"></span>
-							</summary>
-							<?php if ( $has_body ) : ?>
-								<div class="accordion-block__panel">
-									<div class="accordion-block__body">
-										<?php echo wp_kses_post( $item_body ); ?>
+			<?php foreach ( $groups as $group ) : ?>
+				<?php
+				$group_heading = isset( $group['group_heading'] ) ? (string) $group['group_heading'] : '';
+				$q             = $group['query'];
+				?>
+				<div class="faqs-block__group">
+					<?php if ( '' !== trim( $group_heading ) ) : ?>
+						<h3 class="faqs-block__group-heading"><?php echo esc_html( trim( $group_heading ) ); ?></h3>
+					<?php endif; ?>
+					<div class="accordion-block__items">
+						<?php while ( $q->have_posts() ) : ?>
+							<?php
+							$q->the_post();
+							$item_heading = get_the_title();
+							$item_intro   = get_field( 'faq_short_description', get_the_ID() );
+							$item_body    = apply_filters( 'the_content', get_the_content() );
+							$has_body     = '' !== trim( wp_strip_all_tags( $item_body ) );
+							$has_intro    = is_string( $item_intro ) && '' !== trim( $item_intro );
+							?>
+							<details class="accordion-block__item">
+								<summary class="accordion-block__summary">
+									<span class="accordion-block__summary-main">
+										<?php if ( is_string( $item_heading ) && '' !== trim( $item_heading ) ) : ?>
+											<h4 class="accordion-block__item-heading"><?php echo esc_html( trim( $item_heading ) ); ?></h4>
+										<?php endif; ?>
+										<?php if ( $has_intro ) : ?>
+											<span class="accordion-block__item-intro"><?php echo esc_html( trim( $item_intro ) ); ?></span>
+										<?php endif; ?>
+									</span>
+									<span class="accordion-block__toggle" aria-hidden="true"></span>
+								</summary>
+								<?php if ( $has_body ) : ?>
+									<div class="accordion-block__panel">
+										<div class="accordion-block__body">
+											<?php echo wp_kses_post( $item_body ); ?>
+										</div>
 									</div>
-								</div>
-							<?php endif; ?>
-						</details>
-					<?php endwhile; ?>
-					<?php wp_reset_postdata(); ?>
+								<?php endif; ?>
+							</details>
+						<?php endwhile; ?>
+						<?php wp_reset_postdata(); ?>
+					</div>
 				</div>
-			</div>
-		<?php endforeach; ?>
+			<?php endforeach; ?>
+		<?php else : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, or FAQ items in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		<?php endif; ?>
 	</div>
 </section>
 

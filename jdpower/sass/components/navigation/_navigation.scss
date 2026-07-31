@@ -693,6 +693,11 @@ $nav-external-icon: url("images/external-icon.svg");
 		position: relative;
 	}
 
+	// Shown only in the 1200–1400 compact bar (see mid-range query); text label used elsewhere.
+	.mega-menu-mobile-icon {
+		display: none;
+	}
+
 	// Shell for mega panel (desktop layout + animation live under media-breakpoint-up(nav)).
 	// Desktop: absolute + full-bleed under that block; no vw here so mobile/stacked layout stays predictable.
 	.mega-menu-dropdown-fluid {
@@ -803,6 +808,12 @@ $nav-external-icon: url("images/external-icon.svg");
 
 .mega-menu-column-content {
 	@extend %mega-list-plain;
+
+	// First row is a heading: inset the whole column (content + borders) to match
+	// pre-heading / link columns — padding on the heading alone left borders too high.
+	&:has(> li.mega-menu-content-type-heading:first-child) {
+		padding-top: 0.5rem;
+	}
 
 	li {
 		list-style: none;
@@ -1284,7 +1295,7 @@ $mega-menu-column-row-gap: 0.75rem;
 		background-color: #f2f2f2;
 		border-radius: 5px;
 		overflow: hidden;
-		font-size: inherit;
+		font-size: 18.5px;
 		font-weight: inherit;
 		line-height: inherit;
 		letter-spacing: normal;
@@ -1434,7 +1445,7 @@ $mega-menu-column-row-gap: 0.75rem;
 		background-color: #f2f2f2;
 		border-radius: 5px;
 		overflow: hidden;
-		font-size: inherit;
+		font-size: 18.5px;
 		font-weight: inherit;
 		line-height: inherit;
 		letter-spacing: normal;
@@ -1475,7 +1486,7 @@ $mega-menu-column-row-gap: 0.75rem;
 	h2.xxsmall.featured-insights-block__card-title {
 		margin: 0 0 12px;
 		font-family: "Neulis Sans", $font__header;
-		font-size: 24px;
+		font-size: 18.5px;
 		font-style: normal;
 		font-weight: 800;
 		line-height: 110%;
@@ -2152,6 +2163,9 @@ $mega-menu-column-row-gap: 0.75rem;
 			padding: 0.75rem 1rem;
 		}
 
+		// Compact-bar icon uses base `.mega-menu-parent .mega-menu-mobile-icon { display: none }`
+		// and is enabled only in the 1200–1400 mid-range query below.
+
 		#primary-menu>li.pll-parent-menu-item>a.jdpower-lang-switcher-trigger {
 			gap: 0.5rem;
 		}
@@ -2597,6 +2611,97 @@ $nav-page-backdrop-z: 900;
 	body:has(#site-navigation #primary-menu > li.menu-item-has-children:not(.mega-menu-parent):hover) #page::after,
 	body:has(#site-navigation #primary-menu > li.menu-item-has-children:not(.mega-menu-parent):focus-within) #page::after {
 		@include nav-page-backdrop-visible;
+	}
+}
+
+// Compact desktop header: nav breakpoint through ~1400px (tight bar before full spacing).
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+	.site-header .site-branding .logo {
+		// Override ACF inline max-width on the logo wrapper.
+		max-width: 210px !important;
+	}
+
+	.site-header .container.nav-wrapper {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.mega-menu-featured-products__media {
+		display: none;
+	}
+
+	.main-navigation #primary-menu>li:not(.mega-menu-has-mobile-icon)>a:not(.nav-menu-button):not(.nav-menu-search-icon) {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.main-navigation #primary-menu>li.mega-menu-content-type-button>a.nav-menu-button.btn,
+	.main-navigation .mega-menu-content-type-button>a.nav-menu-button.btn {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.main-navigation #primary-menu>li.mega-menu-content-type-search_icon>a.nav-menu-search-icon,
+	.main-navigation .mega-menu-content-type-search_icon>a.nav-menu-search-icon,
+	.main-navigation #primary-menu>li:last-child.mega-menu-content-type-search_icon>a.nav-menu-search-icon {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	// Mega Menu: icon replaces label when Small breakpoint icon is set (no chevron).
+	// Include button-trigger selectors so these beat `.mega-menu-content-type-button > a.nav-menu-button.btn`.
+	.main-navigation #primary-menu>li.mega-menu-has-mobile-icon>a,
+	.main-navigation #primary-menu>li.mega-menu-has-mobile-icon.mega-menu-content-type-button>a.nav-menu-button.btn,
+	.main-navigation #primary-menu>li.mega-menu-has-mobile-icon>a.nav-menu-button.btn {
+		box-sizing: border-box;
+		border-radius: 50px;
+		width: 38px;
+		height: 38px;
+		padding: 7px 12px;
+		margin-left: 10px;
+		margin-right: 0;
+		justify-content: center;
+
+		.mega-menu-mobile-icon {
+			display: inline-flex;
+			flex-shrink: 0;
+			align-items: center;
+			justify-content: center;
+			width: 24px;
+			height: 24px;
+			line-height: 0;
+
+			svg,
+			img,
+			.mega-menu-mobile-icon__img {
+				display: block;
+				width: 24px;
+				height: 24px;
+				max-width: 100%;
+				max-height: 100%;
+				object-fit: contain;
+			}
+
+			svg {
+				fill: currentColor;
+			}
+		}
+
+		.mega-menu-trigger-label {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
+		}
+
+		&::after {
+			display: none;
+		}
 	}
 }
 

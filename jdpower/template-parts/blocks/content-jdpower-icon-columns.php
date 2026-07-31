@@ -108,8 +108,10 @@ if ( is_array( $items_raw ) ) {
 }
 
 $has_items = count( $items_rows ) > 0;
+$has_content = $has_pre || $has_heading || $has_intro_copy || $has_items;
 
-if ( ! $has_pre && ! $has_heading && ! $has_intro_copy && ! $has_items ) {
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
 	return;
 }
 
@@ -126,7 +128,14 @@ if ( 'columns' === $block_layout ) {
 
 <section class="<?php echo esc_attr( $classes ); ?>">
 	<div class="container">
-		<?php if ( 'columns' === $block_layout ) : ?>
+		<?php if ( ! $has_content ) : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, copy, or icon columns in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		<?php elseif ( 'columns' === $block_layout ) : ?>
 			<div class="icon-columns-block__split<?php echo $split_modifier ? ' ' . esc_attr( $split_modifier ) : ''; ?>">
 				<div class="icon-columns-block__split-intro">
 					<?php if ( $has_pre || $has_heading || $has_intro_copy ) : ?>

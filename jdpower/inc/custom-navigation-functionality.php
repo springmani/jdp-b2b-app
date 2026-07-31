@@ -89,7 +89,7 @@ if ( ! function_exists( 'customnavfunctionality_register_mega_menu_fields' ) ) {
 							'label'             => '',
 							'name'              => '',
 							'type'              => 'message',
-							'message'           => 'This item is the mega menu trigger (wide panel). Choose <strong>Trigger style</strong> below (regular text link or button). Use <strong>Navigation Label</strong> for the trigger text. Add <strong>Column</strong> items as <em>direct children</em>, then nest links, headings, images, and other blocks inside each column—or add nested <strong>Column</strong> children inside a column to create sub-columns (e.g. 4/5 with three 4/12 columns inside).',
+							'message'           => 'This item is the mega menu trigger (wide panel). Choose <strong>Trigger style</strong> below (regular text link or button). Optionally add a <strong>Small breakpoint icon</strong> — between 1200px and 1400px the icon replaces the label in the top bar when set. Use <strong>Navigation Label</strong> for the trigger text (also used below 1200px and above 1400px). Add <strong>Column</strong> items as <em>direct children</em>, then nest links, headings, images, and other blocks inside each column—or add nested <strong>Column</strong> children inside a column to create sub-columns (e.g. 4/5 with three 4/12 columns inside).',
 							'new_lines'         => 'wpautop',
 							'esc_html'          => 0,
 							'conditional_logic' => array(
@@ -134,6 +134,38 @@ if ( ! function_exists( 'customnavfunctionality_register_mega_menu_fields' ) ) {
 							'return_format'     => 'value',
 							'ajax'              => 0,
 							'placeholder'       => '',
+						),
+						array(
+							'key'               => 'field_mega_menu_mobile_icon',
+							'label'             => 'Small breakpoint icon',
+							'name'              => 'mega_menu_mobile_icon',
+							'type'              => 'image',
+							'instructions'      => 'Optional. Between 1200px and 1400px this icon replaces the navigation label in the top bar. Below 1200px and above 1400px the text label is shown instead. SVG preferred.',
+							'required'          => 0,
+							'conditional_logic' => array(
+								array(
+									array(
+										'field'    => 'field_content_type',
+										'operator' => '==',
+										'value'    => 'mega_menu',
+									),
+								),
+							),
+							'wrapper'           => array(
+								'width' => '',
+								'class' => '',
+								'id'    => '',
+							),
+							'return_format'     => 'array',
+							'preview_size'      => 'thumbnail',
+							'library'           => 'all',
+							'min_width'         => '',
+							'min_height'        => '',
+							'min_size'          => '',
+							'max_width'         => '',
+							'max_height'        => '',
+							'max_size'          => '',
+							'mime_types'        => '',
 						),
 						array(
 							'key'               => 'field_mm_note_link',
@@ -1362,6 +1394,125 @@ class CustomNavFunctionality_Mega_Menu_Walker extends Walker_Nav_Menu {
 	}
 
 	/**
+	 * Attachment ID for Mega Menu → Mobile icon (0 if unset).
+	 *
+	 * @param object $item Menu item data object.
+	 * @return int
+	 */
+	private function get_mega_menu_mobile_icon_id( $item ) {
+		$image = null;
+		if ( function_exists( 'get_field' ) ) {
+			$image = get_field( 'mega_menu_mobile_icon', $item->ID );
+		}
+		if ( is_array( $image ) && ! empty( $image['ID'] ) ) {
+			return absint( $image['ID'] );
+		}
+		if ( is_numeric( $image ) ) {
+			return absint( $image );
+		}
+		$raw = $this->get_item_meta( $item->ID, 'mega_menu_mobile_icon' );
+		if ( is_array( $raw ) && ! empty( $raw['ID'] ) ) {
+			return absint( $raw['ID'] );
+		}
+		if ( is_numeric( $raw ) ) {
+			return absint( $raw );
+		}
+		return 0;
+	}
+
+	/**
+	 * Whether this mega menu item has a mobile icon.
+	 *
+	 * @param object $item Menu item data object.
+	 * @return bool
+	 */
+	private function item_has_mega_menu_mobile_icon( $item ) {
+		return $this->get_mega_menu_mobile_icon_id( $item ) > 0;
+	}
+
+	/**
+	 * Markup for Mega Menu small-breakpoint icon (1200–1400px; CSS swaps with label).
+	 *
+	 * @param object $item Menu item data object.
+	 * @return string
+	 */
+	private function get_mega_menu_mobile_icon_html( $item ) {
+		$id = $this->get_mega_menu_mobile_icon_id( $item );
+		if ( $id <= 0 ) {
+			return '';
+		}
+
+		$inner = '';
+		$path  = get_attached_file( $id );
+		if ( $path && is_readable( $path ) && 'svg' === strtolower( pathinfo( $path, PATHINFO_EXTENSION ) ) ) {
+			$svg = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- local theme media SVG.
+			if ( false !== $svg && '' !== trim( $svg ) ) {
+				$inner = $svg;
+			}
+		}
+		if ( '' === $inner ) {
+			$inner = wp_get_attachment_image(
+				$id,
+				'thumbnail',
+				false,
+				array(
+					'class'    => 'mega-menu-mobile-icon__img',
+					'alt'      => '',
+					'loading'  => 'lazy',
+					'decoding' => 'async',
+				)
+			);
+		}
+		if ( '' === $inner ) {
+			return '';
+		}
+
+		return '<span class="mega-menu-mobile-icon" aria-hidden="true">' . $inner . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG from media library / wp_get_attachment_image.
+	}
+
+	/**
+	 * Top-level Mega Menu trigger (link or button), with optional small-breakpoint icon.
+	 *
+	 * @param object $item       Menu item data object.
+	 * @param string $attributes Attribute string for a regular link trigger.
+	 * @param object $args       wp_nav_menu() args object.
+	 * @return string
+	 */
+	private function render_mega_menu_trigger_item( $item, $attributes, $args ) {
+		$icon_html = $this->get_mega_menu_mobile_icon_html( $item );
+		$title     = apply_filters( 'the_title', $item->title, $item->ID );
+		$before    = isset( $args->before ) ? $args->before : '';
+		$after     = isset( $args->after ) ? $args->after : '';
+		$lbefore   = isset( $args->link_before ) ? $args->link_before : '';
+		$lafter    = isset( $args->link_after ) ? $args->link_after : '';
+		$label     = $lbefore . '<span class="mega-menu-trigger-label">' . $title . '</span>' . $lafter;
+
+		if ( $this->mega_menu_uses_button_trigger( $item ) ) {
+			$style   = $this->get_item_button_style( $item );
+			$classes = 'btn nav-menu-button nav-menu-button--' . $style;
+			$attr    = $this->get_item_link_attributes_string( $item );
+			if ( '' !== $attr && ! str_starts_with( $attr, ' ' ) ) {
+				$attr = ' ' . $attr;
+			}
+			$output  = $before;
+			$output .= '<a class="' . esc_attr( $classes ) . '"' . $attr . '>';
+			$output .= $icon_html;
+			$output .= $label;
+			$output .= '</a>';
+			$output .= $after;
+			return $output;
+		}
+
+		$output  = $before;
+		$output .= '<a' . $attributes . '>';
+		$output .= $icon_html;
+		$output .= $label;
+		$output .= '</a>';
+		$output .= $after;
+		return $output;
+	}
+
+	/**
 	 * Sanitized button style for nav menu items (ACF mega_menu_button_style).
 	 *
 	 * @param object $item Menu item data object.
@@ -1507,6 +1658,9 @@ class CustomNavFunctionality_Mega_Menu_Walker extends Walker_Nav_Menu {
 				$this->parent_items[ $item->ID ] = $item;
 				if ( $this->mega_menu_uses_button_trigger( $item ) ) {
 					$classes[] = 'mega-menu-content-type-button';
+				}
+				if ( $this->item_has_mega_menu_mobile_icon( $item ) ) {
+					$classes[] = 'mega-menu-has-mobile-icon';
 				}
 			}
 			if ( 'link_with_description' === $content_type ) {
@@ -1660,11 +1814,7 @@ class CustomNavFunctionality_Mega_Menu_Walker extends Walker_Nav_Menu {
 			} elseif ( 'button' === $content_type_d0 ) {
 				$item_output = $this->render_button_item( $item, $args );
 			} elseif ( 'mega_menu' === $content_type_d0 ) {
-				if ( $this->mega_menu_uses_button_trigger( $item ) ) {
-					$item_output = $this->render_button_item( $item, $args );
-				} else {
-					$item_output = $this->render_menu_item_anchor_block( $item, $attributes, $args );
-				}
+				$item_output = $this->render_mega_menu_trigger_item( $item, $attributes, $args );
 			} elseif ( in_array( 'pll-parent-menu-item', $classes, true ) ) {
 				$item_output = function_exists( 'jdpower_pll_render_language_switcher_trigger' )
 					? jdpower_pll_render_language_switcher_trigger( $item, $attributes, $args )

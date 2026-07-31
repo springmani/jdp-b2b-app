@@ -49,30 +49,60 @@ if ( 'dark' === $background_tone ) {
 	$classes .= ' feature-columns-block--tone-light';
 }
 
+$items_raw = get_field( 'feature_columns_items' );
+$rows      = array();
+
+if ( is_array( $items_raw ) ) {
+	foreach ( $items_raw as $row ) {
+		if ( ! is_array( $row ) ) {
+			continue;
+		}
+
+		$pre_heading = isset( $row['feature_columns_pre_heading'] ) ? $row['feature_columns_pre_heading'] : '';
+		$image       = isset( $row['feature_columns_image'] ) ? $row['feature_columns_image'] : null;
+		$heading     = isset( $row['feature_columns_heading'] ) ? $row['feature_columns_heading'] : '';
+		$copy        = isset( $row['feature_columns_copy'] ) ? $row['feature_columns_copy'] : '';
+
+		$image_id    = is_array( $image ) && ! empty( $image['ID'] ) ? (int) $image['ID'] : 0;
+		$has_image   = $image_id > 0;
+		$has_pre     = is_string( $pre_heading ) && '' !== trim( $pre_heading );
+		$has_heading = is_string( $heading ) && '' !== trim( wp_strip_all_tags( (string) $heading ) );
+		$has_copy    = is_string( $copy ) && '' !== trim( wp_strip_all_tags( $copy ) );
+
+		if ( ! $has_image && ! $has_pre && ! $has_heading && ! $has_copy ) {
+			continue;
+		}
+
+		$rows[] = array(
+			'pre_heading' => $pre_heading,
+			'image_id'    => $image_id,
+			'heading'     => $heading,
+			'copy'        => $copy,
+			'has_image'   => $has_image,
+			'has_pre'     => $has_pre,
+			'has_heading' => $has_heading,
+			'has_copy'    => $has_copy,
+		);
+	}
+}
+
+$has_content = count( $rows ) > 0;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
 ?>
 
 <section class="<?php echo esc_attr( $classes ); ?>">
-	<?php if ( have_rows( 'feature_columns_items' ) ) : ?>
-		<div class="container">
+	<div class="container">
+		<?php if ( $has_content ) : ?>
 			<div class="feature-columns-block__rows">
-				<?php
-				$row_index = 0;
-				while ( have_rows( 'feature_columns_items' ) ) :
-					the_row();
-					$pre_heading = get_sub_field( 'feature_columns_pre_heading' );
-					$image       = get_sub_field( 'feature_columns_image' );
-					$heading     = get_sub_field( 'feature_columns_heading' );
-					$copy        = get_sub_field( 'feature_columns_copy' );
-
-					$image_id    = is_array( $image ) && ! empty( $image['ID'] ) ? (int) $image['ID'] : 0;
-					$has_image   = $image_id > 0;
-					$has_pre     = is_string( $pre_heading ) && '' !== trim( $pre_heading );
-					$has_heading = is_string( $heading ) && '' !== trim( wp_strip_all_tags( (string) $heading ) );
-					$has_copy    = is_string( $copy ) && '' !== trim( wp_strip_all_tags( $copy ) );
-
+				<?php foreach ( $rows as $row_index => $row ) : ?>
+					<?php
 					$image_left = ( $row_index % 2 === 1 );
 					$row_mods   = array( 'feature-columns-block__row' );
-					if ( ! $has_image ) {
+					if ( ! $row['has_image'] ) {
 						$row_mods[] = 'feature-columns-block__row--text-only';
 					} elseif ( $image_left ) {
 						$row_mods[] = 'feature-columns-block__row--image-left';
@@ -81,43 +111,47 @@ if ( 'dark' === $background_tone ) {
 					}
 					?>
 					<div class="<?php echo esc_attr( implode( ' ', $row_mods ) ); ?>">
-						<?php if ( $has_image && $image_left ) : ?>
+						<?php if ( $row['has_image'] && $image_left ) : ?>
 							<div class="feature-columns-block__media">
 								<div class="feature-columns-block__figure">
-									<?php echo wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'feature-columns-block__img' ) ); ?>
+									<?php echo wp_get_attachment_image( $row['image_id'], 'large', false, array( 'class' => 'feature-columns-block__img' ) ); ?>
 								</div>
 							</div>
 						<?php endif; ?>
 
 						<div class="feature-columns-block__text">
-							<?php if ( $has_pre ) : ?>
-								<p class="feature-columns-block__pre preheading"><?php echo esc_html( trim( $pre_heading ) ); ?></p>
+							<?php if ( $row['has_pre'] ) : ?>
+								<p class="feature-columns-block__pre preheading"><?php echo esc_html( trim( $row['pre_heading'] ) ); ?></p>
 							<?php endif; ?>
 
-							<?php if ( $has_heading ) : ?>
-								<h2 class="<?php echo esc_attr( implode( ' ', $row_heading_classes ) ); ?>"><?php echo wp_kses_post( trim( (string) $heading ) ); ?></h2>
+							<?php if ( $row['has_heading'] ) : ?>
+								<h2 class="<?php echo esc_attr( implode( ' ', $row_heading_classes ) ); ?>"><?php echo wp_kses_post( trim( (string) $row['heading'] ) ); ?></h2>
 							<?php endif; ?>
 
-							<?php if ( $has_copy ) : ?>
+							<?php if ( $row['has_copy'] ) : ?>
 								<div class="feature-columns-block__copy">
-									<?php echo wp_kses_post( $copy ); ?>
+									<?php echo wp_kses_post( $row['copy'] ); ?>
 								</div>
 							<?php endif; ?>
 						</div>
 
-						<?php if ( $has_image && ! $image_left ) : ?>
+						<?php if ( $row['has_image'] && ! $image_left ) : ?>
 							<div class="feature-columns-block__media">
 								<div class="feature-columns-block__figure">
-									<?php echo wp_get_attachment_image( $image_id, 'large', false, array( 'class' => 'feature-columns-block__img' ) ); ?>
+									<?php echo wp_get_attachment_image( $row['image_id'], 'large', false, array( 'class' => 'feature-columns-block__img' ) ); ?>
 								</div>
 							</div>
 						<?php endif; ?>
 					</div>
-					<?php
-					$row_index++;
-				endwhile;
-				?>
+				<?php endforeach; ?>
 			</div>
-		</div>
-	<?php endif; ?>
+		<?php else : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add feature columns in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		<?php endif; ?>
+	</div>
 </section>

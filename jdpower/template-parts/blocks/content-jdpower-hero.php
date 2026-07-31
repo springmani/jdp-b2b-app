@@ -191,6 +191,35 @@ if ( $cta_url && $cta_title ) {
 		esc_html( $cta_title )
 	);
 }
+
+$has_content = '' !== $hero_pre_markup
+	|| '' !== $hero_headline_markup
+	|| '' !== $hero_sub_heading_markup
+	|| '' !== $hero_copy_markup
+	|| '' !== $hero_cta_markup
+	|| $has_bleed_bg
+	|| $has_column_image_raw;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, headline, copy, image, or CTA in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
+	return;
+}
 ?>
 
 <section class="<?php echo esc_attr( $classes ); ?>">

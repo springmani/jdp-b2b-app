@@ -402,7 +402,25 @@ if ( '' === $block_uid ) {
 	$block_uid = 'leaders-' . wp_unique_id();
 }
 
-if ( ! $has_pre && ! $has_heading && ! $has_any_leaders ) {
+if ( ! $has_pre && ! $has_heading && ! $has_any_leaders && empty( $is_preview ) ) {
+	return;
+}
+
+$has_content = $has_pre || $has_heading || $has_any_leaders;
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, or leaders in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
 	return;
 }
 
@@ -443,7 +461,7 @@ if ( ! $has_pre && ! $has_heading && ! $has_any_leaders ) {
 				}
 			}
 			// First featured only in the hero column (sort order preserved). Other featured + everyone else use the grid.
-			$primary_featured_id = null;
+			$primary_featured_id = 0;
 			$grid_ids            = array();
 			if ( ! empty( $featured_ids ) ) {
 				$primary_featured_id = (int) array_shift( $featured_ids );

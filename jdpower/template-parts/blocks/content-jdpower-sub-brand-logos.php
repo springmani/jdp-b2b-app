@@ -82,44 +82,55 @@ $has_logos = count( $logo_items ) > 0;
 
 $has_content = $has_pre || $has_heading || $has_copy || $has_logos;
 
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
 ?>
 
-<?php if ( $has_content ) : ?>
 <section class="<?php echo esc_attr( $classes ); ?>">
 	<div class="container">
-		<div class="<?php echo esc_attr( implode( ' ', $inner_classes ) ); ?>">
-			<div class="sub-brand-logos-block__row">
-			<?php if ( $has_pre || $has_heading || $has_copy ) : ?>
-				<div class="sub-brand-logos-block__body">
-					<?php if ( $has_pre ) : ?>
-						<p class="sub-brand-logos-block__pre preheading"><?php echo esc_html( trim( $pre_heading ) ); ?></p>
-					<?php endif; ?>
+		<?php if ( $has_content ) : ?>
+			<div class="<?php echo esc_attr( implode( ' ', $inner_classes ) ); ?>">
+				<div class="sub-brand-logos-block__row">
+				<?php if ( $has_pre || $has_heading || $has_copy ) : ?>
+					<div class="sub-brand-logos-block__body">
+						<?php if ( $has_pre ) : ?>
+							<p class="sub-brand-logos-block__pre preheading"><?php echo esc_html( trim( $pre_heading ) ); ?></p>
+						<?php endif; ?>
 
-					<?php if ( $has_heading ) : ?>
-						<h2 class="sub-brand-logos-block__heading small"><?php echo esc_html( trim( $heading ) ); ?></h2>
-					<?php endif; ?>
+						<?php if ( $has_heading ) : ?>
+							<h2 class="sub-brand-logos-block__heading small"><?php echo esc_html( trim( $heading ) ); ?></h2>
+						<?php endif; ?>
 
-					<?php if ( $has_copy ) : ?>
-						<div class="sub-brand-logos-block__copy">
-							<?php echo wp_kses_post( $copy ); ?>
-						</div>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-
-			<?php if ( $has_logos ) : ?>
-				<div class="sub-brand-logos-block__logos">
-					<div class="sub-brand-logos-block__grid">
-						<?php foreach ( $logo_items as $logo_id ) : ?>
-							<div class="sub-brand-logos-block__logo">
-								<?php echo wp_get_attachment_image( $logo_id, 'large', false, array( 'class' => 'sub-brand-logos-block__img' ) ); ?>
+						<?php if ( $has_copy ) : ?>
+							<div class="sub-brand-logos-block__copy">
+								<?php echo wp_kses_post( $copy ); ?>
 							</div>
-						<?php endforeach; ?>
+						<?php endif; ?>
 					</div>
+				<?php endif; ?>
+
+				<?php if ( $has_logos ) : ?>
+					<div class="sub-brand-logos-block__logos">
+						<div class="sub-brand-logos-block__grid">
+							<?php foreach ( $logo_items as $logo_id ) : ?>
+								<div class="sub-brand-logos-block__logo">
+									<?php echo wp_get_attachment_image( $logo_id, 'large', false, array( 'class' => 'sub-brand-logos-block__img' ) ); ?>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				<?php endif; ?>
 				</div>
-			<?php endif; ?>
-		</div>
-		</div>
+			</div>
+		<?php else : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, copy, or logos in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		<?php endif; ?>
 	</div>
 </section>
-<?php endif; ?>

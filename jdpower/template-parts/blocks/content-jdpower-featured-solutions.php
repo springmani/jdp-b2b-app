@@ -337,11 +337,6 @@ if ( 'manual_selection' === $source ) {
 }
 
 $has_cards = ! empty( $cards );
-$has_intro = $has_pre || $has_heading || $has_copy;
-
-if ( ! $has_intro && ! $has_cards && ! $has_cta && ! $show_region_bar ) {
-	return;
-}
 
 $column_size_raw         = get_field( 'featured_solutions_column_size' );
 $grid_cols               = ( 4 === (int) $column_size_raw ) ? 4 : 3;
@@ -351,6 +346,57 @@ $grid_dom_id = 'featured-solutions-grid-' . preg_replace( '/[^a-zA-Z0-9_-]/', '-
 if ( '' === $grid_dom_id || 'featured-solutions-grid-' === $grid_dom_id ) {
 	$grid_dom_id = 'featured-solutions-grid-' . uniqid();
 }
+
+$fs_default_lang = function_exists( 'jdpower_pll_default_language' ) ? jdpower_pll_default_language() : '';
+$fs_viewing_lang = function_exists( 'jdpower_pll_viewing_language_slug' ) ? jdpower_pll_viewing_language_slug() : '';
+$fs_english_url  = '';
+
+if ( '' !== $fs_default_lang && function_exists( 'pll_get_post' ) ) {
+	$current_id = get_queried_object_id();
+	$english_id = $current_id ? (int) pll_get_post( $current_id, $fs_default_lang ) : 0;
+	if ( $english_id > 0 ) {
+		$fs_english_url = (string) get_permalink( $english_id );
+	}
+}
+
+$fs_show_english_cta = (
+	'' !== $fs_english_url
+	&& '' !== $fs_default_lang
+	&& $fs_viewing_lang !== $fs_default_lang
+);
+
+$fs_all_cards_region_hidden = false;
+if ( $has_cards && '' !== $fs_default_region_slug && 'custom' !== $source ) {
+	$fs_all_cards_region_hidden = true;
+	foreach ( $cards as $fs_card ) {
+		$fs_slugs = isset( $fs_card['region_slugs'] ) && is_array( $fs_card['region_slugs'] ) ? $fs_card['region_slugs'] : array();
+		$fs_slugs = array_values(
+			array_filter(
+				array_unique(
+					array_map(
+						static function ( $slug ) {
+							return sanitize_title( (string) $slug );
+						},
+						$fs_slugs
+					)
+				)
+			)
+		);
+		if ( in_array( $fs_default_region_slug, $fs_slugs, true ) ) {
+			$fs_all_cards_region_hidden = false;
+			break;
+		}
+	}
+}
+
+$fs_empty_visible = ! $has_cards || $fs_all_cards_region_hidden;
+$fs_empty_text    = function_exists( 'jdpower_pll__' )
+	? jdpower_pll__( "Our offerings vary by region. Please select your location to see what's available." )
+	: "Our offerings vary by region. Please select your location to see what's available.";
+// Registered as a single space (no_solutions_cta_text) so Polylang lists it; trim keeps English empty.
+$fs_empty_cta = function_exists( 'jdpower_pll__' )
+	? trim( (string) jdpower_pll__( ' ' ) )
+	: '';
 
 ?>
 
@@ -624,6 +670,26 @@ if ( '' === $grid_dom_id || 'featured-solutions-grid-' === $grid_dom_id ) {
 				?>
 			</div>
 		<?php endif; ?>
+
+		<div
+			class="featured-solutions-block__empty"
+			data-featured-solutions-empty
+			data-featured-solutions-grid="<?php echo esc_attr( $grid_dom_id ); ?>"
+			<?php if ( ! $fs_empty_visible ) : ?>
+				hidden
+			<?php endif; ?>
+		>
+			<h3 class="featured-solutions-block__empty-text small">
+				<?php echo esc_html( $fs_empty_text ); ?>
+				<?php if ( '' !== $fs_empty_cta ) : ?>
+					<?php if ( $fs_show_english_cta ) : ?>
+						<a class="featured-solutions-block__empty-cta" href="<?php echo esc_url( $fs_english_url ); ?>"><?php echo esc_html( $fs_empty_cta ); ?></a>
+					<?php else : ?>
+						<?php echo esc_html( $fs_empty_cta ); ?>
+					<?php endif; ?>
+				<?php endif; ?>
+			</h3>
+		</div>
 
 		<?php if ( $has_cta ) : ?>
 			<div class="featured-solutions-block__cta">

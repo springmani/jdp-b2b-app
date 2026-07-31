@@ -1,6 +1,6 @@
 <?php
 /**
- * Sidebar taxonomy filter accordions.
+ * Sidebar filter accordions (Content Type + taxonomies).
  *
  * @package jdpower
  */
@@ -17,6 +17,43 @@ if ( ! is_array( $sidebar_filter_groups ) ) {
 	$sidebar_filter_groups = array();
 }
 
+$context = isset( $config['context'] ) ? (string) $config['context'] : '';
+
+if ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === $context ) :
+	$content_types = jdpower_post_filters_insight_content_type_choices();
+	$current_pt    = isset( $request['pf_pt'] ) ? sanitize_key( (string) $request['pf_pt'] ) : '';
+	?>
+	<details class="post-filters__accordion post-filters__accordion--content-type" open>
+		<summary class="post-filters__accordion-summary">
+			<span class="post-filters__accordion-title"><?php esc_html_e( 'Content Type', 'jdpower' ); ?></span>
+			<span class="post-filters__accordion-toggle" aria-hidden="true"></span>
+		</summary>
+		<ul class="post-filters__term-list">
+			<?php foreach ( $content_types as $ct_slug => $ct_label ) : ?>
+				<?php
+				$r2    = jdpower_post_filters_request_toggle_insight_post_type( $request, $ct_slug, $config );
+				$is_on = ( $current_pt === $ct_slug );
+				$href  = jdpower_post_filters_build_url( $config, $r2 );
+				?>
+				<li class="post-filters__term-item">
+					<a
+						class="post-filters__term-link <?php echo $is_on ? 'is-active' : ''; ?>"
+						href="<?php echo esc_url( $href ); ?>"
+						data-filter-key="pf_pt"
+						data-filter-value="<?php echo esc_attr( $ct_slug ); ?>"
+					>
+						<span class="post-filters__term-label"><?php echo esc_html( $ct_label ); ?></span>
+						<?php if ( $is_on ) : ?>
+							<span class="post-filters__remove" aria-hidden="true">×</span>
+						<?php endif; ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</details>
+	<?php
+endif;
+
 foreach ( $sidebar_filter_groups as $sidebar_group ) :
 	if ( ! is_array( $sidebar_group ) ) {
 		continue;
@@ -27,8 +64,10 @@ foreach ( $sidebar_filter_groups as $sidebar_group ) :
 	if ( '' === $tax || empty( $term_objects ) ) {
 		continue;
 	}
+	$rlist      = isset( $request[ $tax ] ) && is_array( $request[ $tax ] ) ? $request[ $tax ] : array();
+	$group_open = ! empty( $rlist );
 	?>
-	<details class="post-filters__accordion" open>
+	<details class="post-filters__accordion"<?php echo $group_open ? ' open' : ''; ?>>
 		<summary class="post-filters__accordion-summary">
 			<span class="post-filters__accordion-title"><?php echo esc_html( $label ); ?></span>
 			<span class="post-filters__accordion-toggle" aria-hidden="true"></span>
@@ -40,7 +79,6 @@ foreach ( $sidebar_filter_groups as $sidebar_group ) :
 					continue;
 				}
 				$r2       = jdpower_post_filters_request_toggle_slug( $request, $tax, $term->slug );
-				$rlist    = isset( $request[ $tax ] ) && is_array( $request[ $tax ] ) ? $request[ $tax ] : array();
 				$is_on    = in_array( $term->slug, $rlist, true );
 				$data_key = $tax;
 				$data_val = $term->slug;

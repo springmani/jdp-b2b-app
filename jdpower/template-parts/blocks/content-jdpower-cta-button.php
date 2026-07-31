@@ -5,22 +5,23 @@
 
 $items = get_field( 'cta_button_items' );
 
-if ( empty( $items ) || ! is_array( $items ) ) {
-	return;
-}
-
 $valid_rows = array();
 
-foreach ( $items as $row ) {
-	$link = isset( $row['cta_item_link'] ) ? $row['cta_item_link'] : null;
-	$url  = is_array( $link ) ? ( $link['url'] ?? '' ) : '';
-	$title = is_array( $link ) ? ( $link['title'] ?? '' ) : '';
-	if ( $url && $title ) {
-		$valid_rows[] = $row;
+if ( is_array( $items ) ) {
+	foreach ( $items as $row ) {
+		$link  = isset( $row['cta_item_link'] ) ? $row['cta_item_link'] : null;
+		$url   = is_array( $link ) ? ( $link['url'] ?? '' ) : '';
+		$title = is_array( $link ) ? ( $link['title'] ?? '' ) : '';
+		if ( $url && $title ) {
+			$valid_rows[] = $row;
+		}
 	}
 }
 
-if ( empty( $valid_rows ) ) {
+$has_content = count( $valid_rows ) > 0;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
 	return;
 }
 
@@ -28,6 +29,20 @@ $classes = 'cta-button';
 
 if ( ! empty( $block['className'] ) ) {
 	$classes .= ' ' . $block['className'];
+}
+
+if ( ! $has_content ) {
+	?>
+	<div class="<?php echo esc_attr( $classes ); ?>">
+		<?php
+		jdpower_acf_block_editor_placeholder(
+			__( 'Add a button link in the block sidebar.', 'jdpower' ),
+			$block
+		);
+		?>
+	</div>
+	<?php
+	return;
 }
 
 $align = get_field( 'cta_button_align' );

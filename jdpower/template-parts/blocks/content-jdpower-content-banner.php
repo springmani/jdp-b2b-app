@@ -82,8 +82,26 @@ $has_cta = $cta_url && $cta_title;
 $has_pre_heading = is_string( $pre_heading ) && '' !== trim( $pre_heading );
 $has_heading     = is_string( $heading ) && '' !== trim( $heading );
 $has_copy        = is_string( $copy ) && '' !== trim( $copy );
+$has_content     = $has_pre_heading || $has_heading || $has_copy || $has_cta;
 
-if ( ! $has_pre_heading && ! $has_heading && ! $has_copy && ! $has_cta ) {
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, copy, or CTA in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
 	return;
 }
 ?>

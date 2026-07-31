@@ -22,7 +22,26 @@ $icon_id = is_array( $icon_raw ) && ! empty( $icon_raw['ID'] ) ? (int) $icon_raw
 $heading = is_string( $heading_raw ) ? trim( $heading_raw ) : '';
 $copy    = is_string( $copy_raw ) ? trim( $copy_raw ) : '';
 
-if ( '' === $heading && '' === trim( wp_strip_all_tags( $copy ) ) && $icon_id <= 0 ) {
+$has_content = '' !== $heading || '' !== trim( wp_strip_all_tags( $copy ) ) || $icon_id > 0;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add an icon, heading, or copy in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
 	return;
 }
 

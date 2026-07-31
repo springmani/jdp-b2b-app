@@ -53,7 +53,7 @@ section.featured-solutions-block {
 		}
 	}
 
-	.featured-solutions-block__pre + .featured-solutions-block__grid {
+	.featured-solutions-block__pre+.featured-solutions-block__grid {
 		margin-top: 45px;
 	}
 
@@ -79,7 +79,7 @@ section.featured-solutions-block {
 		}
 	}
 
-	.featured-solutions-block__intro--stacked:not(.featured-solutions-block__intro--inline-region) .featured-solutions-block__heading + .featured-solutions-block__region-bar {
+	.featured-solutions-block__intro--stacked:not(.featured-solutions-block__intro--inline-region) .featured-solutions-block__heading+.featured-solutions-block__region-bar {
 		margin-top: 30px;
 		align-items: center;
 		justify-content: center;
@@ -119,6 +119,7 @@ section.featured-solutions-block {
 	}
 
 	@include media-breakpoint-down(xl) {
+
 		.featured-solutions-block__grid--cols-3,
 		.featured-solutions-block__grid--cols-4 {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -126,6 +127,7 @@ section.featured-solutions-block {
 	}
 
 	@include media-breakpoint-down(sm) {
+
 		.featured-solutions-block__grid--cols-2,
 		.featured-solutions-block__grid--cols-3,
 		.featured-solutions-block__grid--cols-4 {
@@ -265,7 +267,7 @@ section.featured-solutions-block {
 		padding-top: 20px;
 		align-self: flex-start;
 		font-family: $font__header;
-		font-size: 16px;
+		font-size: 18.5px;
 		font-style: normal;
 		font-weight: 800;
 		line-height: 150%;
@@ -285,6 +287,39 @@ section.featured-solutions-block {
 
 		&:first-child {
 			margin-top: 0;
+		}
+	}
+
+	.featured-solutions-block__empty {
+		margin-top: 10px;
+		padding: 28px 32px;
+		border-radius: 5px;
+		background-color: $background_medium;
+		text-align: left;
+
+		&[hidden] {
+			display: none !important;
+		}
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	.featured-solutions-block__empty-text {
+		font-family: $font__main;
+		font-weight: 400;
+		color: $color__text-main;
+	}
+
+	a.featured-solutions-block__empty-cta {
+		font-weight: 700;
+		text-decoration: underline;
+		color: inherit;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: none;
 		}
 	}
 
@@ -349,10 +384,23 @@ section.featured-solutions-block {
 		}
 
 		.featured-solutions-block__region-option {
+
 			&:hover,
 			&:focus-visible {
 				background-color: rgba($white, 0.08);
 			}
+		}
+
+		.featured-solutions-block__empty {
+			background-color: rgba($white, 0.08);
+		}
+
+		.featured-solutions-block__empty-text {
+			color: rgba($white, 0.9);
+		}
+
+		a.featured-solutions-block__empty-cta {
+			color: $white;
 		}
 
 		.featured-solutions-block__cta {

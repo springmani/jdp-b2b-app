@@ -525,16 +525,24 @@
 		return window.matchMedia('(min-width: 768px)').matches;
 	}
 
+	function syncSidebarAccordionDefaults($root, panelSelector) {
+		$root.find(panelSelector + ' .post-filters__accordion').each(function () {
+			var isContentType = $(this).hasClass('post-filters__accordion--content-type');
+			var hasActive = $(this).find('.post-filters__term-link.is-active').length > 0;
+			this.open = isContentType || hasActive;
+		});
+	}
+
 	function syncSidebarFiltersLayout($root) {
 		var desktop = isDesktopFiltersLayout();
 
 		if (desktop) {
 			closeMobileFiltersPanel($root, true);
-			$root.find('.post-filters__sidebar-panel--desktop .post-filters__accordion').prop('open', true);
+			// Desktop keeps server markup: Content Type open; tax open only when filtered.
 			return;
 		}
 
-		$root.find('.post-filters__sidebar-panel--mobile .post-filters__accordion').prop('open', false);
+		syncSidebarAccordionDefaults($root, '.post-filters__sidebar-panel--mobile');
 	}
 
 	function removeSlugFromParam(val, slug) {
@@ -589,7 +597,7 @@
 			$root.toggleClass('post-filters--mobile-filters-open', willOpen);
 			$(this).attr('aria-expanded', willOpen ? 'true' : 'false');
 			if (willOpen) {
-				$root.find('.post-filters__sidebar-panel--mobile .post-filters__accordion').prop('open', false);
+				syncSidebarAccordionDefaults($root, '.post-filters__sidebar-panel--mobile');
 			}
 		});
 

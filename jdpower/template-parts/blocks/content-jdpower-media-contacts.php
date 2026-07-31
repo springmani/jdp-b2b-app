@@ -55,7 +55,26 @@ foreach ( $selected as $entry ) {
 	);
 }
 
-if ( empty( $contacts ) ) {
+$has_contacts = count( $contacts ) > 0;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_contacts && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_contacts ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add media contacts in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
 	return;
 }
 

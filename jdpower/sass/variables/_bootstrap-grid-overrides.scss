@@ -7,14 +7,14 @@ $grid-breakpoints: (
   sm: 640px,
   md: 768px,
   lg: 1024px,
+  nav: 1200px,
   xl: 1280px,
-  nav: 1440px,
   2xl: 1536px) !default;
 
 // .container is width:100% with gutters until the first max-width kicks in (no stepped 600→720→960…).
 // The map key is the breakpoint where max-width applies; value is the cap (largest content width).
 // - xl (1280px): fluid below that, then 1600px — container max-width cap.
-// - nav (1440px): desktop horizontal nav / mega menu / fixed header (_navigation.scss, _site.scss).
+// - nav (1200px): desktop horizontal nav / mega menu / fixed header (_navigation.scss, _site.scss).
 // - sm only: cap from 640px up (less fluid on tablet).
 // - 2xl only: cap from 1536px up (widest fluid layouts on laptops; can exceed 1600 between xl–2xl).
 //

@@ -356,6 +356,16 @@ function jdpower_gutenburg_acf_blocks() {
 			'category'			=> 'jdpower',
 			'keywords'			=> array( 'Media', 'Contacts', 'Press', 'Phone', 'Email' ),
 		));
+
+		// register Author block
+		acf_register_block(array(
+			'name'				=> 'jdpower-author',
+			'title'				=> __('Author'),
+			'description'		=> __('Author card with photo, name, and bio — from the post author (Profile Image) or entered manually'),
+			'render_callback'	=> 'jdpower_render_acf_block',
+			'category'			=> 'jdpower',
+			'keywords'			=> array( 'Author', 'Bio', 'Writer', 'Byline' ),
+		));
 	}
 }
 
@@ -385,6 +395,28 @@ function jdpower_render_acf_block( $block, $content = '', $is_preview = false, $
 	if ( file_exists( $path ) ) {
 		include $path;
 	}
+}
+
+/**
+ * Editor-only empty-state markup for ACF blocks (block title + guidance text).
+ *
+ * @param string              $message Placeholder guidance text (already translated).
+ * @param array<string,mixed> $block   ACF block settings; uses `title` when present.
+ */
+function jdpower_acf_block_editor_placeholder( $message, $block = array() ) {
+	$title = '';
+	if ( is_array( $block ) && ! empty( $block['title'] ) && is_string( $block['title'] ) ) {
+		$title = trim( $block['title'] );
+	}
+
+	echo '<div class="jdpower-block-placeholder">';
+	if ( '' !== $title ) {
+		echo '<p class="jdpower-block-placeholder__name">' . esc_html( $title ) . '</p>';
+	}
+	if ( is_string( $message ) && '' !== trim( $message ) ) {
+		echo '<p class="jdpower-block-placeholder__text">' . esc_html( $message ) . '</p>';
+	}
+	echo '</div>';
 }
 
 /**

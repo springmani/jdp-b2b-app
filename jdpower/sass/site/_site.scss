@@ -47,7 +47,7 @@ $site-header-box-shadow: 0 10px 32px -12px rgba(0, 0, 0, 0.16);
 		z-index: 1000;
 	}
 
-	// Same breakpoint as desktop horizontal nav / mega menu (_navigation.scss uses nav / 1440px).
+	// Same breakpoint as desktop horizontal nav / mega menu (_navigation.scss uses nav / 1200px).
 	@include media-breakpoint-up(nav) {
 		position: fixed;
 		top: 0;

@@ -198,8 +198,26 @@ foreach ( $items as $row ) {
 }
 
 $has_stats = count( $stats_rows ) > 0;
+$has_content = $has_intro || $has_stats;
 
-if ( ! $has_intro && ! $has_stats ) {
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, copy, or stats in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
 	return;
 }
 

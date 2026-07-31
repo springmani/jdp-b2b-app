@@ -43,3 +43,83 @@
 .editor-styles-wrapper .wp-block section.featured-insights-block.featured-insights-block--layout-carousel .featured-insights-block__carousel-shell {
     margin-left: unset;
 }
+
+/* ACF block empty-state placeholders (see jdpower_acf_block_editor_placeholder()). */
+.editor-styles-wrapper .jdpower-block-placeholder {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 1.25rem;
+	border: 1px dashed rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	text-align: left;
+	color: #000;
+}
+
+.editor-styles-wrapper .jdpower-block-placeholder__name {
+	margin: 0 0 0.35rem;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	line-height: 1.3;
+	text-transform: uppercase;
+	opacity: 0.75;
+}
+
+.editor-styles-wrapper .jdpower-block-placeholder__text {
+	margin: 0;
+	font-style: italic;
+	opacity: 0.85;
+}
+
+.editor-styles-wrapper [class*="--tone-dark"] .jdpower-block-placeholder {
+	color: #fff;
+	border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Info Banner always uses a dark slate background. */
+.editor-styles-wrapper section.info-banner .jdpower-block-placeholder {
+	color: #fff;
+	border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Drop container + section padding so empty placeholders align like Page Anchor. */
+.editor-styles-wrapper .container:has(.jdpower-block-placeholder) {
+	max-width: none !important;
+	width: 100% !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.editor-styles-wrapper .heading-block__inner:has(.jdpower-block-placeholder) {
+	max-width: none !important;
+	width: 100% !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.editor-styles-wrapper [class*="pt-"]:has(.jdpower-block-placeholder) {
+	padding-top: 0 !important;
+}
+
+.editor-styles-wrapper [class*="pb-"]:has(.jdpower-block-placeholder) {
+	padding-bottom: 0 !important;
+}
+
+.editor-styles-wrapper section.cta:has(.jdpower-block-placeholder),
+.editor-styles-wrapper section.info-banner:has(.jdpower-block-placeholder),
+.editor-styles-wrapper section.media-contacts-block:has(.jdpower-block-placeholder),
+.editor-styles-wrapper section.content-banner:has(.jdpower-block-placeholder) {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.editor-styles-wrapper section.hero-block:has(.jdpower-block-placeholder) {
+	display: block;
+	align-items: stretch;
+	min-height: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}

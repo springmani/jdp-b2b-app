@@ -703,8 +703,28 @@ if ( 'dynamic' === $source ) {
 	}
 }
 
-// Do not render intro/CTA alone when there are no product cards (e.g. Dynamic By Solution with no terms or matches).
-if ( empty( $cards ) ) {
+$has_cards = ! empty( $cards );
+$has_intro = $has_pre || $has_section_heading || $has_section_copy;
+$has_content = $has_intro || $has_cards || $has_cta;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, copy, CTA, or product cards in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
 	return;
 }
 
@@ -712,9 +732,9 @@ $column_size_raw = $acf_get( 'related_products_column_size' );
 $grid_cols       = ( 4 === (int) $column_size_raw ) ? 4 : 3;
 $compact_card_typography = ( 4 === $grid_cols );
 
-$is_carousel = ! empty( $cards ) && count( $cards ) > 4;
+$is_carousel = $has_cards && count( $cards ) > 4;
 
-if ( ! empty( $cards ) ) {
+if ( $has_cards ) {
 	$classes .= $is_carousel ? ' related-products-block--layout-carousel' : ' related-products-block--layout-grid';
 }
 
@@ -723,8 +743,6 @@ $products_grid_id = $is_carousel
 	? $carousel_id
 	: 'related-products-grid-' . ( isset( $block['id'] ) ? sanitize_title( (string) $block['id'] ) : wp_unique_id( 'rp-grid-' ) );
 $carousel_nav_rendered = false;
-
-$has_intro = $has_pre || $has_section_heading || $has_section_copy;
 
 $region_in_carousel_intro = $is_carousel && $show_region_dropdown && ( $has_section_heading || $has_section_copy );
 

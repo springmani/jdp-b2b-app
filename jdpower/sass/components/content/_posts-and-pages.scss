@@ -104,8 +104,13 @@
 		padding: 20px 0;
 	}
 
+	section.author-block {
+		padding: 40px 0;
+	}
+
 	section.podcast-block .container,
-	section.media-contacts-block .container {
+	section.media-contacts-block .container,
+	section.author-block .container {
 		max-width: 100%;
 		padding: 0;
 	}

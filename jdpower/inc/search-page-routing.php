@@ -82,7 +82,7 @@ function jdpower_search_page_insight_post_type_slugs() {
 /**
  * Content type filters shown on the Search hub sidebar.
  *
- * Keys are `pf_pt` query values. News (`post`) searches both News and Resource posts.
+ * Keys are `pf_pt` query values. Insights (`post`) searches both Insights and Resource posts.
  *
  * @return array<string, string> Filter slug => label.
  */
@@ -94,7 +94,7 @@ function jdpower_search_page_content_filter_choices() {
 	}
 
 	$choices = array(
-		'post' => __( 'News', 'jdpower' ),
+		'post' => __( 'Insights', 'jdpower' ),
 	);
 
 	$press_release = get_post_type_object( 'press_release' );
@@ -127,6 +127,32 @@ function jdpower_search_page_content_filter_slugs() {
 }
 
 /**
+ * Structural / hierarchy post types included in unfiltered site search.
+ *
+ * Not exposed as Content Type sidebar filters; search result cards omit the type label.
+ *
+ * @return string[]
+ */
+function jdpower_search_page_structural_post_type_slugs() {
+	return array( 'page', 'industries', 'segments', 'solution' );
+}
+
+/**
+ * Whether a search result card should show the post type label.
+ *
+ * @param int $post_id Post ID.
+ * @return bool
+ */
+function jdpower_search_result_show_card_type( $post_id ) {
+	$post_type = get_post_type( (int) $post_id );
+	if ( ! is_string( $post_type ) || '' === $post_type ) {
+		return false;
+	}
+
+	return ! in_array( $post_type, jdpower_search_page_structural_post_type_slugs(), true );
+}
+
+/**
  * Map a Search hub content filter to {@see WP_Query} post type slugs.
  *
  * @param string $filter_slug `pf_pt` value or '' for all Search hub types.
@@ -143,7 +169,10 @@ function jdpower_search_page_filter_post_types( $filter_slug = '' ) {
 		case 'product':
 			return array( 'product' );
 		default:
-			return array( 'post', 'resource', 'press_release', 'product' );
+			return array_merge(
+				array( 'post', 'resource', 'press_release', 'product' ),
+				jdpower_search_page_structural_post_type_slugs()
+			);
 	}
 }
 

@@ -29,10 +29,10 @@ jQuery(document).ready(function ($) {
 		}
 
 		/**
-		 * Mobile (below nav breakpoint / 1440px): accordion on top-level items with children.
+		 * Mobile (below nav breakpoint / 1200px): accordion on top-level items with children.
 		 * Flyouts: first tap expands, second tap follows the URL. Mega menu parents: tap toggles panel only (no navigation).
 		 */
-		var JDPOWER_NAV_DESKTOP_MIN = 1440;
+		var JDPOWER_NAV_DESKTOP_MIN = 1200;
 
 		function jdpowerIsMobileNavAccordion() {
 			return typeof window.matchMedia === 'function' && window.matchMedia('(max-width: ' + (JDPOWER_NAV_DESKTOP_MIN - 1) + 'px)').matches;
@@ -244,7 +244,7 @@ jQuery(document).ready(function ($) {
 		(function () {
 			var header = document.getElementById('masthead');
 			var scrollThreshold = 120;
-			// Match _navigation.scss: horizontal nav / mega menu use nav (1440px), not xl.
+			// Match _navigation.scss: horizontal nav / mega menu use nav (1200px), not xl.
 			var mqDesktop = window.matchMedia('(min-width: ' + JDPOWER_NAV_DESKTOP_MIN + 'px)');
 			var transparentNav = document.body.classList.contains('has-transparent-nav');
 
@@ -560,6 +560,23 @@ jQuery(document).ready(function ($) {
 				var slugs = parseRegionSlugs(card);
 				card.hidden = slugs.indexOf(slug) === -1;
 			});
+
+			var block = grid.closest('.featured-solutions-block');
+			var empty = block
+				? block.querySelector('[data-featured-solutions-empty][data-featured-solutions-grid="' + gridId + '"]')
+				: null;
+			if (!empty && block) {
+				empty = block.querySelector('[data-featured-solutions-empty]');
+			}
+			if (empty) {
+				var anyVisible = false;
+				grid.querySelectorAll('[data-featured-solutions-card]').forEach(function (card) {
+					if (!card.hidden) {
+						anyVisible = true;
+					}
+				});
+				empty.hidden = anyVisible;
+			}
 		}
 
 		function syncFromSelect(root, select, list, labelEl) {

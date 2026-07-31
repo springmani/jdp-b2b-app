@@ -18,7 +18,7 @@ section.featured-segments-block {
 		margin-bottom: 60px;
 	}
 
-	.featured-segments-block__pre + .featured-segments-block__grid {
+	.featured-segments-block__pre+.featured-segments-block__grid {
 		margin-top: 45px;
 	}
 
@@ -46,7 +46,7 @@ section.featured-segments-block {
 		}
 	}
 
-	.featured-segments-block__intro--stacked .featured-segments-block__heading + .featured-segments-block__copy {
+	.featured-segments-block__intro--stacked .featured-segments-block__heading+.featured-segments-block__copy {
 		margin-top: 25px;
 	}
 
@@ -73,6 +73,7 @@ section.featured-segments-block {
 	}
 
 	@include media-breakpoint-down(xl) {
+
 		.featured-segments-block__grid--cols-3,
 		.featured-segments-block__grid--cols-4 {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -80,6 +81,7 @@ section.featured-segments-block {
 	}
 
 	@include media-breakpoint-down(sm) {
+
 		.featured-segments-block__grid--cols-2,
 		.featured-segments-block__grid--cols-3,
 		.featured-segments-block__grid--cols-4 {
@@ -220,7 +222,7 @@ section.featured-segments-block {
 		padding-top: 20px;
 		align-self: flex-start;
 		font-family: $font__header;
-		font-size: 16px;
+		font-size: 18.5px;
 		font-style: normal;
 		font-weight: 800;
 		line-height: 150%;

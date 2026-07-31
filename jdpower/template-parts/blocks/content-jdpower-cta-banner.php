@@ -110,6 +110,15 @@ $has_primary     = $primary_url && $primary_title;
 $has_secondary   = $secondary_url && $secondary_title;
 $show_cta_row    = ( 'buttons' === $form_display ) && ( $has_primary || $has_secondary );
 
+$has_heading = is_string( $heading ) && '' !== trim( wp_strip_all_tags( $heading ) );
+$has_copy    = is_string( $copy ) && '' !== trim( wp_strip_all_tags( $copy ) );
+$has_content = $has_heading || $has_copy || $show_form_embed || $show_form_modal || $show_cta_row;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
 $block_uid = isset( $block['id'] ) && is_string( $block['id'] )
 	? preg_replace( '/[^a-zA-Z0-9_-]/', '-', $block['id'] )
 	: '';
@@ -119,6 +128,22 @@ if ( '' === $block_uid ) {
 		: 'uid-' . uniqid( '', false );
 }
 $dialog_id = 'cta-banner-dialog-' . $block_uid;
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a heading, copy, CTA, or form in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
+	return;
+}
 ?>
 
 <section class="<?php echo esc_attr( $classes ); ?>">
@@ -127,11 +152,11 @@ $dialog_id = 'cta-banner-dialog-' . $block_uid;
 			<?php if ( $show_form_embed ) : ?>
 				<div class="row cta-banner__columns align-items-start">
 					<div class="col-12 col-lg-6 cta-banner__content">
-						<?php if ( ! empty( $heading ) ) : ?>
+						<?php if ( $has_heading ) : ?>
 							<h2 class="<?php echo $heading_class_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_attr() above. ?>"><?php echo wp_kses_post( $heading ); ?></h2>
 						<?php endif; ?>
 
-						<?php if ( ! empty( $copy ) ) : ?>
+						<?php if ( $has_copy ) : ?>
 							<div class="cta-banner__copy">
 								<?php echo wp_kses_post( wpautop( $copy ) ); ?>
 							</div>
@@ -143,11 +168,11 @@ $dialog_id = 'cta-banner-dialog-' . $block_uid;
 					</div>
 				</div>
 			<?php else : ?>
-				<?php if ( ! empty( $heading ) ) : ?>
+				<?php if ( $has_heading ) : ?>
 					<h2 class="<?php echo $heading_class_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_attr() above. ?>"><?php echo wp_kses_post( $heading ); ?></h2>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $copy ) ) : ?>
+				<?php if ( $has_copy ) : ?>
 					<div class="cta-banner__copy">
 						<?php echo wp_kses_post( wpautop( $copy ) ); ?>
 					</div>

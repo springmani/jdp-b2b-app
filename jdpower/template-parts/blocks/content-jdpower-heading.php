@@ -4,10 +4,7 @@
  */
 
 $heading_text = get_field( 'block_heading_text' );
-
-if ( ! is_string( $heading_text ) || '' === trim( $heading_text ) ) {
-	return;
-}
+$has_content  = is_string( $heading_text ) && '' !== trim( $heading_text );
 
 $classes = 'heading-block';
 
@@ -38,6 +35,27 @@ if ( 'light' === $color_mode ) {
 	$classes .= ' heading-block--light';
 } elseif ( 'teal' === $color_mode ) {
 	$classes .= ' heading-block--teal';
+}
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_content ) {
+	?>
+	<div class="<?php echo esc_attr( $classes ); ?>">
+		<div class="heading-block__inner">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a heading in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</div>
+	<?php
+	return;
 }
 
 $level = get_field( 'block_heading_level' );

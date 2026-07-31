@@ -114,6 +114,9 @@ function jdpower_register_polylang_strings() {
 	$string_pairs = array(
 		'explore_prefix'                 => 'Explore',
 		'featured_solutions_all_regions' => 'All regions',
+		'no_solutions_text'              => "Our offerings vary by region. Please select your location to see what's available.",
+		// Single space so Polylang registers the string; trim() keeps English output empty.
+		'no_solutions_cta_text'          => ' ',
 		'related_products_learn_more' => 'Learn More',
 		'related_insights_heading' => 'Related Insights',
 		'event_webinar_details_eyebrow' => 'Event details',

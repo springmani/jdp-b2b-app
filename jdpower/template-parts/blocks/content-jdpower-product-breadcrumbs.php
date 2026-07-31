@@ -200,7 +200,7 @@ if ( 'dynamic' === $source ) {
 	);
 }
 
-if ( empty( $crumbs ) ) {
+if ( empty( $crumbs ) && empty( $is_preview ) ) {
 	return;
 }
 
@@ -210,28 +210,37 @@ $classes .= ' product-breadcrumbs-block--source-' . $source;
 ?>
 <section class="<?php echo esc_attr( $classes ); ?>">
 	<div class="container">
-		<nav class="product-breadcrumbs-block__nav" aria-label="<?php esc_attr_e( 'Breadcrumb', 'jdpower' ); ?>">
-			<ol class="product-breadcrumbs-block__list">
-				<?php foreach ( $crumbs as $crumb ) : ?>
-					<?php
-					$label = isset( $crumb['label'] ) ? (string) $crumb['label'] : '';
-					$url   = isset( $crumb['url'] ) ? (string) $crumb['url'] : '';
-					if ( '' === $label || '' === $url ) {
-						continue;
-					}
-					?>
-					<li class="product-breadcrumbs-block__item">
-						<a class="product-breadcrumbs-block__link" href="<?php echo esc_url( $url ); ?>">
-							<?php echo esc_html( $label ); ?>
-						</a>
-					</li>
-				<?php endforeach; ?>
-				<?php if ( '' !== $current_title ) : ?>
-					<li class="product-breadcrumbs-block__item product-breadcrumbs-block__item--current" aria-current="page">
-						<span class="product-breadcrumbs-block__current"><?php echo esc_html( $current_title ); ?></span>
-					</li>
-				<?php endif; ?>
-			</ol>
-		</nav>
+		<?php if ( ! empty( $crumbs ) ) : ?>
+			<nav class="product-breadcrumbs-block__nav" aria-label="<?php esc_attr_e( 'Breadcrumb', 'jdpower' ); ?>">
+				<ol class="product-breadcrumbs-block__list">
+					<?php foreach ( $crumbs as $crumb ) : ?>
+						<?php
+						$label = isset( $crumb['label'] ) ? (string) $crumb['label'] : '';
+						$url   = isset( $crumb['url'] ) ? (string) $crumb['url'] : '';
+						if ( '' === $label || '' === $url ) {
+							continue;
+						}
+						?>
+						<li class="product-breadcrumbs-block__item">
+							<a class="product-breadcrumbs-block__link" href="<?php echo esc_url( $url ); ?>">
+								<?php echo esc_html( $label ); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+					<?php if ( '' !== $current_title ) : ?>
+						<li class="product-breadcrumbs-block__item product-breadcrumbs-block__item--current" aria-current="page">
+							<span class="product-breadcrumbs-block__current"><?php echo esc_html( $current_title ); ?></span>
+						</li>
+					<?php endif; ?>
+				</ol>
+			</nav>
+		<?php else : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Breadcrumbs will appear when this product has industry, segment, or solution data — or add them manually in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		<?php endif; ?>
 	</div>
 </section>

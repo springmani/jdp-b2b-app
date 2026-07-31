@@ -185,6 +185,79 @@ function jdpower_post_filters_insight_post_type_slugs() {
 }
 
 /**
+ * Insight Center Content Type sidebar choices (pf_pt => label), in display order.
+ *
+ * Webinars and Events both map to the `event_webinar` CPT (same content).
+ *
+ * @return array<string, string>
+ */
+function jdpower_post_filters_insight_content_type_choices() {
+	return array(
+		'press_release' => __( 'Press Releases', 'jdpower' ),
+		'post'          => __( 'Insights', 'jdpower' ),
+		'podcast'       => __( 'Podcasts', 'jdpower' ),
+		'webinar'       => __( 'Webinars', 'jdpower' ),
+		'event'         => __( 'Events', 'jdpower' ),
+	);
+}
+
+/**
+ * Resolve a Content Type pf_pt value to WP_Query constraints.
+ *
+ * @param string $pf_pt Content type key (or legacy post type slug).
+ * @return array{post_type: string}|null Null when invalid / empty.
+ */
+function jdpower_post_filters_resolve_insight_content_type( $pf_pt ) {
+	$pf_pt = sanitize_key( (string) $pf_pt );
+	if ( '' === $pf_pt ) {
+		return null;
+	}
+
+	$map = array(
+		'press_release' => 'press_release',
+		'post'          => 'post',
+		'podcast'       => 'podcast',
+		'webinar'       => 'event_webinar',
+		'event'         => 'event_webinar',
+		// Legacy URL support: bare CPT slug.
+		'event_webinar' => 'event_webinar',
+	);
+
+	if ( ! isset( $map[ $pf_pt ] ) ) {
+		return null;
+	}
+
+	return array(
+		'post_type' => $map[ $pf_pt ],
+	);
+}
+
+/**
+ * Label for an active Insight Content Type filter (pills / UI).
+ *
+ * @param string $pf_pt Content type key.
+ * @return string
+ */
+function jdpower_post_filters_insight_content_type_label( $pf_pt ) {
+	$pf_pt   = sanitize_key( (string) $pf_pt );
+	$choices = jdpower_post_filters_insight_content_type_choices();
+	if ( isset( $choices[ $pf_pt ] ) ) {
+		return (string) $choices[ $pf_pt ];
+	}
+	if ( 'event_webinar' === $pf_pt ) {
+		$pto = get_post_type_object( 'event_webinar' );
+		if ( $pto && ! empty( $pto->labels->singular_name ) ) {
+			return (string) $pto->labels->singular_name;
+		}
+	}
+	$pto = get_post_type_object( $pf_pt );
+	if ( $pto && ! empty( $pto->labels->singular_name ) ) {
+		return (string) $pto->labels->singular_name;
+	}
+	return $pf_pt;
+}
+
+/**
  * Post type slugs for an insight config (WP_Query and filters).
  *
  * @param array<string, mixed> $config Config.
@@ -202,36 +275,37 @@ function jdpower_post_filters_get_insight_post_types( $config ) {
 }
 
 /**
- * Parse pf_pt (allowed insight post type slug or empty).
+ * Parse pf_pt (Content Type key, allowed insight post type slug, or empty).
  *
  * @param array<string, mixed> $config Config.
  * @param array<string, mixed> $source GET/POST.
  * @return string
  */
 function jdpower_post_filters_parse_pf_pt( $config, $source ) {
-	$allowed = jdpower_post_filters_get_insight_post_types( $config );
-	if ( empty( $allowed ) ) {
+	if ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT !== ( $config['context'] ?? '' ) ) {
 		return '';
 	}
 	$raw = isset( $source['pf_pt'] ) ? sanitize_key( wp_unslash( (string) $source['pf_pt'] ) ) : '';
-	if ( '' === $raw || ! in_array( $raw, $allowed, true ) ) {
+	if ( '' === $raw ) {
 		return '';
 	}
-	return $raw;
+	if ( null !== jdpower_post_filters_resolve_insight_content_type( $raw ) ) {
+		return $raw;
+	}
+	return '';
 }
 
 /**
- * Toggle insight post type filter (single slug; same again clears).
+ * Toggle insight Content Type filter (single key; same again clears).
  *
- * @param array<string, mixed> $config Config.
  * @param array<string, mixed> $request Request.
- * @param string               $slug    Post type slug.
+ * @param string               $slug    Content type key.
+ * @param array<string, mixed> $config  Config.
  * @return array<string, mixed>
  */
 function jdpower_post_filters_request_toggle_insight_post_type( $request, $slug, $config ) {
-	$allowed = jdpower_post_filters_get_insight_post_types( $config );
-	$slug    = sanitize_key( (string) $slug );
-	if ( '' === $slug || ! in_array( $slug, $allowed, true ) ) {
+	$slug = sanitize_key( (string) $slug );
+	if ( '' === $slug || null === jdpower_post_filters_resolve_insight_content_type( $slug ) ) {
 		return $request;
 	}
 	$cur = isset( $request['pf_pt'] ) ? sanitize_key( (string) $request['pf_pt'] ) : '';
@@ -265,12 +339,12 @@ function jdpower_post_filters_registered_configs() {
 			'order'              => 'DESC',
 			'sidebar_taxonomies' => array(
 				array(
-					'taxonomy' => 'post_industry',
-					'label'    => __( 'Industry', 'jdpower' ),
-				),
-				array(
 					'taxonomy' => 'post_topic',
 					'label'    => __( 'Topic', 'jdpower' ),
+				),
+				array(
+					'taxonomy' => 'post_industry',
+					'label'    => __( 'Industry', 'jdpower' ),
 				),
 				array(
 					'taxonomy' => 'post_segment',
@@ -861,8 +935,13 @@ function jdpower_post_filters_build_query_args( $config, $request ) {
 
 	$insight_pts = jdpower_post_filters_get_insight_post_types( $config );
 	$pf_pt       = isset( $request['pf_pt'] ) ? sanitize_key( (string) $request['pf_pt'] ) : '';
-	if ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === $config['context'] && ! empty( $insight_pts ) ) {
-		$post_type_for_query = ( '' !== $pf_pt && in_array( $pf_pt, $insight_pts, true ) ) ? $pf_pt : $insight_pts;
+	$content_type = ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === $config['context'] && '' !== $pf_pt )
+		? jdpower_post_filters_resolve_insight_content_type( $pf_pt )
+		: null;
+	if ( is_array( $content_type ) && ! empty( $content_type['post_type'] ) ) {
+		$post_type_for_query = (string) $content_type['post_type'];
+	} elseif ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === $config['context'] && ! empty( $insight_pts ) ) {
+		$post_type_for_query = $insight_pts;
 	} else {
 		$post_type_for_query = $config['post_type'];
 	}
@@ -1109,19 +1188,188 @@ function jdpower_post_filters_build_url( $config, $request ) {
  * @return string
  */
 function jdpower_insight_center_industry_filter_url( $industry_slug ) {
-	$config = jdpower_post_filters_get_config( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT );
-	$slug   = sanitize_key( (string) $industry_slug );
-	if ( '' === $slug ) {
+	return jdpower_insight_center_tax_filter_url( 'post_industry', $industry_slug );
+}
+
+/**
+ * Insight Center URL filtered by a single insight taxonomy term slug.
+ *
+ * @param string $taxonomy Taxonomy slug (post_industry|post_topic|post_segment).
+ * @param string $term_slug Term slug.
+ * @return string
+ */
+function jdpower_insight_center_tax_filter_url( $taxonomy, $term_slug ) {
+	$taxonomy = sanitize_key( (string) $taxonomy );
+	$config   = jdpower_post_filters_get_config( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT );
+	$slug     = sanitize_title( (string) $term_slug );
+
+	if ( ! in_array( $taxonomy, jdpower_insight_center_filter_taxonomies(), true ) || '' === $slug ) {
 		return jdpower_post_filters_base_url( $config );
 	}
 
 	return jdpower_post_filters_build_url(
 		$config,
 		array(
-			'post_industry' => array( $slug ),
+			$taxonomy => array( $slug ),
 		)
 	);
 }
+
+/**
+ * Insight taxonomy archive slugs that map to Insight Center filters.
+ *
+ * @return string[]
+ */
+function jdpower_insight_center_filter_taxonomies() {
+	return array( 'post_industry', 'post_topic', 'post_segment' );
+}
+
+/**
+ * 301 insight taxonomy archives to Insight Center filter URLs (cards + filters UI).
+ *
+ * Direct hits on /insight-industry/{term}/ etc. should not use the unstyled archive.php.
+ */
+function jdpower_redirect_insight_tax_archives_to_insight_center() {
+	if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
+		return;
+	}
+
+	if ( (int) get_option( 'page_for_posts' ) < 1 ) {
+		return;
+	}
+
+	$taxonomies = jdpower_insight_center_filter_taxonomies();
+	if ( ! is_tax( $taxonomies ) ) {
+		return;
+	}
+
+	$term = get_queried_object();
+	if ( ! ( $term instanceof WP_Term ) || '' === (string) $term->slug ) {
+		return;
+	}
+
+	$dest = jdpower_insight_center_tax_filter_url( $term->taxonomy, $term->slug );
+	if ( '' === $dest ) {
+		return;
+	}
+
+	wp_safe_redirect( $dest, 301 );
+	exit;
+}
+add_action( 'template_redirect', 'jdpower_redirect_insight_tax_archives_to_insight_center' );
+
+/**
+ * Rewrite Insight taxonomy term archive links to Insight Center filter URLs.
+ *
+ * Used by core/breadcrumbs (get_term_link) and any other term_link consumers.
+ *
+ * @param string  $url      Term archive URL.
+ * @param WP_Term $term     Term object.
+ * @param string  $taxonomy Taxonomy slug.
+ * @return string
+ */
+function jdpower_insight_tax_term_link( $url, $term, $taxonomy ) {
+	$taxonomy = sanitize_key( (string) $taxonomy );
+
+	if ( ! in_array( $taxonomy, jdpower_insight_center_filter_taxonomies(), true ) ) {
+		return $url;
+	}
+
+	if ( ! ( $term instanceof WP_Term ) || '' === (string) $term->slug ) {
+		return $url;
+	}
+
+	return jdpower_insight_center_tax_filter_url( $taxonomy, $term->slug );
+}
+add_filter( 'term_link', 'jdpower_insight_tax_term_link', 20, 3 );
+
+/**
+ * Core breadcrumbs block: rewrite Insight tax crumbs to Insight Center filter URLs.
+ *
+ * @param array<int, array<string, mixed>> $items Breadcrumb items (label/url).
+ * @return array<int, array<string, mixed>>
+ */
+function jdpower_block_core_breadcrumbs_insight_tax_links( $items ) {
+	if ( ! is_array( $items ) ) {
+		return $items;
+	}
+
+	$rewrite_map = array(
+		'insight-industry' => 'post_industry',
+		'insight-topic'    => 'post_topic',
+		'insight-segment'  => 'post_segment',
+	);
+
+	foreach ( $items as &$item ) {
+		if ( ! is_array( $item ) || empty( $item['url'] ) || ! is_string( $item['url'] ) ) {
+			continue;
+		}
+
+		$path = (string) wp_parse_url( $item['url'], PHP_URL_PATH );
+		if ( '' === $path ) {
+			continue;
+		}
+
+		foreach ( $rewrite_map as $archive_slug => $taxonomy ) {
+			$pattern = '#/' . preg_quote( $archive_slug, '#' ) . '/(.+?)/?$#';
+			if ( ! preg_match( $pattern, $path, $matches ) ) {
+				continue;
+			}
+
+			$parts = array_values( array_filter( explode( '/', trim( $matches[1], '/' ) ) ) );
+			$slug  = $parts ? (string) end( $parts ) : '';
+			if ( '' === $slug ) {
+				continue;
+			}
+
+			$item['url'] = jdpower_insight_center_tax_filter_url( $taxonomy, $slug );
+			break;
+		}
+	}
+	unset( $item );
+
+	return $items;
+}
+add_filter( 'block_core_breadcrumbs_items', 'jdpower_block_core_breadcrumbs_insight_tax_links' );
+
+/**
+ * Yoast breadcrumbs: send Insight tax crumbs to Insight Center filter URLs
+ * instead of unstyled taxonomy archives (e.g. /insight-industry/automotive/).
+ *
+ * @param array<int, array<string, mixed>> $crumbs Breadcrumb crumbs.
+ * @return array<int, array<string, mixed>>
+ */
+function jdpower_wpseo_breadcrumb_insight_tax_links( $crumbs ) {
+	if ( ! is_array( $crumbs ) ) {
+		return $crumbs;
+	}
+
+	$taxonomies = jdpower_insight_center_filter_taxonomies();
+
+	foreach ( $crumbs as &$crumb ) {
+		if ( ! is_array( $crumb ) ) {
+			continue;
+		}
+
+		$taxonomy = isset( $crumb['taxonomy'] ) ? (string) $crumb['taxonomy'] : '';
+		$term_id  = isset( $crumb['term_id'] ) ? (int) $crumb['term_id'] : 0;
+
+		if ( $term_id < 1 || ! in_array( $taxonomy, $taxonomies, true ) ) {
+			continue;
+		}
+
+		$term = get_term( $term_id, $taxonomy );
+		if ( ! ( $term instanceof WP_Term ) || '' === (string) $term->slug ) {
+			continue;
+		}
+
+		$crumb['url'] = jdpower_insight_center_tax_filter_url( $taxonomy, $term->slug );
+	}
+	unset( $crumb );
+
+	return $crumbs;
+}
+add_filter( 'wpseo_breadcrumb_links', 'jdpower_wpseo_breadcrumb_insight_tax_links' );
 
 /**
  * Post types used when deciding whether sidebar taxonomy terms are non-empty.
@@ -1297,6 +1545,18 @@ function jdpower_post_filters_get_category_args_for_filters() {
  */
 function jdpower_post_filters_sidebar_term_hrefs( $config, $request ) {
 	$out = array();
+
+	if ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === ( $config['context'] ?? '' ) ) {
+		foreach ( array_keys( jdpower_post_filters_insight_content_type_choices() ) as $ct_slug ) {
+			$r2 = jdpower_post_filters_request_toggle_insight_post_type( $request, $ct_slug, $config );
+			$out[] = array(
+				'key'   => 'pf_pt',
+				'value' => (string) $ct_slug,
+				'href'  => jdpower_post_filters_build_url( $config, $r2 ),
+			);
+		}
+	}
+
 	if ( empty( $config['sidebar_taxonomies'] ) || ! is_array( $config['sidebar_taxonomies'] ) ) {
 		return $out;
 	}
@@ -1422,14 +1682,11 @@ function jdpower_post_filters_active_pills( $config, $request ) {
 
 	if ( JDPOWER_POST_FILTERS_CONTEXT_INSIGHT === $config['context'] ) {
 		if ( ! empty( $request['pf_pt'] ) ) {
-			$pto = get_post_type_object( (string) $request['pf_pt'] );
-			if ( $pto && ! empty( $pto->labels->singular_name ) ) {
-				$pills[] = array(
-					'key'   => 'pf_pt',
-					'label' => $pto->labels->singular_name,
-					'value' => (string) $request['pf_pt'],
-				);
-			}
+			$pills[] = array(
+				'key'   => 'pf_pt',
+				'label' => jdpower_post_filters_insight_content_type_label( (string) $request['pf_pt'] ),
+				'value' => (string) $request['pf_pt'],
+			);
 		}
 		foreach ( (array) ( $request['post_industry'] ?? array() ) as $slug ) {
 			$term = get_term_by( 'slug', $slug, 'post_industry' );

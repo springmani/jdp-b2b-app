@@ -9,7 +9,8 @@
 
 $post_id = get_the_ID();
 $parts   = jdpower_search_result_card_parts( $post_id );
-$type    = function_exists( 'jdpower_insight_card_post_type_label' )
+$show_type = ! function_exists( 'jdpower_search_result_show_card_type' ) || jdpower_search_result_show_card_type( $post_id );
+$type      = ( $show_type && function_exists( 'jdpower_insight_card_post_type_label' ) )
 	? jdpower_insight_card_post_type_label( $post_id )
 	: '';
 

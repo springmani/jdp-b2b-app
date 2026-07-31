@@ -94,7 +94,7 @@ section.related-products-block {
 		color: $background_dark;
 	}
 
-	.related-products-block__pre + .related-products-block__heading {
+	.related-products-block__pre+.related-products-block__heading {
 		margin-top: 0;
 	}
 
@@ -102,11 +102,11 @@ section.related-products-block {
 		margin-top: 25px;
 		color: $color__text-main;
 
-		> *:first-child {
+		>*:first-child {
 			margin-top: 0;
 		}
 
-		> *:last-child {
+		>*:last-child {
 			margin-bottom: 0;
 		}
 
@@ -139,7 +139,7 @@ section.related-products-block {
 		}
 	}
 
-	.related-products-block__heading + .related-products-block__intro-copy {
+	.related-products-block__heading+.related-products-block__intro-copy {
 		margin-top: 25px;
 	}
 
@@ -203,6 +203,7 @@ section.related-products-block {
 
 	// Below xl, 3- and 4-column grids stay 2-up (lg–xl was too narrow for four across).
 	@include media-breakpoint-down(xl) {
+
 		.related-products-block__grid--cols-3,
 		.related-products-block__grid--cols-4 {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -210,6 +211,7 @@ section.related-products-block {
 	}
 
 	@include media-breakpoint-down(sm) {
+
 		.related-products-block__grid--cols-2,
 		.related-products-block__grid--cols-3,
 		.related-products-block__grid--cols-4 {
@@ -359,7 +361,7 @@ section.related-products-block {
 		padding-top: 20px;
 		align-self: flex-start;
 		font-family: $font__header;
-		font-size: 16px;
+		font-size: 18.5px;
 		font-style: normal;
 		font-weight: 800;
 		line-height: 150%;
@@ -459,6 +461,7 @@ section.related-products-block {
 		}
 
 		.featured-solutions-block__region-option {
+
 			&:hover,
 			&:focus-visible {
 				background-color: rgba($black, 0.06);

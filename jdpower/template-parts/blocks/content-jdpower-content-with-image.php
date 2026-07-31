@@ -182,6 +182,29 @@ if ( is_array( $copy_rows ) ) {
 }
 $use_copy_rows = count( $copy_rows_render ) > 0;
 $has_legacy_copy = ! $use_copy_rows && is_string( $copy ) && '' !== trim( wp_strip_all_tags( $copy ) );
+$has_heading     = is_string( $heading ) && '' !== trim( wp_strip_all_tags( $heading ) );
+$has_content     = $has_pre || $has_heading || $use_copy_rows || $has_legacy_copy || $has_ctas || $has_media;
+
+// Front end: hide empty block. Editor: keep a visible empty state so the block can be selected.
+if ( ! $has_content && empty( $is_preview ) ) {
+	return;
+}
+
+if ( ! $has_content ) {
+	?>
+	<section class="<?php echo esc_attr( $classes ); ?>">
+		<div class="container">
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add a pre-heading, heading, copy, image, video, or CTA in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		</div>
+	</section>
+	<?php
+	return;
+}
 
 $layout_row_classes = array( 'content-with-image-block__row' );
 if ( ! $has_media ) {

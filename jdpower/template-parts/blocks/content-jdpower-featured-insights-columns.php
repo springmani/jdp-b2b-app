@@ -210,37 +210,45 @@ foreach ( $items as $row ) {
 	);
 }
 
-if ( empty( $columns_out ) ) {
+if ( empty( $columns_out ) && empty( $is_preview ) ) {
 	return;
 }
 
 ?>
 
-
 <section class="<?php echo esc_attr( $classes ); ?>">
 	<div class="container">
-		<div class="<?php echo esc_attr( 'gx-4 gy-5 featured-insights-columns-block__row ' . $row_cols_modifier ); ?>">
-			<?php foreach ( $columns_out as $col ) : ?>
-				<div class="featured-insights-columns-block__column">
-					<?php if ( $col['has_pre'] ) : ?>
-						<p class="featured-insights-block__pre preheading"><?php echo esc_html( $col['pre_text'] ); ?></p>
-					<?php endif; ?>
+		<?php if ( ! empty( $columns_out ) ) : ?>
+			<div class="<?php echo esc_attr( 'gx-4 gy-5 featured-insights-columns-block__row ' . $row_cols_modifier ); ?>">
+				<?php foreach ( $columns_out as $col ) : ?>
+					<div class="featured-insights-columns-block__column">
+						<?php if ( $col['has_pre'] ) : ?>
+							<p class="featured-insights-block__pre preheading"><?php echo esc_html( $col['pre_text'] ); ?></p>
+						<?php endif; ?>
 
-					<?php if ( $col['has_cards'] ) : ?>
-						<div class="featured-insights-columns-block__card-slot">
-							<?php
-							foreach ( $col['cards'] as $card ) {
-								if ( 'manual_selection' === $col['source'] || 'dynamic_by_type' === $col['source'] ) {
-									jdpower_featured_insights_columns_render_card( $card, true, isset( $card['url'] ) ? $card['url'] : '', $animate_cards );
-								} else {
-									jdpower_featured_insights_columns_render_card( $card, false, '', $animate_cards );
+						<?php if ( $col['has_cards'] ) : ?>
+							<div class="featured-insights-columns-block__card-slot">
+								<?php
+								foreach ( $col['cards'] as $card ) {
+									if ( 'manual_selection' === $col['source'] || 'dynamic_by_type' === $col['source'] ) {
+										jdpower_featured_insights_columns_render_card( $card, true, isset( $card['url'] ) ? $card['url'] : '', $animate_cards );
+									} else {
+										jdpower_featured_insights_columns_render_card( $card, false, '', $animate_cards );
+									}
 								}
-							}
-							?>
-						</div>
-					<?php endif; ?>
-				</div>
-			<?php endforeach; ?>
-		</div>
+								?>
+							</div>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php else : ?>
+			<?php
+			jdpower_acf_block_editor_placeholder(
+				__( 'Add insight columns in the block sidebar.', 'jdpower' ),
+				$block
+			);
+			?>
+		<?php endif; ?>
 	</div>
 </section>
