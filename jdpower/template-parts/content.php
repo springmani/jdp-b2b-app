@@ -14,13 +14,20 @@
 		<div class="container">
 			<?php
 			if ( is_singular() ) :
-				$post_type_obj = get_post_type_object( get_post_type() );
-				$type_eyebrow  = '';
-				if ( $post_type_obj ) {
-					if ( ! empty( $post_type_obj->labels->singular_name ) ) {
-						$type_eyebrow = $post_type_obj->labels->singular_name;
-					} elseif ( ! empty( $post_type_obj->labels->name ) ) {
-						$type_eyebrow = $post_type_obj->labels->name;
+				// Display label, not the registered post type label: Resources present as
+				// "Insights" on the front end, matching the insight cards and search results.
+				$type_eyebrow = function_exists( 'jdpower_insight_card_post_type_label' )
+					? jdpower_insight_card_post_type_label( get_the_ID() )
+					: '';
+
+				if ( '' === $type_eyebrow ) {
+					$post_type_obj = get_post_type_object( get_post_type() );
+					if ( $post_type_obj ) {
+						if ( ! empty( $post_type_obj->labels->singular_name ) ) {
+							$type_eyebrow = $post_type_obj->labels->singular_name;
+						} elseif ( ! empty( $post_type_obj->labels->name ) ) {
+							$type_eyebrow = $post_type_obj->labels->name;
+						}
 					}
 				}
 				if ( '' !== $type_eyebrow ) :
