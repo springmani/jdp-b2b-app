@@ -49,7 +49,7 @@
         "assign_terms": "edit_posts"
     },
     "public": true,
-    "publicly_queryable": false,
+    "publicly_queryable": true,
     "hierarchical": true,
     "show_ui": true,
     "show_in_menu": true,
