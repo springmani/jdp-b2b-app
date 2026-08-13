@@ -762,7 +762,7 @@ function jdpower_post_filters_disable_smart_search_for_native( $enabled, $query 
 		return $enabled;
 	}
 	if ( ! empty( $query->get( 'use_native_search' ) ) ) {
-		return false;
+		return true;
 	}
 	return $enabled;
 }
