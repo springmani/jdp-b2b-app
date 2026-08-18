@@ -20,5 +20,5 @@ jobs:
         TPO_PATH: "wp-content/themes/"
       
       # Branches & Environments 
-        DEV_BRANCH: master
+        DEV_BRANCH: main
         DEV_ENV: jdpbusinessprd
