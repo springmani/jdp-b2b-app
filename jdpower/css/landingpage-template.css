@@ -1,0 +1,207 @@
+/* ====================================== */
+/* LANDING PAGE TEMPLATE - v5 (nur v2)    */
+/* ====================================== */
+
+.landingpage-template {
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+/* Theme-padding-top vom #page entfernen (verursacht weißen Bereich oben) */
+.landingpage-template #page,
+body.landingpage-template #page {
+	padding-top: 0 !important;
+	margin-top: 0 !important;
+}
+
+/* Sicherstellen dass die main direkt oben startet */
+.landingpage-template .site-main,
+.landingpage-template .landingpage-content {
+	padding-top: 0;
+	margin-top: 0;
+}
+
+/* ====== LOGO OVERLAY - absolute positioned über dem ersten Block ====== */
+
+.landingpage-logo-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 100;
+	pointer-events: none;
+	padding-top: 32px;
+	padding-bottom: 32px;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.landingpage-logo-overlay .container {
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 0 40px;
+	pointer-events: none;
+}
+
+.landingpage-logo-overlay__link {
+	display: inline-block;
+	text-decoration: none;
+	background: transparent !important;
+	pointer-events: auto;
+	transition: opacity 0.2s ease;
+}
+
+.landingpage-logo-overlay__link:hover {
+	opacity: 0.85;
+	text-decoration: none;
+}
+
+.landingpage-logo-overlay__logo {
+	display: block;
+	background: transparent !important;
+}
+
+.landingpage-logo-overlay__logo svg,
+.landingpage-logo-overlay__logo img {
+	display: block;
+	height: auto;
+	max-width: 220px;
+	width: auto;
+	background: transparent !important;
+}
+
+/* Logo "POWER" von schwarz auf weiß umfärben */
+.landingpage-logo-overlay__logo svg [fill="#000"],
+.landingpage-logo-overlay__logo svg [fill="#000000"],
+.landingpage-logo-overlay__logo svg [fill="black"],
+.landingpage-logo-overlay__logo svg [fill="#231f20"],
+.landingpage-logo-overlay__logo svg [fill="#1a1a1a"],
+.landingpage-logo-overlay__logo svg [fill="#111"],
+.landingpage-logo-overlay__logo svg [fill="#111111"],
+.landingpage-logo-overlay__logo svg [fill="#222"],
+.landingpage-logo-overlay__logo svg [fill="#222222"],
+.landingpage-logo-overlay__logo svg [fill="#333"],
+.landingpage-logo-overlay__logo svg [fill="#333333"] {
+	fill: #ffffff !important;
+}
+
+.landingpage-logo-overlay__logo svg [style*="fill:#000"],
+.landingpage-logo-overlay__logo svg [style*="fill: #000"],
+.landingpage-logo-overlay__logo svg [style*="fill:black"],
+.landingpage-logo-overlay__logo svg [style*="fill: black"] {
+	fill: #ffffff !important;
+}
+
+.landingpage-logo-overlay__logo svg path:not([fill]),
+.landingpage-logo-overlay__logo svg g:not([fill]) path:not([fill]) {
+	fill: #ffffff;
+}
+
+/* ====== RESPONSIVE LOGO OVERLAY ====== */
+
+@media (max-width: 1024px) {
+	.landingpage-logo-overlay {
+		padding-top: 28px;
+	}
+
+	.landingpage-logo-overlay .container {
+		padding: 0 32px;
+	}
+
+	.landingpage-logo-overlay__logo svg,
+	.landingpage-logo-overlay__logo img {
+		max-width: 180px;
+	}
+}
+
+@media (max-width: 768px) {
+	.landingpage-logo-overlay {
+		padding-top: 24px;
+	}
+
+	.landingpage-logo-overlay .container {
+		padding: 0 24px;
+	}
+
+	.landingpage-logo-overlay__logo svg,
+	.landingpage-logo-overlay__logo img {
+		max-width: 150px;
+	}
+}
+
+@media (max-width: 480px) {
+	.landingpage-logo-overlay {
+		padding-top: 16px;
+	}
+
+	.landingpage-logo-overlay .container {
+		padding: 0 16px;
+	}
+
+	.landingpage-logo-overlay__logo svg,
+	.landingpage-logo-overlay__logo img {
+		max-width: 120px;
+	}
+}
+
+/* ====== LANDING PAGE - FOOTER MIT MENU (horizontal, verteilt) ====== */
+
+.landingpage-menu-footer .footer-wrapper {
+	align-items: center !important;
+}
+
+.landingpage-menu-footer .footer-nav {
+	display: flex !important;
+	align-items: center !important;
+}
+
+.landingpage-menu-footer .footer-nav__inner {
+	width: 100% !important;
+}
+
+.landingpage-menu-footer .footer-nav .footer-nav__menu,
+.landingpage-menu-footer .footer-nav__menu {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	gap: 16px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+	width: 100% !important;
+}
+
+.landingpage-menu-footer .footer-nav__menu li {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+}
+
+.landingpage-menu-footer .footer-nav__menu li + li {
+	margin-top: 0 !important;
+}
+
+.landingpage-menu-footer .footer-nav__menu a {
+	white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+	.landingpage-menu-footer .footer-nav .footer-nav__menu,
+	.landingpage-menu-footer .footer-nav__menu {
+		justify-content: flex-start !important;
+		gap: 12px 20px !important;
+	}
+
+	.landingpage-menu-footer .footer-nav__menu a {
+		white-space: normal;
+	}
+}
+
+@media (max-width: 480px) {
+	.landingpage-menu-footer .footer-nav .footer-nav__menu,
+	.landingpage-menu-footer .footer-nav__menu {
+		gap: 10px 16px !important;
+	}
+}
