@@ -38,7 +38,7 @@ function jdpower_setup() {
 	*/
 	add_theme_support( 'post-thumbnails' );
 
-	// Primary navigation and four footer column menus.
+	// Primary navigation, four footer column menus, and landingpage footer menu.
 	register_nav_menus(
 		array(
 			'primary' => esc_html__( 'Primary', 'jdpower' ),
@@ -46,6 +46,7 @@ function jdpower_setup() {
 			'footer_column_2' => esc_html__( 'Footer column 2', 'jdpower' ),
 			'footer_column_3' => esc_html__( 'Footer column 3', 'jdpower' ),
 			'footer_column_4' => esc_html__( 'Footer column 4', 'jdpower' ),
+			'landingpage_footer_menu' => esc_html__( 'Landingpage Footer Menu', 'jdpower' ),
 		)
 	);
 
@@ -92,6 +93,16 @@ function jdpower_scripts() {
 
 	// Magnific Popup
 	#wp_enqueue_script( 'magnific-popup-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array('jquery'), '1.1.0', TRUE );
+
+	// Load Landing Page CSS only on landing page template
+	if ( is_page_template( 'page-landingpage-menu.php' ) ) {
+		wp_enqueue_style(
+			'jdpower-landingpage',
+			get_template_directory_uri() . '/css/landingpage-template.css',
+			array(),
+			THEME_VERSION
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'jdpower_scripts' );
 
@@ -136,7 +147,7 @@ require_once get_template_directory() . '/inc/taxonomy-helpers.php';
 require get_template_directory() . '/inc/event-webinar.php';
 
 /**
- * Featured Insights card partial (defines card helpers for the block and singular “related insights”).
+ * Featured Insights card partial (defines card helpers for the block and singular "related insights").
  */
 require_once get_template_directory() . '/template-parts/partials/featured-insights-card.php';
 
