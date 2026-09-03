@@ -95,7 +95,7 @@ function jdpower_scripts() {
 	#wp_enqueue_script( 'magnific-popup-scripts', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js', array('jquery'), '1.1.0', TRUE );
 
 	// Load Landing Page CSS only on landing page template
-	if ( is_page_template( 'page-landingpage-menu.php' ) ) {
+	if ( is_page_template( 'page-templates/page-landingpage-menu.php' ) ) {
 		wp_enqueue_style(
 			'jdpower-landingpage',
 			get_template_directory_uri() . '/css/landingpage-template.css',
