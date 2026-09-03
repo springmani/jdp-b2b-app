@@ -65,9 +65,10 @@ body.landingpage-template #page {
 .landingpage-logo-overlay__logo svg,
 .landingpage-logo-overlay__logo img {
 	display: block;
+	width: 220px;
 	height: auto;
 	max-width: 220px;
-	width: auto;
+	aspect-ratio: 903.2 / 134.4;
 	background: transparent !important;
 }
 
@@ -111,6 +112,7 @@ body.landingpage-template #page {
 
 	.landingpage-logo-overlay__logo svg,
 	.landingpage-logo-overlay__logo img {
+		width: 180px;
 		max-width: 180px;
 	}
 }
@@ -126,6 +128,7 @@ body.landingpage-template #page {
 
 	.landingpage-logo-overlay__logo svg,
 	.landingpage-logo-overlay__logo img {
+		width: 150px;
 		max-width: 150px;
 	}
 }
@@ -141,6 +144,7 @@ body.landingpage-template #page {
 
 	.landingpage-logo-overlay__logo svg,
 	.landingpage-logo-overlay__logo img {
+		width: 120px;
 		max-width: 120px;
 	}
 }
