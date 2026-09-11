@@ -76,6 +76,27 @@ function jdpower_content_width() {
 }
 add_action( 'after_setup_theme', 'jdpower_content_width', 0 );
 
+class Landingpage_Menu_Walker extends Walker_Nav_Menu {
+    function start_el( &$output, $item, $depth = 0, $args = NULL, $id = 0 ) {
+        if ( isset( $args->theme_location ) && $args->theme_location === 'landingpage_footer_menu' ) {
+            $title_attr = isset( $item->attr_title ) && $item->attr_title ? 'id="' . esc_attr( $item->attr_title ) . '"' : '';
+            $output .= '<li class="menu-item">';
+            $output .= '<a href="' . esc_url( $item->url ) . '" ' . $title_attr . '>' . esc_html( $item->title ) . '</a>';
+            return;
+        }
+        parent::start_el( $output, $item, $depth, $args, $id );
+    }
+}
+
+// Register walker in footer template
+add_filter( 'wp_nav_menu_args', 'jdpower_landingpage_menu_walker', 10, 1 );
+function jdpower_landingpage_menu_walker( $args ) {
+    if ( $args['theme_location'] === 'landingpage_footer_menu' ) {
+        $args['walker'] = new Landingpage_Menu_Walker();
+    }
+    return $args;
+}
+
 /**
  * Enqueue scripts and styles.
  */
