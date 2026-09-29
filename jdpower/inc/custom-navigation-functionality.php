@@ -48,6 +48,7 @@ if ( ! function_exists( 'customnavfunctionality_register_mega_menu_fields' ) ) {
 								'html'                  => 'HTML',
 								'featured_products'     => 'Featured products',
 								'featured_insights'     => 'Featured insights',
+								'featured_pages'        => 'Featured pages',
 							),
 							'default_value'     => 'link',
 							'allow_null'        => 0,
@@ -960,6 +961,96 @@ if ( ! function_exists( 'customnavfunctionality_register_mega_menu_fields' ) ) {
 							'ajax'              => 0,
 							'placeholder'       => '',
 						),
+					),
+					// Featured Pages Content Type Fields
+					array(
+					    'key'               => 'field_mm_note_featured_pages',
+					    'label'             => '',
+					    'name'              => '',
+					    'type'              => 'message',
+					    'message'           => 'Place this item inside a <strong>Column</strong>. <strong>Navigation Label</strong> and <strong>URL</strong> are not used on the front end. Choose pages below; each card uses the page featured image, title, and excerpt. The whole card links to the page.',
+					    'new_lines'         => 'wpautop',
+					    'esc_html'          => 0,
+					    'conditional_logic' => array(
+					        array(
+					            array(
+					                'field'    => 'field_content_type',
+					                'operator' => '==',
+					                'value'    => 'featured_pages',
+					            ),
+					        ),
+					    ),
+					),
+					array(
+					    'key'               => 'field_mega_menu_featured_pages',
+					    'label'             => 'Featured pages',
+					    'name'              => 'mega_menu_featured_pages',
+					    'type'              => 'relationship',
+					    'instructions'      => 'Select pages in display order.',
+					    'required'          => 0,
+					    'conditional_logic' => array(
+					        array(
+					            array(
+					                'field'    => 'field_content_type',
+					                'operator' => '==',
+					                'value'    => 'featured_pages',
+					            ),
+					        ),
+					    ),
+					    'wrapper'           => array(
+					        'width' => '',
+					        'class' => '',
+					        'id'    => '',
+					    ),
+					    'post_type'         => array(
+					        'page',
+					    ),
+					    'taxonomy'          => array(),
+					    'filters'           => array(
+					        'search',
+					    ),
+					    'elements'          => array(
+					        'featured_image',
+					    ),
+					    'min'               => 0,
+					    'max'               => 12,
+					    'return_format'     => 'id',
+					),
+					array(
+					    'key'               => 'field_mega_menu_featured_pages_columns',
+					    'label'             => 'Columns per row',
+					    'name'              => 'mega_menu_featured_pages_columns',
+					    'type'              => 'select',
+					    'instructions'      => 'Number of page cards per row in the grid.',
+					    'required'          => 0,
+					    'conditional_logic' => array(
+					        array(
+					            array(
+					                'field'    => 'field_content_type',
+					                'operator' => '==',
+					                'value'    => 'featured_pages',
+					            ),
+					        ),
+					    ),
+					    'wrapper'           => array(
+					        'width' => '',
+					        'class' => '',
+					        'id'    => '',
+					    ),
+					    'choices'           => array(
+					        '1' => '1 column',
+					        '2' => '2 columns',
+					        '3' => '3 columns',
+					        '4' => '4 columns',
+					    ),
+					    'default_value'     => '3',
+					    'allow_null'        => 0,
+					    'multiple'          => 0,
+					    'ui'                => 0,
+					    'return_format'     => 'value',
+					    'ajax'              => 0,
+					    'placeholder'       => '',
+					),
 					),
 					'location'              => array(
 						array(
@@ -1926,7 +2017,99 @@ class CustomNavFunctionality_Mega_Menu_Walker extends Walker_Nav_Menu {
 
 		return '<div class="mega-menu-featured-insights"><div class="' . esc_attr( $grid_class ) . '">' . $cards_html . '</div></div>';
 	}
+	/**
+	 * Columns per row for featured pages (1–4, default 3).
+	 *
+	 * @param int $item_id Nav menu item post ID.
+	 * @return int
+	 */
+	private function get_featured_pages_columns_for_item( $item_id ) {
+	    $raw = $this->get_item_meta( $item_id, 'mega_menu_featured_pages_columns' );
+	    $cols = (int) $raw;
+	    if ( $cols < 1 || $cols > 4 ) {
+	        $cols = 3;
+	    }
+	    return $cols;
+	}
 
+	/**
+	 * Render featured pages grid for a mega menu item.
+	 *
+	 * @param object $item Menu item data object.
+	 * @return string HTML output.
+	 */
+	private function render_featured_pages_item( $item ) {
+	    $page_ids = $this->get_item_meta( $item->ID, 'mega_menu_featured_pages' );
+	    if ( empty( $page_ids ) || ! is_array( $page_ids ) ) {
+	        return '';
+	    }
+	
+	    $cols = $this->get_featured_pages_columns_for_item( $item->ID );
+	    $cards_html = '';
+	
+	    foreach ( $page_ids as $entry ) {
+	        if ( is_object( $entry ) && isset( $entry->ID ) ) {
+	            $post_id = (int) $entry->ID;
+	        } else {
+	            $post_id = (int) $entry;
+	        }
+	        if ( $post_id <= 0 || 'page' !== get_post_type( $post_id ) || 'publish' !== get_post_status( $post_id ) ) {
+	            continue;
+	        }
+	
+	        $url = get_permalink( $post_id );
+	        if ( ! $url ) {
+	            continue;
+	        }
+	
+	        $image_id = (int) get_post_thumbnail_id( $post_id );
+	
+	        $heading_override = function_exists( 'get_field' ) ? get_field( 'page_card_heading_override', $post_id ) : '';
+	        $title = ( is_string( $heading_override ) && '' !== trim( $heading_override ) )
+	            ? trim( $heading_override )
+	            : get_the_title( $post_id );
+	
+	        $card_short = function_exists( 'get_field' ) ? get_field( 'page_card_short_description', $post_id ) : '';
+	        if ( is_string( $card_short ) && '' !== trim( $card_short ) ) {
+	            $copy = wp_kses_post( wpautop( $card_short ) );
+	        } else {
+	            $copy = get_the_excerpt( $post_id );
+	        }
+	
+	        $cards_html .= '<a class="mega-menu-featured-pages__card" href="' . esc_url( $url ) . '">';
+	        $cards_html .= '<span class="mega-menu-featured-pages__media">';
+	        if ( $image_id > 0 ) {
+	            $cards_html .= wp_get_attachment_image(
+	                $image_id,
+	                'medium',
+	                false,
+	                array(
+	                    'class' => 'mega-menu-featured-pages__img',
+	                )
+	            );
+	        } else {
+	            $cards_html .= '<span class="mega-menu-featured-pages__placeholder" aria-hidden="true"></span>';
+	        }
+	        $cards_html .= '</span>';
+	        $cards_html .= '<span class="mega-menu-featured-pages__body">';
+	        if ( '' !== $title ) {
+	            $cards_html .= '<span class="mega-menu-featured-pages__title small">' . esc_html( $title ) . '</span>';
+	        }
+	        if ( '' !== trim( wp_strip_all_tags( $copy ) ) ) {
+	            $cards_html .= '<span class="mega-menu-featured-pages__excerpt">' . wp_kses_post( $copy ) . '</span>';
+	        }
+	        $cards_html .= '</span>';
+	        $cards_html .= '</a>';
+	    }
+	
+	    if ( '' === $cards_html ) {
+	        return '';
+	    }
+	
+	    $grid_class = 'mega-menu-featured-pages__grid mega-menu-featured-pages__grid--cols-' . $cols;
+	
+	    return '<div class="mega-menu-featured-pages"><div class="' . esc_attr( $grid_class ) . '">' . $cards_html . '</div></div>';
+	}
 	/**
 	 * Columns per row for featured products (1–4, default 3).
 	 *
@@ -2184,7 +2367,11 @@ class CustomNavFunctionality_Mega_Menu_Walker extends Walker_Nav_Menu {
 			case 'featured_insights':
 				$output .= $this->render_featured_insights_item( $item );
 				break;
-
+			
+			case 'featured_pages':
+			    $output .= $this->render_featured_pages_item( $item );
+			    break;
+			
 			default:
 				// Fallback to default link
 				$attr   = $this->get_item_link_attributes_string( $item );
