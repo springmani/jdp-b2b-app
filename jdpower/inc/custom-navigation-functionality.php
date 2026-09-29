@@ -961,7 +961,7 @@ if ( ! function_exists( 'customnavfunctionality_register_mega_menu_fields' ) ) {
 							'ajax'              => 0,
 							'placeholder'       => '',
 						),
-					),
+					
 					// Featured Pages Content Type Fields
 					array(
 					    'key'               => 'field_mm_note_featured_pages',
@@ -1051,7 +1051,7 @@ if ( ! function_exists( 'customnavfunctionality_register_mega_menu_fields' ) ) {
 					    'ajax'              => 0,
 					    'placeholder'       => '',
 					),
-			
+				),
 					'location'              => array(
 						array(
 							array(
