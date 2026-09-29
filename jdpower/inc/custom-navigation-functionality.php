@@ -1051,7 +1051,7 @@ if ( ! function_exists( 'customnavfunctionality_register_mega_menu_fields' ) ) {
 					    'ajax'              => 0,
 					    'placeholder'       => '',
 					),
-					),
+			
 					'location'              => array(
 						array(
 							array(
