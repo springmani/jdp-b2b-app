@@ -1383,6 +1383,139 @@ $mega-menu-column-row-gap: 0.75rem;
 	}
 }
 
+// Featured Pages Menu Items — matches .mega-menu-featured-products__* styling above.
+.mega-menu-content-type-featured_pages {
+
+	.mega-menu-featured-pages {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.mega-menu-featured-pages__grid {
+		display: grid;
+		gap: 1rem 1.25rem;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.mega-menu-featured-pages__grid--cols-1 {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.mega-menu-featured-pages__grid--cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.mega-menu-featured-pages__grid--cols-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.mega-menu-featured-pages__grid--cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@include media-breakpoint-down(nav) {
+
+		.mega-menu-featured-pages__grid--cols-3,
+		.mega-menu-featured-pages__grid--cols-4 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+
+		.mega-menu-featured-pages__grid--cols-2,
+		.mega-menu-featured-pages__grid--cols-3,
+		.mega-menu-featured-pages__grid--cols-4 {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	a.mega-menu-featured-pages__card {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 10px;
+		min-width: 0;
+		height: 100%;
+		padding: 16.5px 10px;
+		text-decoration: none;
+		color: inherit;
+		background-color: #f2f2f2;
+		border-radius: 5px;
+		overflow: hidden;
+		font-size: 18.5px;
+		font-weight: inherit;
+		line-height: inherit;
+		letter-spacing: normal;
+	}
+
+	a.mega-menu-featured-pages__card:hover .mega-menu-featured-pages__title,
+	a.mega-menu-featured-pages__card:focus-visible .mega-menu-featured-pages__title {
+		@include jdpower-card-title-hover-underline;
+	}
+
+	.mega-menu-featured-pages__media {
+		display: block;
+		flex: 0 0 auto;
+		width: 96px;
+		aspect-ratio: 1;
+		overflow: hidden;
+		background-color: #e5e5e5;
+	}
+
+	.mega-menu-featured-pages__img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 1;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.mega-menu-featured-pages__placeholder {
+		display: block;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: 1;
+		background-color: #e5e5e5;
+	}
+
+	.mega-menu-featured-pages__body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 0;
+	}
+
+	.mega-menu-featured-pages__title {
+		display: block;
+		margin: 0 0 8px;
+		color: $brand_color_1;
+		font-weight: 800;
+		line-height: 1.1;
+	}
+
+	.mega-menu-featured-pages__excerpt {
+		min-width: 0;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.4;
+		color: $color__text-main;
+		@include jdpower-line-clamp(3);
+	}
+
+	// No breakpoint at 1400px — the card drops its thumbnail only in this narrow desktop band.
+	@media (min-width: 1200px) and (max-width: 1399.98px) {
+
+		.mega-menu-featured-pages__media {
+			display: none;
+		}
+	}
+}
+
 .mega-menu-content-type-featured_insights {
 	@extend %mega-list-plain;
 	width: 100%;
