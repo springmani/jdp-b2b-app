@@ -1,0 +1,43 @@
+name: Compile CSS Manually
+
+on:
+  workflow_dispatch: # Enable the manual "Run workflow" button in GitHub UI
+    inputs:
+      branch:
+        description: 'Branch to run on and commit back to'
+        required: true
+        default: 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository branch
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      # 2. Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Install packages
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Compile style.css
+      - name: Compile CSS
+        run: npm run compile:css
+
+      # 5. Commit and push style.css back to the branch
+      - name: Commit compiled style.css
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "build: recompiled style.css via GitHub Action [skip ci]"
+          branch: ${{ github.event.inputs.branch }}
+          file_pattern: 'style.css' # Adjust path if style.css lives in a theme folder (e.g., 'wp-content/themes/your-theme/style.css')
