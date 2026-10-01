@@ -24,8 +24,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          zcache: 'npm'
-          cache-dependency-path: './wp-content/themes/jdpower/package-lock.json' # Adjust path
+          #cache: 'npm'
+          #cache-dependency-path: '/wp-content/themes/jdpower/package-lock.json' # Adjust path
 
       # 3. Install packages
       - name: Install dependencies
