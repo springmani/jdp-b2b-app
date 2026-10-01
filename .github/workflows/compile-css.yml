@@ -30,12 +30,12 @@ jobs:
       # 3. Install packages
       - name: Install dependencies
       # Tell npm to run inside the subfolder:
-        working-directory: ./wp-content/themes/jdpower
+        working-directory: /jdpower
         run: npm ci
 
       # 4. Compile style.css
       - name: Compile CSS
-        working-directory: ./wp-content/themes/jdpower
+        working-directory: /jdpower
         run: npm run compile:css
 
       # 5. Commit and push style.css back to the branch
