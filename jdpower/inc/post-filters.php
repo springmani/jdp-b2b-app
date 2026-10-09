@@ -195,9 +195,9 @@ function jdpower_post_filters_insight_content_type_choices() {
 	return array(
 		'press_release' => __( 'Press Releases', 'jdpower' ),
 		'post'          => __( 'Insights', 'jdpower' ),
-		'podcast'       => __( 'Podcasts', 'jdpower' ),
-		'webinar'       => __( 'Webinars', 'jdpower' ),
-		'event'         => __( 'Events', 'jdpower' ),
+		//'podcast'       => __( 'Podcasts', 'jdpower' ),
+		//'webinar'       => __( 'Webinars', 'jdpower' ),
+		//'event'         => __( 'Events', 'jdpower' ),
 	);
 }
 
