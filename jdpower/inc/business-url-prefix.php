@@ -428,6 +428,10 @@ function jdpower_should_prefix_url( $url ) {
 		return false;
 	}
 
+	if ( jdpower_path_is_excluded_from_business( $path ) ) {
+		return false;
+	}
+
 	return true;
 }
 
@@ -556,6 +560,60 @@ function jdpower_redirect_legacy_lang_before_business_urls() {
 add_action( 'template_redirect', 'jdpower_redirect_legacy_lang_before_business_urls', 0 );
 
 /**
+ * Top-level paths that never receive the /business/ prefix (not in generated links, not redirected).
+ *
+ * Includes the static list below plus any first segments passed through the
+ * `jdpower_nginx_excluded_paths` filter. Keep that filter in sync with the nginx
+ * location / rewrite rules that serve these paths directly.
+ *
+ * @return string[]
+ */
+function jdpower_get_business_excluded_paths() {
+	$nginx_paths = apply_filters( 'jdpower_nginx_excluded_paths', array() );
+	$nginx_paths = is_array( $nginx_paths ) ? array_map( 'strtolower', array_map( 'strval', $nginx_paths ) ) : array();
+
+	return array_values(
+		array_unique(
+			array_merge(
+				array(
+					'advertise',
+					'contact-us',
+					'terms-of-use',
+					'privacy',
+					'ratings-methodology',
+					'consumerreportscars',
+					'kelleybluebook',
+					'edmunds',
+				),
+				$nginx_paths
+			)
+		)
+	);
+}
+
+/**
+ * Whether a relative path sits under an excluded top-level path, with or without a language prefix.
+ *
+ * Matches /privacy, /privacy/, /privacy/foo and /es/privacy/ (the first segment is compared).
+ *
+ * @param string $path Path without leading/trailing slashes.
+ * @return bool
+ */
+function jdpower_path_is_excluded_from_business( $path ) {
+	$path = untrailingslashit( (string) $path );
+
+	if ( '' === $path ) {
+		return false;
+	}
+
+	$leading = jdpower_extract_leading_language_slug( $path );
+	$content = $leading['lang'] ? $leading['remainder'] : $path;
+	$first   = strtolower( explode( '/', $content, 2 )[0] );
+
+	return '' !== $first && in_array( $first, jdpower_get_business_excluded_paths(), true );
+}
+
+/**
  * Redirect unprefixed content URLs to their /business/ canonical form.
  */
 function jdpower_redirect_unprefixed_urls_to_business() {
@@ -596,6 +654,10 @@ function jdpower_redirect_unprefixed_urls_to_business() {
 		return;
 	}
 
+	if ( jdpower_path_is_excluded_from_business( $path ) ) {
+		return;
+	}
+
 	$target  = jdpower_add_business_prefix_to_url( home_url( user_trailingslashit( $path ) ) );
 	$current = ( is_ssl() ? 'https://' : 'http://' ) . ( $_SERVER['HTTP_HOST'] ?? '' ) . ( $_SERVER['REQUEST_URI'] ?? '' );
 
@@ -606,7 +668,7 @@ function jdpower_redirect_unprefixed_urls_to_business() {
 	wp_safe_redirect( $target, 301 );
 	exit;
 }
-//add_action( 'template_redirect', 'jdpower_redirect_unprefixed_urls_to_business', 1 );
+add_action( 'template_redirect', 'jdpower_redirect_unprefixed_urls_to_business', 1 );
 
 /**
  * Prevent WordPress canonical redirects from stripping the /business/ prefix.
