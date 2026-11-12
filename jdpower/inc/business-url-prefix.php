@@ -576,6 +576,7 @@ function jdpower_get_business_excluded_paths() {
 		array_unique(
 			array_merge(
 				array(
+					'cars',
 					'advertise',
 					'contact-us',
 					'terms-of-use',
