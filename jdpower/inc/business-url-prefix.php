@@ -606,7 +606,7 @@ function jdpower_redirect_unprefixed_urls_to_business() {
 	wp_safe_redirect( $target, 301 );
 	exit;
 }
-add_action( 'template_redirect', 'jdpower_redirect_unprefixed_urls_to_business', 1 );
+//add_action( 'template_redirect', 'jdpower_redirect_unprefixed_urls_to_business', 1 );
 
 /**
  * Prevent WordPress canonical redirects from stripping the /business/ prefix.
