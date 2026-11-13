@@ -3,12 +3,46 @@
     "title": "[Event & Webinar] - Event details",
     "fields": [
         {
+            "key": "field_70fe10a1b0905",
+            "label": "Event timezone",
+            "name": "webinar_event_timezone",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Choose the timezone first. The date and time below are entered in this timezone, and the site shows it next to the time.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "America/New_York": "US Eastern (New York)",
+                "America/Chicago": "US Central (Chicago)",
+                "America/Denver": "US Mountain (Denver)",
+                "America/Los_Angeles": "US Pacific (Los Angeles)",
+                "Europe/London": "UK (London)",
+                "Europe/Berlin": "Central Europe (Berlin, Paris, Amsterdam)"
+            },
+            "default_value": "",
+            "translations": "copy_once",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "Select timezone",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
             "key": "field_70fe10a1b0902",
             "label": "Event date & time",
             "name": "webinar_event_datetime",
             "aria-label": "",
             "type": "date_time_picker",
-            "instructions": "Scheduled start in the site timezone. Used for display and metadata.",
+            "instructions": "Start time in the timezone selected above.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -92,6 +126,6 @@
     "description": "Schedule, format, and registration for this event or webinar.",
     "show_in_rest": 1,
     "display_title": "",
-    "modified": 1780364907,
+    "modified": 1794182400,
     "pll_display_field_instructions": 0
 }
