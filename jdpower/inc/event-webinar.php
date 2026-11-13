@@ -46,7 +46,30 @@ function jdpower_event_webinar_has_event_details( $post_id = null ) {
 }
 
 /**
- * Uppercase line for the event time row (e.g. APRIL 1, 2026 - 9:30 AM PST).
+ * Timezone the event start time was entered in (ACF "webinar_event_timezone").
+ *
+ * Falls back to the site timezone when no timezone is set (events saved before the field existed).
+ *
+ * @param int|null $post_id Post ID or null for current post in loop.
+ * @return DateTimeZone
+ */
+function jdpower_event_webinar_timezone( $post_id = null ) {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+	$tz_name = function_exists( 'get_field' ) ? (string) get_field( 'webinar_event_timezone', $post_id ) : '';
+	if ( '' !== $tz_name ) {
+		try {
+			return new DateTimeZone( $tz_name );
+		} catch ( Exception $e ) {
+			// Unknown identifier: fall back to the site timezone below.
+		}
+	}
+	return wp_timezone();
+}
+
+/**
+ * Uppercase line for the event time row (e.g. NOVEMBER 19, 2026 - 1:00 pm EST).
+ *
+ * The time is read in the event's own timezone and the abbreviation (EST, CET, ...) follows it, including DST.
  *
  * @param int $post_id Post ID.
  * @return string Empty if no datetime stored.
@@ -60,12 +83,13 @@ function jdpower_event_webinar_datetime_display_line( $post_id = null ) {
 	if ( ! is_string( $raw ) || '' === trim( $raw ) ) {
 		return '';
 	}
-	$ts = strtotime( $raw );
-	if ( ! $ts ) {
+	$tz = jdpower_event_webinar_timezone( $post_id );
+	try {
+		$start = new DateTimeImmutable( $raw, $tz );
+	} catch ( Exception $e ) {
 		return '';
 	}
-	// Match marketing style: "APRIL 1, 2026 - 9:30 AM EST" (site timezone; T = abbreviation).
-	return wp_date( 'F j, Y - g:i a T', (int) $ts );
+	return wp_date( 'F j, Y - g:i a T', $start->getTimestamp(), $tz );
 }
 
 /**
